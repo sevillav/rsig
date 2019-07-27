@@ -1,0 +1,16 @@
+---
+title: Primero entrada Sevilla
+author: Victor Sevilla
+date: '2019-07-27'
+slug: primero-entrada-sevilla
+categories: []
+tags: []
+---
+
+```{r}
+summary(iris$Sepal.Length)
+```
+
+```{r}
+plot(iris$Sepal.Length, col="blue")
+```
