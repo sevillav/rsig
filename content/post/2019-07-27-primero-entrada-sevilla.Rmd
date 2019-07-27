@@ -14,3 +14,7 @@ summary(iris$Sepal.Length)
 ```{r}
 plot(iris$Sepal.Length, col="blue")
 ```
+```{r}
+hist(iris$Sepal.Length, col = "blue")
+```
+
