@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1849190496",
+    "hash" : "0",
     "id" : "491BFE68",
-    "lastKnownWriteTime" : 1564251675,
-    "last_content_update" : 1564251675438,
+    "lastKnownWriteTime" : 1564363016,
+    "last_content_update" : 1564363016791,
     "path" : "C:/Sevilla/rsig/config.toml",
     "project_path" : "config.toml",
     "properties" : {
-        "cursorPosition" : "1,21",
-        "scrollLine" : "0"
+        "cursorPosition" : "14,13",
+        "scrollLine" : "5"
     },
     "relative_order" : 3,
     "source_on_save" : false,

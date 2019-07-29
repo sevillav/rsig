@@ -1,6 +1,6 @@
 baseurl = "/"
 languageCode = "es-es"
-title = "A Hugo website"
+title = "R-SIG"
 theme = "hugo-lithium"
 googleAnalytics = ""
 disqusShortname = ""
@@ -10,14 +10,19 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     post = "/:year/:month/:day/:slug/"
 
 [[menu.main]]
-    name = "About"
+    name = "Nosotros"
     url = "/about/"
 [[menu.main]]
-    name = "GitHub"
-    url = "https://github.com/rstudio/blogdown"
+    name = "Inicio"
+    url = "https://ecstatic-benz-f335b1.netlify.com"
 [[menu.main]]
     name = "Twitter"
     url = "https://twitter.com/rstudio"
+[[menu.main]]
+    name = "CampoAmbiente"
+    url = "https://campoambiente.com"
+
+
 
 [params]
     description = "A website built through Hugo and blogdown."
@@ -32,10 +37,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     MathJaxVersion = "2.7.5"
 
     # path to the favicon, under "static"
-    favicon = "favicon.ico"
+    favicon = "CA.ico"
 
     [params.logo]
-    url = "logo.png"
+    url = "logo1.png"
     width = 50
     height = 50
     alt = "Logo"

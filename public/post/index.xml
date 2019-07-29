@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on A Hugo website</title>
+    <title>Posts on R-SIG</title>
     <link>/post/</link>
-    <description>Recent content in Posts on A Hugo website</description>
+    <description>Recent content in Posts on R-SIG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-es</language>
     <lastBuildDate>Sat, 27 Jul 2019 00:00:00 +0000</lastBuildDate>
@@ -12,12 +12,13 @@
     
     
     <item>
-      <title>Primero entrada Sevilla</title>
+      <title>Abrir capas raster en R</title>
       <link>/2019/07/27/primero-entrada-sevilla/</link>
       <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/07/27/primero-entrada-sevilla/</guid>
-      <description>summary(iris$Sepal.Length)## Min. 1st Qu. Median Mean 3rd Qu. Max. ## 4.300 5.100 5.800 5.843 6.400 7.900plot(iris$Sepal.Length, col=&amp;quot;blue&amp;quot;)hist(iris$Sepal.Length, col = &amp;quot;blue&amp;quot;)</description>
+      <description>Objetivo:Nuestro meta es introducirlo al manejo de capas raster georreferenciadas en R.
+Contenido:Como adicionar capas raster a un proyecto RComo saber su proyección cartográficaDescargo:Muestra intensión es mostrar una manera de realizar tareas en R con RStudio. De ninguna manera pretendemos dejar entender que es la mejor forma de hacerlo. Solo es la forma que nosotros realizamos nuestro trabajo. Apreciaríamos cualquier colaboración para facilitar y mejorar los métodos expuestos.</description>
     </item>
     
     <item>
