@@ -11,9 +11,24 @@ tags: []
 
 <p>locote 2</p>
 <p>data()</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
 <pre class="r"><code>data()
 
 datos &lt;- Orange
 
 hist(Orange$age)</code></pre>
 <p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>names(Orange)</code></pre>
+<pre><code>## [1] &quot;Tree&quot;          &quot;age&quot;           &quot;circumference&quot;</code></pre>
+<pre class="r"><code>datos1 &lt;- rename(Orange, arboles = Tree)
+
+names(Orange)</code></pre>
+<pre><code>## [1] &quot;Tree&quot;          &quot;age&quot;           &quot;circumference&quot;</code></pre>

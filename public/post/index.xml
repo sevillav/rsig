@@ -28,7 +28,7 @@
       <guid>/2020/03/14/locote-2/</guid>
       <description>locote 2
 data()
-data()datos &amp;lt;- Orangehist(Orange$age)</description>
+library(dplyr)## ## Attaching package: &amp;#39;dplyr&amp;#39;## The following objects are masked from &amp;#39;package:stats&amp;#39;:## ## filter, lag## The following objects are masked from &amp;#39;package:base&amp;#39;:## ## intersect, setdiff, setequal, uniondata()datos &amp;lt;- Orangehist(Orange$age)names(Orange)## [1] &amp;quot;Tree&amp;quot; &amp;quot;age&amp;quot; &amp;quot;circumference&amp;quot;datos1 &amp;lt;- rename(Orange, arboles = Tree)names(Orange)## [1] &amp;quot;Tree&amp;quot; &amp;quot;age&amp;quot; &amp;quot;circumference&amp;quot;</description>
     </item>
     
     <item>

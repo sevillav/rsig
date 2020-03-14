@@ -13,10 +13,19 @@ locote 2
 data()
 
 ```{r}
+
+library(dplyr)
+
 data()
 
 datos <- Orange
 
 hist(Orange$age)
+
+names(Orange)
+
+datos1 <- rename(Orange, arboles = Tree)
+
+names(Orange)
 ```
 
