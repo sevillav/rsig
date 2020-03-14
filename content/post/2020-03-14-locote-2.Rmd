@@ -9,3 +9,14 @@ tags: []
 
 
 locote 2
+
+data()
+
+```{r}
+data()
+
+datos <- Orange
+
+hist(Orange$age)
+```
+
