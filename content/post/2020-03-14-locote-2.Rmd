@@ -14,18 +14,21 @@ data()
 
 ```{r}
 
+# Activamos la libreria:
 library(dplyr)
 
+# Observamos el set de datos disponible en R:
 data()
+
 
 datos <- Orange
 
 hist(Orange$age)
 
-names(Orange)
+names(datos)
 
+#Cambiamos el nombre del campo "Tree" por "arboles":
 datos1 <- rename(Orange, arboles = Tree)
 
-names(Orange)
+names(datos1)
 ```
-
