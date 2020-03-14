@@ -1,14 +1,14 @@
 ---
-title: Abrir capas raster en R
-author: Victor Sevilla
+title: "Abrir capas raster en R"
+author: "Victor Sevilla"
 date: '2019-07-27'
 slug: primero-entrada-sevilla
-categories: []
 tags: []
+categories: []
 ---
 ##Objetivo:
 
-Nuestro meta es introducirlo al manejo de capas raster georreferenciadas en R.
+Nuestro meta es introducirlo al manejo de capas raster georreferenciadas en R dos.
 
 ##Contenido:
 - Como adicionar capas raster a un proyecto R
@@ -28,4 +28,3 @@ plot(iris$Sepal.Length, col="blue")
 ```{r}
 hist(iris$Sepal.Length, col = "blue")
 ```
-![](/post/2019-07-27-primero-entrada-sevilla_files/toldo.jpg)
