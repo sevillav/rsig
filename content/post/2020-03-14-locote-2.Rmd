@@ -47,7 +47,7 @@ ls()
 Podemos revisar la proyeccion cartografica de los objetos R creados:
 
 
-Pendiente:
+Pendiente11:
 
 Mostrar la proyeccion.
 
