@@ -46,7 +46,7 @@ ls()
 
 Podemos revisar la proyeccion cartografica de los objetos R creados:
 
-![imagen de muestra](C:/Sevilla/rsig/toldo.jpg)
+![prueba](/post/2020-03-14-locote-2_files/toldo.jpg)
 
 Pendiente11:
 
