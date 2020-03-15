@@ -11,18 +11,36 @@ categories: []
 
 ###Objetivo:
 
-El objetivo de esta entrada (pots) es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R. Si conoces otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.
+El objetivo de esta entrada es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R para estudios agroambientales. Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.
 
-Nuestra area de tarabjo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.
+Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.
 
 
+###Estableceremos el ditectorio de trabajo global:
+```{r setup}
+knitr::opts_knit$set(root.dir = 'C:/Sevilla/Canoabo1')
+getwd() #Verificamos el directorio de trabajo:
+
+```
+Activamos las librerias o paquetes necesarios:
 ```{r}
+library(raster)
+```
+Trabajamos con capas espaciales de SIG:
+```{r}
+#Creamos un objeto de un shapefile
+perimetro <- shapefile("cuenca1.shp")
+#Creamos un objeto de un raster:
+DEM <- raster("MDE3.tif")
+#Ploteamos el modelo digital de elevacion y el perimetro:
+plot(DEM)
+lines(perimetro)
+```
+```
 
-# visualicemos el set de datos disponible en R para su uso libre:
-data()
 
-# Activamos la libreria:
-library(dplyr)
+
+
 
 # Observamos el set de datos disponible en R:
 data()

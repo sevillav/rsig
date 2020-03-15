@@ -81,36 +81,45 @@
 <h1>Victor Sevilla</h1>
 <div id="objetivo" class="section level3">
 <h3>Objetivo:</h3>
-<p>El objetivo de esta entrada (pots) es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R. Si conoces otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.</p>
-<p>Nuestra area de tarabjo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.</p>
-<pre class="r"><code># visualicemos el set de datos disponible en R para su uso libre:
-data()
+<p>El objetivo de esta entrada es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R para estudios agroambientales. Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.</p>
+<p>Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.</p>
+</div>
+<div id="estableceremos-el-ditectorio-de-trabajo-global" class="section level3">
+<h3>Estableceremos el ditectorio de trabajo global:</h3>
+<pre class="r"><code>knitr::opts_knit$set(root.dir = &#39;C:/Sevilla/Canoabo1&#39;)
+getwd() #Verificamos el directorio de trabajo:</code></pre>
+<pre><code>## [1] &quot;C:/Sevilla/rsig/content/post&quot;</code></pre>
+<p>Activamos las librerias o paquetes necesarios:</p>
+<pre class="r"><code>library(raster)</code></pre>
+<pre><code>## Loading required package: sp</code></pre>
+<p>Trabajamos con capas espaciales de SIG:</p>
+<pre class="r"><code>#Creamos un objeto de un shapefile
+perimetro &lt;- shapefile(&quot;cuenca1.shp&quot;)
+#Creamos un objeto de un raster:
+DEM &lt;- raster(&quot;MDE3.tif&quot;)
+#Ploteamos el modelo digital de elevacion y el perimetro:
+plot(DEM)
+lines(perimetro)</code></pre>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre><code>
 
-# Activamos la libreria:
-library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code># Observamos el set de datos disponible en R:
+
+
+
+# Observamos el set de datos disponible en R:
 data()
 
 
 datos &lt;- Orange
 
-hist(Orange$age)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>names(datos)</code></pre>
-<pre><code>## [1] &quot;Tree&quot;          &quot;age&quot;           &quot;circumference&quot;</code></pre>
-<pre class="r"><code>#Cambiamos el nombre del campo &quot;Tree&quot; por &quot;arboles&quot;:
+hist(Orange$age)
+
+names(datos)
+
+#Cambiamos el nombre del campo &quot;Tree&quot; por &quot;arboles&quot;:
 datos1 &lt;- rename(Orange, arboles = Tree)
 
 names(datos1)</code></pre>
-<pre><code>## [1] &quot;arboles&quot;       &quot;age&quot;           &quot;circumference&quot;</code></pre>
 </div>
 </div>
 

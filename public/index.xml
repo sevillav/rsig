@@ -26,9 +26,9 @@
       <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/03/14/locote-2/</guid>
-      <description>Victor SevillaObjetivo:El objetivo de esta entrada (pots) es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R. Si conoces otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.
-Nuestra area de tarabjo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.
-# visualicemos el set de datos disponible en R para su uso libre:data()# Activamos la libreria:library(dplyr)## ## Attaching package: &amp;#39;dplyr&amp;#39;## The following objects are masked from &amp;#39;package:stats&amp;#39;:## ## filter, lag## The following objects are masked from &amp;#39;package:base&amp;#39;:## ## intersect, setdiff, setequal, union# Observamos el set de datos disponible en R:data()datos &amp;lt;- Orangehist(Orange$age)names(datos)## [1] &amp;quot;Tree&amp;quot; &amp;quot;age&amp;quot; &amp;quot;circumference&amp;quot;#Cambiamos el nombre del campo &amp;quot;Tree&amp;quot; por &amp;quot;arboles&amp;quot;:datos1 &amp;lt;- rename(Orange, arboles = Tree)names(datos1)## [1] &amp;quot;arboles&amp;quot; &amp;quot;age&amp;quot; &amp;quot;circumference&amp;quot;</description>
+      <description>Victor SevillaObjetivo:El objetivo de esta entrada es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R para estudios agroambientales. Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.
+Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.
+Estableceremos el ditectorio de trabajo global:knitr::opts_knit$set(root.</description>
     </item>
     
     <item>
