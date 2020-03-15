@@ -6,10 +6,19 @@
     <description>Recent content on R-SIG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-es</language>
-    <lastBuildDate>Sat, 14 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 15 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>locote3</title>
+      <link>/2020/03/15/locote3/</link>
+      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/03/15/locote3/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>locote</title>

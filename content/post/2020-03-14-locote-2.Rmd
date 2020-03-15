@@ -2,7 +2,9 @@
 title: "locote 2"
 author: "Victor Sevilla"
 date: '2020-03-14'
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 slug: locote-2
 tags: []
 categories: []
@@ -18,15 +20,15 @@ Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de mu
 
 
 ###Estableceremos el ditectorio de trabajo global:
-```{r setup}
-knitr::opts_knit$set(root.dir = 'C:/Sevilla/Canoabo1')
-```
+#```{r setup}
+#knitr::opts_knit$set(root.dir = 'C:/Sevilla/Canoabo1')
+#```
 verificamos nuestro directotio de trabajo
 ```{r}
 getwd()
 ```
 
-Activamos las librerias o paquetes necesarios:
+**Activamos las librerias o paquetes necesarios:**
 ```{r}
 library(raster)
 ```
@@ -46,9 +48,13 @@ ls()
 
 Podemos revisar la proyeccion cartografica de los objetos R creados:
 
-![prueba](/post/2020-03-14-locote-2_files/toldo.jpg)
+![prueba](images/toldo.jpg)
 
 Pendiente11:
+
+```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
+knitr::include_graphics("images/toldos.jpg")
+```
 
 Mostrar la proyeccion.
 
