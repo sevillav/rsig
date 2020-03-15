@@ -98,28 +98,13 @@ perimetro &lt;- shapefile(&quot;cuenca1.shp&quot;)
 #Creamos un objeto de un raster:
 DEM &lt;- raster(&quot;MDE3.tif&quot;)
 #Ploteamos el modelo digital de elevacion y el perimetro:
-plot(DEM)
+plot(DEM, main=&quot;Modelo Digital de Elevacion (msnm)&quot;)
 lines(perimetro)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre><code>
-
-
-
-
-# Observamos el set de datos disponible en R:
-data()
-
-
-datos &lt;- Orange
-
-hist(Orange$age)
-
-names(datos)
-
-#Cambiamos el nombre del campo &quot;Tree&quot; por &quot;arboles&quot;:
-datos1 &lt;- rename(Orange, arboles = Tree)
-
-names(datos1)</code></pre>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-2-1.png" width="672" /> ```</p>
+<p>Pendiente:</p>
+<p>Mostrar la proyeccion. Cambiar la proyeccion de canoa a regeven. Montar los puntos de suelos y ploteralo junto al dem y el perimetro. ver los datos de suelos (los primeros 6 registros) hacer un resumen de una caracteristica como pH.</p>
+<p>Cambiamos el nombre del campo “Tree” por “arboles”: datos1 &lt;- rename(Orange, arboles = Tree)</p>
+<p>names(datos1)</p>
 </div>
 </div>
 

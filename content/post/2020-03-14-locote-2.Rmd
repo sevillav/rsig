@@ -33,27 +33,20 @@ perimetro <- shapefile("cuenca1.shp")
 #Creamos un objeto de un raster:
 DEM <- raster("MDE3.tif")
 #Ploteamos el modelo digital de elevacion y el perimetro:
-plot(DEM)
+plot(DEM, main="Modelo Digital de Elevacion (msnm)")
 lines(perimetro)
 ```
 ```
 
+Pendiente:
 
+Mostrar la proyeccion.
+Cambiar la proyeccion de canoa a regeven.
+Montar los puntos de suelos y ploteralo junto al dem y el perimetro.
+ver los datos de suelos (los primeros 6 registros)
+hacer un resumen de una caracteristica como pH.
 
-
-
-# Observamos el set de datos disponible en R:
-data()
-
-
-datos <- Orange
-
-hist(Orange$age)
-
-names(datos)
-
-#Cambiamos el nombre del campo "Tree" por "arboles":
+Cambiamos el nombre del campo "Tree" por "arboles":
 datos1 <- rename(Orange, arboles = Tree)
 
 names(datos1)
-```
