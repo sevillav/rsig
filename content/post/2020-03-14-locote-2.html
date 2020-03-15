@@ -21,42 +21,33 @@ categories: []
 </div>
 <div id="estableceremos-el-ditectorio-de-trabajo-global" class="section level3">
 <h3>Estableceremos el ditectorio de trabajo global:</h3>
-<pre class="r"><code>knitr::opts_knit$set(root.dir = &#39;C:/Sevilla/Canoabo1&#39;)</code></pre>
+</div>
+</div>
+<div id="r-setup-knitropts_knitsetroot.dir-csevillacanoabo1" class="section level1">
+<h1><code>{r setup} #knitr::opts_knit$set(root.dir = 'C:/Sevilla/Canoabo1') #</code></h1>
 <p>verificamos nuestro directotio de trabajo</p>
 <pre class="r"><code>getwd()</code></pre>
-<pre><code>## [1] &quot;C:/Sevilla/Canoabo1&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Sevilla/rsig/content/post&quot;</code></pre>
 <p><strong>Activamos las librerias o paquetes necesarios:</strong></p>
 <pre class="r"><code>library(raster)</code></pre>
 <pre><code>## Loading required package: sp</code></pre>
 <p>Trabajamos con capas espaciales de SIG:</p>
 <pre class="r"><code>#Creamos un objeto R de un archivo shapefile shp
-perimetro &lt;- shapefile(&quot;cuenca1.shp&quot;)
+perimetro &lt;- shapefile(&quot;C:/Sevilla/Canoabo1/cuenca1.shp&quot;)
 #Creamos un objeto R de un archivo formato tiff raster
-DEM &lt;- raster(&quot;MDE3.tif&quot;)
+DEM &lt;- raster(&quot;C:/Sevilla/Canoabo1/MDE3.tif&quot;)
 #Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
 plot(DEM, main=&quot;Modelo Digital de Elevacion (msnm)&quot;)
 lines(perimetro)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/sevillav.netlify.compost/2020-03-14-locote-2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code># Si desea ver los objetos R en memoria
 ls()</code></pre>
 <pre><code>## [1] &quot;DEM&quot;       &quot;perimetro&quot;</code></pre>
 <p>Podemos revisar la proyeccion cartografica de los objetos R creados:</p>
-<div class="figure">
-<img src="/post/2020-03-14-locote-2_files/toldo.jpg" alt="prueba" />
-<p class="caption">prueba</p>
-</div>
-<p>Pendiente11:</p>
-<div class="figure"><span id="fig:pressure"></span>
-<img src="C:/Sevilla/rsig/public/images/toldos.jpg" alt="A caption" width="100%" />
-<p class="caption">
-Figure 1: A caption
-</p>
-</div>
-<p>Mostrar la proyeccion.</p>
+<p>Pendiente11: Mostrar la proyeccion.</p>
 <p>Cambiar la proyeccion de canoa a regeven.</p>
 <p>Montar los puntos de suelos y ploteralo junto al dem y el perimetro.</p>
 <p>ver los datos de suelos (los primeros 6 registros)</p>
 <p>hacer un resumen de una caracteristica como pH.</p>
 <p>Cambiamos el nombre del campo “Tree” por “arboles”: datos1 &lt;- rename(Orange, arboles = Tree)</p>
-</div>
 </div>

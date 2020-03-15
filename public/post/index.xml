@@ -2,70 +2,79 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on R-SIG</title>
-    <link>/post/</link>
+    <link>/sevillav.netlify.com/post/</link>
     <description>Recent content in Posts on R-SIG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-es</language>
     <lastBuildDate>Sun, 15 Mar 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/sevillav.netlify.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>locote3</title>
-      <link>/2020/03/15/locote3/</link>
+      <link>/sevillav.netlify.com/2020/03/15/locote3/</link>
       <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/03/15/locote3/</guid>
+      <guid>/sevillav.netlify.com/2020/03/15/locote3/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>locote5</title>
+      <link>/sevillav.netlify.com/2020/03/15/locote5/</link>
+      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sevillav.netlify.com/2020/03/15/locote5/</guid>
+      <description>Hola getwd()## [1] &amp;quot;C:/Sevilla/rsig/content/post&amp;quot;</description>
+    </item>
+    
+    <item>
       <title>locote</title>
-      <link>/2020/03/14/locote/</link>
+      <link>/sevillav.netlify.com/2020/03/14/locote/</link>
       <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/03/14/locote/</guid>
+      <guid>/sevillav.netlify.com/2020/03/14/locote/</guid>
       <description>este es una prueba</description>
     </item>
     
     <item>
       <title>locote 2</title>
-      <link>/2020/03/14/locote-2/</link>
+      <link>/sevillav.netlify.com/2020/03/14/locote-2/</link>
       <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/03/14/locote-2/</guid>
+      <guid>/sevillav.netlify.com/2020/03/14/locote-2/</guid>
       <description>Victor SevillaObjetivo:El objetivo de esta entrada es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R para estudios agroambientales. Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.
 Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.
-Estableceremos el ditectorio de trabajo global:knitr::opts_knit$set(root.</description>
+Estableceremos el ditectorio de trabajo global:{r setup} #knitr::opts_knit$set(root.</description>
     </item>
     
     <item>
       <title>Abrir capas raster en R</title>
-      <link>/2019/07/27/primero-entrada-sevilla/</link>
+      <link>/sevillav.netlify.com/2019/07/27/primero-entrada-sevilla/</link>
       <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/07/27/primero-entrada-sevilla/</guid>
+      <guid>/sevillav.netlify.com/2019/07/27/primero-entrada-sevilla/</guid>
       <description>Objetivo:Nuestro meta es introducirlo al manejo de capas raster georreferenciadas en R dos.
 Contenido:Como adicionar capas raster a un proyecto RComo saber su proyección cartográficaDescargo:Muestra intensión es mostrar una manera de realizar tareas en R con RStudio. De ninguna manera pretendemos dejar entender que es la mejor forma de hacerlo. Solo es la forma que nosotros realizamos nuestro trabajo. Apreciaríamos cualquier colaboración para facilitar y mejorar los métodos expuestos.</description>
     </item>
     
     <item>
       <title>A Plain Markdown Post</title>
-      <link>/2016/12/30/a-plain-markdown-post/</link>
+      <link>/sevillav.netlify.com/2016/12/30/a-plain-markdown-post/</link>
       <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
       
-      <guid>/2016/12/30/a-plain-markdown-post/</guid>
+      <guid>/sevillav.netlify.com/2016/12/30/a-plain-markdown-post/</guid>
       <description>This is a post written in plain Markdown (*.md) instead of R Markdown (*.Rmd). The major differences are:
  You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Blackfriday, and an R Markdown document is compiled by rmarkdown and Pandoc.  There are many differences in syntax between Blackfriday&amp;rsquo;s Markdown and Pandoc&amp;rsquo;s Markdown.</description>
     </item>
     
     <item>
       <title>Hello R Markdown</title>
-      <link>/2015/07/23/hello-r-markdown/</link>
+      <link>/sevillav.netlify.com/2015/07/23/hello-r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/2015/07/23/hello-r-markdown/</guid>
+      <guid>/sevillav.netlify.com/2015/07/23/hello-r-markdown/</guid>
       <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
@@ -73,10 +82,10 @@ summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
     
     <item>
       <title>Lorem Ipsum</title>
-      <link>/2015/01/01/lorem-ipsum/</link>
+      <link>/sevillav.netlify.com/2015/01/01/lorem-ipsum/</link>
       <pubDate>Thu, 01 Jan 2015 13:09:13 -0600</pubDate>
       
-      <guid>/2015/01/01/lorem-ipsum/</guid>
+      <guid>/sevillav.netlify.com/2015/01/01/lorem-ipsum/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     

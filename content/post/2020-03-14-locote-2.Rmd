@@ -35,9 +35,9 @@ library(raster)
 Trabajamos con capas espaciales de SIG:
 ```{r}
 #Creamos un objeto R de un archivo shapefile shp
-perimetro <- shapefile("cuenca1.shp")
+perimetro <- shapefile("C:/Sevilla/Canoabo1/cuenca1.shp")
 #Creamos un objeto R de un archivo formato tiff raster
-DEM <- raster("MDE3.tif")
+DEM <- raster("C:/Sevilla/Canoabo1/MDE3.tif")
 #Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
 plot(DEM, main="Modelo Digital de Elevacion (msnm)")
 lines(perimetro)
@@ -48,14 +48,7 @@ ls()
 
 Podemos revisar la proyeccion cartografica de los objetos R creados:
 
-![prueba](images/toldo.jpg)
-
 Pendiente11:
-
-```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
-knitr::include_graphics("images/toldos.jpg")
-```
-
 Mostrar la proyeccion.
 
 Cambiar la proyeccion de canoa a regeven.

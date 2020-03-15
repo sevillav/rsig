@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "sevillav.netlify.com"
 languageCode = "es-es"
 title = "R-SIG"
 theme = "hugo-lithium"
