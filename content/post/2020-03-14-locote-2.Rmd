@@ -47,12 +47,6 @@ ls()
 Podemos revisar la proyeccion cartografica de los objetos R creados:
 
 
-![imagen de toldos](C:/Sevilla/rsig/public/images/toldo.jpg)
-`
-
-
-
-
 Pendiente:
 
 Mostrar la proyeccion.
