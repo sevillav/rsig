@@ -19,34 +19,47 @@ Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de mu
 ###Estableceremos el ditectorio de trabajo global:
 ```{r setup}
 knitr::opts_knit$set(root.dir = 'C:/Sevilla/Canoabo1')
-getwd() #Verificamos el directorio de trabajo:
-
 ```
+verificamos nuestro directotio de trabajo
+```{r}
+getwd()
+```
+
 Activamos las librerias o paquetes necesarios:
 ```{r}
 library(raster)
 ```
 Trabajamos con capas espaciales de SIG:
 ```{r}
-#Creamos un objeto de un shapefile
+#Creamos un objeto R de un archivo shapefile shp
 perimetro <- shapefile("cuenca1.shp")
-#Creamos un objeto de un raster:
+#Creamos un objeto R de un archivo formato tiff raster
 DEM <- raster("MDE3.tif")
-#Ploteamos el modelo digital de elevacion y el perimetro:
+#Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
 plot(DEM, main="Modelo Digital de Elevacion (msnm)")
 lines(perimetro)
+
+# Si desea ver los objetos R en memoria
+ls()
 ```
-```
+
+Podemos revisar la proyeccion cartografica de los objetos R creados:
+
+![imagen de muestra](C:/Sevilla/rsig/public/images/toldo.jpg)
+
+
 
 Pendiente:
 
 Mostrar la proyeccion.
+
 Cambiar la proyeccion de canoa a regeven.
+
 Montar los puntos de suelos y ploteralo junto al dem y el perimetro.
+
 ver los datos de suelos (los primeros 6 registros)
+
 hacer un resumen de una caracteristica como pH.
 
 Cambiamos el nombre del campo "Tree" por "arboles":
 datos1 <- rename(Orange, arboles = Tree)
-
-names(datos1)

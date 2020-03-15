@@ -1,12 +1,116 @@
-[0m[0KMicrosoft Windows [Version 10.0.17134.885][0K[?25l
-(c) 2018 Microsoft Corporation. All rights reserved.[0K
+[0m[0KMicrosoft Windows [Version 10.0.18362.720][0K[?25l
+(c) 2019 Microsoft Corporation. All rights reserved.[0K
 [0K
-C:\Sevilla\rsig>[0K[?25hv[0Ke[0Kr[0K[?25lC:\Sevilla\rsig>ve[0K[?25h[?25lC:\Sevilla\rsig>v[0K[?25h[?25lC:\Sevilla\rsig>[0K[?25hh[0Ku[0Kg[0Ko[0K[22G[?25lC:\Sevilla\rsig>hugo v[0K[?25he[0Kr[0Ks[0Ki[0Ko[0Kn[0K[?25l
-[0K[?25h'hugo' is not recognized as an internal or external command,[0K[?25l
+C:\Sevilla\rsig>[0K[?25hd[0Ki[0Kr[0K[?25l
+ Volume in drive C is OS[0K
+ Volume Serial Number is 7CC8-F6A2[0K
+[0K
+ Directory of C:\Sevilla\rsig[0K
+[0K
+15/03/2020  11:45 a. m.    <DIR>          .[0K
+15/03/2020  11:45 a. m.    <DIR>          ..[0K
+14/03/2020  12:17 a. m.                44 .gitignore[0K
+14/03/2020  01:08 a. m.             3,254 .RData[0K
+14/03/2020  01:08 a. m.             1,161 .Rhistory[0K
+28/07/2019  09:16 p. m.             1,127 config.toml[0K
+27/07/2019  02:19 p. m.    <DIR>          content[0K
+27/07/2019  02:19 p. m.                42 index.Rmd[0K
+30/08/1754  06:43 p. m.    <DIR>          public[0K
+27/07/2019  02:02 p. m.                28 README.md[0K
+15/03/2020  11:28 a. m.               240 rsig.Rproj[0K
+27/07/2019  02:50 p. m.    <DIR>          static[0K
+27/07/2019  02:19 p. m.    <DIR>          themes[0K
+               7 File(s)          5,896 bytes[0K
+               6 Dir(s)  429,535,793,152 bytes free[0K
+[0K
+C:\Sevilla\rsig>[0K[?25hc[0Kd[0K[20G[?25lC:\Sevilla\rsig>cd c[0K[?25ho[0Kn[0Kt[0Ke[0Kn[0Kt[0K[?25l
+[0K
+C:\Sevilla\rsig\content>[0K[?25hd[0Ki[0Kr[0K[?25l
+ Volume in drive C is OS[0K
+ Volume Serial Number is 7CC8-F6A2[0K
+[0K
+ Directory of C:\Sevilla\rsig\content[0K
+[0K
+27/07/2019  02:19 p. m.    <DIR>          .[0K
+27/07/2019  02:19 p. m.    <DIR>          ..[0K
+27/07/2019  02:19 p. m.               342 about.md[0K
+15/03/2020  11:45 a. m.    <DIR>          post[0K
+               1 File(s)            342 bytes[0K
+               3 Dir(s)  429,535,780,864 bytes free[0K
+[0K
+C:\Sevilla\rsig\content>[0K[?25hc[0Kd[0K[28G[?25lC:\Sevilla\rsig\content>cd p[0K[?25ho[0Ks[0Kt[0K[?25l
+[0K
+C:\Sevilla\rsig\content\post>[0K[?25hd[0Ki[0Kr[0K[?25l
+ Volume in drive C is OS[0K
+ Volume Serial Number is 7CC8-F6A2[0K
+[0K
+ Directory of C:\Sevilla\rsig\content\post[0K
+[0K
+15/03/2020  11:45 a. m.    <DIR>          .[0K
+15/03/2020  11:45 a. m.    <DIR>          ..[0K
+27/07/2019  02:19 p. m.               514 2015-01-01-lorem-ipsum.md[0K
+14/03/2020  12:18 a. m.             1,700 2015-07-23-r-rmarkdown.html[0K
+27/07/2019  02:19 p. m.               873 2015-07-23-r-rmarkdown.Rmd[0K
+27/07/2019  02:19 p. m.             1,947 2016-12-30-hello-markdown.md[0K
+14/03/2020  12:18 a. m.             1,486 2019-07-27-primero-entrada-sevilla.html[0K
+13/03/2020  11:57 p. m.               819 2019-07-27-primero-entrada-sevilla.Rmd[0K
+15/03/2020  11:40 a. m.             2,427 2020-03-14-locote-2.html[0K
+15/03/2020  11:40 a. m.             1,693 2020-03-14-locote-2.Rmd[0K
+14/03/2020  12:24 a. m.               180 2020-03-14-locote.html[0K
+14/03/2020  12:24 a. m.               109 2020-03-14-locote.Rmd[0K
+15/03/2020  11:45 a. m.             3,743 _main.Rmd[0K
+              11 File(s)         15,491 bytes[0K
+               2 Dir(s)  429,535,780,864 bytes free[0K
+[0K
+C:\Sevilla\rsig\content\post>[0K[?25hd[0Ke[0Kl[0Ke[0Kt[0Ke[0K[37G[?25lC:\Sevilla\rsig\content\post>delete 2[0K[?25h0[0K[?25lC:\Sevilla\rsig\content\post>delete 2[0K[?25h[?25lC:\Sevilla\rsig\content\post>delete[0K[37G[?25h[?25lC:\Sevilla\rsig\content\post>delete 2[0K[?25h2[0K[?25lC:\Sevilla\rsig\content\post>delete 2[0K[?25h0[0K2[0K0[0K2[0K[?25lC:\Sevilla\rsig\content\post>delete 2020[0K[?25h-[0K0[0K3[0K-[0K1[0K4[0K-[0Kl[0Ko[0Kc[0Ko[0Kt[0Ke[0K.[0Kr[0Km[0Kd[0K[?25l
+'delete' is not recognized as an internal or external command,[0K
 operable program or batch file.[0K
 [0K
-C:\Sevilla\rsig>[0K[?25hhugo version[0K[28G[27G[26G[25G[24G[23G[22G[21G[20G[19G[18G[17G[?25lC:\Sevilla\rsig>Hhugo version[0K[18G[?25h[?25lC:\Sevilla\rsig>Hugo version[0K[18G[?25h[?25l
-'Hugo' is not recognized as an internal or external command,[0K
-operable program or batch file.[0K
+C:\Sevilla\rsig\content\post>[0K[?25hdelete 2020-03-14-locote.rmd[0K[57G[56G[55G[54G[53G[52G[51G[50G[49G[48G[47G[46G[45G[44G[43G[42G[41G[40G[39G[38G[37G[36G[35G[34G[33G[32G[31G[30G[31G[32G[33G[?25lC:\Sevilla\rsig\content\post>delte 2020-03-14-locote.rmd[0K[33G[?25h[?25lC:\Sevilla\rsig\content\post>dele 2020-03-14-locote.rmd[0K[33G[?25h[?25lC:\Sevilla\rsig\content\post>del 2020-03-14-locote.rmd[0K[33G[?25h[?25l
 [0K
-C:\Sevilla\rsig>[0K[?25h
+C:\Sevilla\rsig\content\post>[0K[?25hd[0Ki[0Kr[0K[?25l
+ Volume in drive C is OS[0K
+ Volume Serial Number is 7CC8-F6A2[0K
+[0K
+ Directory of C:\Sevilla\rsig\content\post[0K
+[0K
+15/03/2020  11:49 a. m.    <DIR>          .[0K
+15/03/2020  11:49 a. m.    <DIR>          ..[0K
+27/07/2019  02:19 p. m.               514 2015-01-01-lorem-ipsum.md[0K
+14/03/2020  12:18 a. m.             1,700 2015-07-23-r-rmarkdown.html[0K
+27/07/2019  02:19 p. m.               873 2015-07-23-r-rmarkdown.Rmd[0K
+27/07/2019  02:19 p. m.             1,947 2016-12-30-hello-markdown.md[0K
+14/03/2020  12:18 a. m.             1,486 2019-07-27-primero-entrada-sevilla.html[0K
+13/03/2020  11:57 p. m.               819 2019-07-27-primero-entrada-sevilla.Rmd[0K
+15/03/2020  11:40 a. m.             2,427 2020-03-14-locote-2.html[0K
+15/03/2020  11:40 a. m.             1,693 2020-03-14-locote-2.Rmd[0K
+14/03/2020  12:24 a. m.               180 2020-03-14-locote.html[0K
+15/03/2020  11:45 a. m.             3,743 _main.Rmd[0K
+              10 File(s)         15,382 bytes[0K
+               2 Dir(s)  429,535,215,616 bytes free[0K
+[0K
+C:\Sevilla\rsig\content\post>[0K[?25hdir[0K[?25lC:\Sevilla\rsig\content\post>del 2020-03-14-locote.rmd[0K[?25h[?25l
+Could Not Find C:\Sevilla\rsig\content\post\2020-03-14-locote.rmd[0K
+[0K
+C:\Sevilla\rsig\content\post>[0K[?25hd[0Ki[0Kr[0K[?25l
+ Volume in drive C is OS[0K
+ Volume Serial Number is 7CC8-F6A2[0K
+[0K
+ Directory of C:\Sevilla\rsig\content\post[0K
+[0K
+15/03/2020  11:49 a. m.    <DIR>          .[0K
+15/03/2020  11:49 a. m.    <DIR>          ..[0K
+27/07/2019  02:19 p. m.               514 2015-01-01-lorem-ipsum.md[0K
+14/03/2020  12:18 a. m.             1,700 2015-07-23-r-rmarkdown.html[0K
+27/07/2019  02:19 p. m.               873 2015-07-23-r-rmarkdown.Rmd[0K
+27/07/2019  02:19 p. m.             1,947 2016-12-30-hello-markdown.md[0K
+14/03/2020  12:18 a. m.             1,486 2019-07-27-primero-entrada-sevilla.html[0K
+13/03/2020  11:57 p. m.               819 2019-07-27-primero-entrada-sevilla.Rmd[0K
+15/03/2020  11:40 a. m.             2,427 2020-03-14-locote-2.html[0K
+15/03/2020  11:40 a. m.             1,693 2020-03-14-locote-2.Rmd[0K
+14/03/2020  12:24 a. m.               180 2020-03-14-locote.html[0K
+15/03/2020  11:45 a. m.             3,743 _main.Rmd[0K
+              10 File(s)         15,382 bytes[0K
+               2 Dir(s)  429,535,281,152 bytes free[0K
+[0K
+C:\Sevilla\rsig\content\post>[0K[?25h

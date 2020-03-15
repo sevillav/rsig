@@ -1,0 +1,153 @@
+---
+title: "Hello R Markdown"
+author: "Frida Gomam"
+date: 2015-07-23T21:13:14-05:00
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+# R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+fit <- lm(dist ~ speed, data = cars)
+fit
+```
+
+# Including Plots
+
+You can also embed plots. See Figure \@ref(fig:pie) for example:
+
+```{r pie, fig.cap='A fancy pie chart.', tidy=FALSE}
+par(mar = c(0, 1, 0, 1))
+pie(
+  c(280, 60, 20),
+  c('Sky', 'Sunny side of pyramid', 'Shady side of pyramid'),
+  col = c('#0292D8', '#F7EA39', '#C4B632'),
+  init.angle = -50, border = NA
+)
+```
+
+<!--chapter:end:2015-07-23-r-rmarkdown.Rmd-->
+
+---
+title: "Abrir capas raster en R"
+author: "Victor Sevilla"
+date: '2019-07-27'
+slug: primero-entrada-sevilla
+tags: []
+categories: []
+---
+##Objetivo:
+
+Nuestro meta es introducirlo al manejo de capas raster georreferenciadas en R dos.
+
+##Contenido:
+- Como adicionar capas raster a un proyecto R
+- Como saber su proyección cartográfica
+-
+
+##Descargo:
+
+Muestra intensión es mostrar una manera de realizar tareas en R con RStudio. De ninguna manera pretendemos dejar entender que es la mejor forma de hacerlo. Solo es la forma que nosotros realizamos nuestro trabajo. Apreciaríamos cualquier colaboración para facilitar y mejorar los métodos expuestos.
+```{r}
+summary(iris$Sepal.Length)
+```
+
+```{r}
+plot(iris$Sepal.Length, col="blue")
+```
+```{r}
+hist(iris$Sepal.Length, col = "blue")
+```
+
+<!--chapter:end:2019-07-27-primero-entrada-sevilla.Rmd-->
+
+---
+title: "locote 2"
+author: "Victor Sevilla"
+date: '2020-03-14'
+slug: locote-2
+tags: []
+categories: []
+---
+
+#Victor Sevilla
+
+###Objetivo:
+
+El objetivo de esta entrada es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R para estudios agroambientales. Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.
+
+Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.
+
+
+###Estableceremos el ditectorio de trabajo global:
+```{r setup}
+knitr::opts_knit$set(root.dir = 'C:/Sevilla/Canoabo1')
+```
+verificamos nuestro directotio de trabajo
+```{r}
+getwd()
+```
+
+Activamos las librerias o paquetes necesarios:
+```{r}
+library(raster)
+```
+Trabajamos con capas espaciales de SIG:
+```{r}
+#Creamos un objeto R de un archivo shapefile shp
+perimetro <- shapefile("cuenca1.shp")
+#Creamos un objeto R de un archivo formato tiff raster
+DEM <- raster("MDE3.tif")
+#Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
+plot(DEM, main="Modelo Digital de Elevacion (msnm)")
+lines(perimetro)
+
+# Si desea ver los objetos R en memoria
+ls()
+```
+```
+Podemos revisar la proyeccion cartografica de los objetos R creados:
+
+```{r}
+
+```
+
+Pendiente:
+
+Mostrar la proyeccion.
+
+Cambiar la proyeccion de canoa a regeven.
+
+Montar los puntos de suelos y ploteralo junto al dem y el perimetro.
+
+ver los datos de suelos (los primeros 6 registros)
+
+hacer un resumen de una caracteristica como pH.
+
+Cambiamos el nombre del campo "Tree" por "arboles":
+datos1 <- rename(Orange, arboles = Tree)
+
+<!--chapter:end:2020-03-14-locote-2.Rmd-->
+
+---
+title: locote
+author: Victor Sevilla
+date: '2020-03-14'
+slug: locote
+---
+
+# este es una prueba
+
+
+<!--chapter:end:2020-03-14-locote.Rmd-->
+
