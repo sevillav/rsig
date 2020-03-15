@@ -2,6 +2,7 @@
 title: "locote 2"
 author: "Victor Sevilla"
 date: '2020-03-14'
+output: pdf_document
 slug: locote-2
 tags: []
 categories: []
@@ -45,7 +46,10 @@ ls()
 
 Podemos revisar la proyeccion cartografica de los objetos R creados:
 
-![imagen de muestra](C:/Sevilla/rsig/public/images/toldo.jpg)
+
+![imagen de toldos](C:/Sevilla/rsig/public/images/toldo.jpg)
+`
+
 
 
 
