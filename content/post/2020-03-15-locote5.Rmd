@@ -1,0 +1,18 @@
+---
+title: "locote5"
+author: "Victor Sevilla"
+date: '2020-03-15'
+slug: locote5
+tags: []
+categories: []
+---
+
+
+Hola
+![](/post/2020-03-15-locote5_files/to![](/Sevilla/rsig/toldo.jpg)ldo.jpg)
+
+```{r}
+getwd()
+```
+
+
