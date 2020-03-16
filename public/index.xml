@@ -30,23 +30,24 @@
     </item>
     
     <item>
-      <title>locote</title>
-      <link>/2020/03/14/locote/</link>
-      <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/03/14/locote/</guid>
-      <description>este es una prueba</description>
-    </item>
-    
-    <item>
-      <title>locote 2</title>
+      <title>Entrada 1: Objetos shape y raster en R</title>
       <link>/2020/03/14/locote-2/</link>
       <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/03/14/locote-2/</guid>
       <description>Victor SevillaObjetivo:El objetivo de esta entrada es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R para estudios agroambientales. Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.
 Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.
-Estableceremos el ditectorio de trabajo global:{r setup} #knitr::opts_knit$set(root.</description>
+verificamos nuestro directotio de trabajo
+getwd()## [1] &amp;quot;C:/Sevilla/rsig/content/post&amp;quot;Cursivas</description>
+    </item>
+    
+    <item>
+      <title>locote</title>
+      <link>/2020/03/14/locote/</link>
+      <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/03/14/locote/</guid>
+      <description>este es una prueba</description>
     </item>
     
     <item>

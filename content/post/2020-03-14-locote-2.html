@@ -1,5 +1,5 @@
 ---
-title: "locote 2"
+title: "Entrada 1: Objetos shape y raster en R"
 author: "Victor Sevilla"
 date: '2020-03-14'
 output:
@@ -18,16 +18,10 @@ categories: []
 <h3>Objetivo:</h3>
 <p>El objetivo de esta entrada es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R para estudios agroambientales. Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.</p>
 <p>Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.</p>
-</div>
-<div id="estableceremos-el-ditectorio-de-trabajo-global" class="section level3">
-<h3>Estableceremos el ditectorio de trabajo global:</h3>
-</div>
-</div>
-<div id="r-setup-knitropts_knitsetroot.dir-csevillacanoabo1" class="section level1">
-<h1><code>{r setup} #knitr::opts_knit$set(root.dir = 'C:/Sevilla/Canoabo1') #</code></h1>
 <p>verificamos nuestro directotio de trabajo</p>
 <pre class="r"><code>getwd()</code></pre>
 <pre><code>## [1] &quot;C:/Sevilla/rsig/content/post&quot;</code></pre>
+<p><em>Cursivas</em></p>
 <p><strong>Activamos las librerias o paquetes necesarios:</strong></p>
 <pre class="r"><code>library(raster)</code></pre>
 <pre><code>## Loading required package: sp</code></pre>
@@ -39,15 +33,22 @@ DEM &lt;- raster(&quot;C:/Sevilla/Canoabo1/MDE3.tif&quot;)
 #Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
 plot(DEM, main=&quot;Modelo Digital de Elevacion (msnm)&quot;)
 lines(perimetro)</code></pre>
-<p><img src="/sevillav.netlify.compost/2020-03-14-locote-2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code># Si desea ver los objetos R en memoria
 ls()</code></pre>
 <pre><code>## [1] &quot;DEM&quot;       &quot;perimetro&quot;</code></pre>
 <p>Podemos revisar la proyeccion cartografica de los objetos R creados:</p>
-<p>Pendiente11: Mostrar la proyeccion.</p>
+<p>Pendiente11:</p>
+<div class="figure">
+<img src="/post/2020-03-14-locote-2_files/toldo.jpg" />
+
+</div>
+<p><img alt = 'my new screenshot' width='200' src='/post/2020-03-14-locote-2_files/toldo.jpg' /></p>
+<p>Mostrar la proyeccion.</p>
 <p>Cambiar la proyeccion de canoa a regeven.</p>
 <p>Montar los puntos de suelos y ploteralo junto al dem y el perimetro.</p>
 <p>ver los datos de suelos (los primeros 6 registros)</p>
 <p>hacer un resumen de una caracteristica como pH.</p>
 <p>Cambiamos el nombre del campo “Tree” por “arboles”: datos1 &lt;- rename(Orange, arboles = Tree)</p>
+</div>
 </div>

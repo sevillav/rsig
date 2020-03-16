@@ -1,0 +1,4 @@
+###Estableceremos el ditectorio de trabajo global:
+#```{r setup}
+#knitr::opts_knit$set(root.dir = 'C:/Sevilla/Canoabo1')
+#```
