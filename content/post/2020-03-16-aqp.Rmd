@@ -1,0 +1,22 @@
+---
+title: Algunas funciones aqp
+author: Victor Sevilla
+date: '2020-03-16'
+slug: aqp
+categories: []
+tags: []
+---
+
+
+
+```{r}
+library(aqp)
+data()
+
+data("sp1")
+View(sp1)
+
+
+
+```
+

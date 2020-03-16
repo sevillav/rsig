@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<title>Entrada 1: Objetos shape y raster en R - R-SIG</title>
-<meta property="og:title" content="Entrada 1: Objetos shape y raster en R - R-SIG">
+<title>Trabajando con capas shape y raster (SIG) en R - R-SIG</title>
+<meta property="og:title" content="Trabajando con capas shape y raster (SIG) en R - R-SIG">
 
 
   <link href='/CA.ico' rel='icon' type='image/x-icon'/>
@@ -67,7 +67,7 @@
     <span class="article-duration">3 min read</span>
     
 
-    <h1 class="article-title">Entrada 1: Objetos shape y raster en R</h1>
+    <h1 class="article-title">Trabajando con capas shape y raster (SIG) en R</h1>
 
     
     <span class="article-date">2020-03-14</span>
@@ -82,18 +82,19 @@
 <div id="objetivos" class="section level3">
 <h3>Objetivos:</h3>
 <p>Mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) y raster (tiff) en R para realizar estudios agroambientales.</p>
-<p>Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.</p>
+<p>Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.</p>
 </div>
 <div id="materiales-y-metodos" class="section level3">
 <h3>Materiales y metodos:</h3>
 <p>-Emplearemos aplicaciones como R, RStudio y QGis.</p>
-<p>-Datos de la cuenca hidrografica del rio Canoabo en Venezuela, tales como partes de agua, modelos digital de elevacion, sitios de muestreos de suelos entre otros.</p>
-<p>-Los procedmientos que llevaremos a cabo incluyen: Creaciones de objetos R (vectores y raster), ploteo de capas, proyeccion cartografica, entre otros que a contiuacion se describen.</p>
-<p>** INICIAMOS**</p>
-<p>Verificacion de directotio de trabajo</p>
+<p>-Datos de la cuenca hidrográfica del río Canoabo en Venezuela, tales como partes de agua, modelos digital de elevación, sitios de muestreos de suelos entre otros.</p>
+<p>-Los procedimientos que llevaremos a cabo incluyen: Creaciones de objetos R (vectores y raster), ploteo de capas, proyección cartográfica, entre otros que a continuación se describen.</p>
+</div>
+<div id="iniciamos" class="section level2">
+<h2>INICIAMOS</h2>
+<p>Verificación de directorio de trabajo</p>
 <pre class="r"><code>getwd()</code></pre>
 <pre><code>## [1] &quot;C:/Sevilla/rsig/content/post&quot;</code></pre>
-<p><em>Cursivas</em></p>
 <p><strong>Activamos las librerias o paquetes necesarios:</strong></p>
 <pre class="r"><code>library(raster)</code></pre>
 <pre><code>## Loading required package: sp</code></pre>
@@ -109,14 +110,14 @@ lines(perimetro)</code></pre>
 <pre class="r"><code># Si desea ver los objetos R en memoria
 ls()</code></pre>
 <pre><code>## [1] &quot;DEM&quot;       &quot;perimetro&quot;</code></pre>
-<p>Podemos revisar la proyeccion cartografica de los objetos R creados:</p>
+<p>Podemos revisar la proyección cartográfica de los objetos R creados:</p>
 <p>Pendiente11:</p>
 <p><img alt = 'my new screenshot' width='700' src='/post/2020-03-14-locote-2_files/toldo.jpg' /> Figura 1.</p>
-<p>Mostrar la proyeccion.</p>
-<p>Cambiar la proyeccion de canoa a regeven.</p>
-<p>Montar los puntos de suelos y ploteralo junto al dem y el perimetro.</p>
+<p>Mostrar la proyección.</p>
+<p>Cambiar la proyección de canoa a regven.</p>
+<p>Montar los puntos de suelos y ploteralo junto al dem y el perímetro.</p>
 <p>ver los datos de suelos (los primeros 6 registros)</p>
-<p>hacer un resumen de una caracteristica como pH.</p>
+<p>hacer un resumen de una característica como pH.</p>
 <p>Cambiamos el nombre del campo “Tree” por “arboles”: datos1 &lt;- rename(Orange, arboles = Tree)</p>
 <pre class="r"><code>knitr::kable(
   head(mtcars[, 1:8], 15), booktabs=TRUE,

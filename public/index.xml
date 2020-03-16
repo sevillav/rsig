@@ -6,21 +6,30 @@
     <description>Recent content on R-SIG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-es</language>
-    <lastBuildDate>Sat, 14 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Entrada 1: Objetos shape y raster en R</title>
+      <title>Algunas funciones aqp</title>
+      <link>/2020/03/16/aqp/</link>
+      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/03/16/aqp/</guid>
+      <description>library(aqp)## This is aqp 1.17## ## Attaching package: &amp;#39;aqp&amp;#39;## The following object is masked from &amp;#39;package:base&amp;#39;:## ## uniondata()data(&amp;quot;sp1&amp;quot;)View(sp1)</description>
+    </item>
+    
+    <item>
+      <title>Trabajando con capas shape y raster (SIG) en R</title>
       <link>/2020/03/14/locote-2/</link>
       <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/03/14/locote-2/</guid>
       <description>Por: Victor SevillaObjetivos:Mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) y raster (tiff) en R para realizar estudios agroambientales.
-Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.
+Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.
 Materiales y metodos:-Emplearemos aplicaciones como R, RStudio y QGis.
--Datos de la cuenca hidrografica del rio Canoabo en Venezuela, tales como partes de agua, modelos digital de elevacion, sitios de muestreos de suelos entre otros.</description>
+-Datos de la cuenca hidrográfica del río Canoabo en Venezuela, tales como partes de agua, modelos digital de elevación, sitios de muestreos de suelos entre otros.</description>
     </item>
     
     <item>

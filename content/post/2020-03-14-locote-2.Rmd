@@ -1,5 +1,5 @@
 ---
-title: "Entrada 1: Objetos shape y raster en R"
+title: "Trabajando con capas shape y raster (SIG) en R"
 author: "Victor Sevilla"
 date: '2020-03-14'
 output:
@@ -16,24 +16,22 @@ categories: []
 
 Mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) y raster (tiff) en R para realizar estudios agroambientales. 
 
-Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.
+Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.
 
 ### Materiales y metodos:
 
 -Emplearemos aplicaciones como R, RStudio y QGis.
 
--Datos de la cuenca hidrografica del rio Canoabo en Venezuela, tales como partes de agua, modelos digital de elevacion, sitios de muestreos de suelos entre otros.
+-Datos de la cuenca hidrográfica del río Canoabo en Venezuela, tales como partes de agua, modelos digital de elevación, sitios de muestreos de suelos entre otros.
 
--Los procedmientos que llevaremos a cabo incluyen: Creaciones de objetos R (vectores y raster), ploteo de capas, proyeccion cartografica, entre otros que a contiuacion se describen.
+-Los procedimientos que llevaremos a cabo incluyen: Creaciones de objetos R (vectores y raster), ploteo de capas, proyección cartográfica, entre otros que a continuación se describen.
 
-** INICIAMOS**
+##INICIAMOS
 
-Verificacion de directotio de trabajo
+Verificación de directorio de trabajo
 ```{r}
 getwd()
 ```
-*Cursivas*
-
 **Activamos las librerias o paquetes necesarios:**
 ```{r}
 library(raster)
@@ -52,7 +50,7 @@ lines(perimetro)
 ls()
 ```
 
-Podemos revisar la proyeccion cartografica de los objetos R creados:
+Podemos revisar la proyección cartográfica de los objetos R creados:
 
 Pendiente11:
 
@@ -60,15 +58,15 @@ Pendiente11:
 <img alt = 'my new screenshot' width='700' src='/post/2020-03-14-locote-2_files/toldo.jpg' />
 Figura 1.
 
-Mostrar la proyeccion.
+Mostrar la proyección.
 
-Cambiar la proyeccion de canoa a regeven.
+Cambiar la proyección de canoa a regven.
 
-Montar los puntos de suelos y ploteralo junto al dem y el perimetro.
+Montar los puntos de suelos y ploteralo junto al dem y el perímetro.
 
 ver los datos de suelos (los primeros 6 registros)
 
-hacer un resumen de una caracteristica como pH.
+hacer un resumen de una característica como pH.
 
 Cambiamos el nombre del campo "Tree" por "arboles":
 datos1 <- rename(Orange, arboles = Tree)
