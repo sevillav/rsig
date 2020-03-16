@@ -11,13 +11,13 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [[menu.main]]
     name = "Nosotros"
-    url = "/about/"
+    url = "https://campoambiente.com/nosotros/"
 [[menu.main]]
     name = "Inicio"
-    url = "https://ecstatic-benz-f335b1.netlify.com"
+    url = "https://sevillav.netlify.com/"
 [[menu.main]]
     name = "Twitter"
-    url = "https://twitter.com/rstudio"
+    url = "https://twitter.com/Campo_Ambiente"
 [[menu.main]]
     name = "CampoAmbiente"
     url = "https://campoambiente.com"

@@ -16,6 +16,7 @@ data()
 data("sp1")
 View(sp1)
 
+head(sp1)
 
 
 ```

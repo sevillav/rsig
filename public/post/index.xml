@@ -17,7 +17,7 @@
       <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/03/16/aqp/</guid>
-      <description>library(aqp)## This is aqp 1.17## ## Attaching package: &amp;#39;aqp&amp;#39;## The following object is masked from &amp;#39;package:base&amp;#39;:## ## uniondata()data(&amp;quot;sp1&amp;quot;)View(sp1)</description>
+      <description>library(aqp)## This is aqp 1.17## ## Attaching package: &amp;#39;aqp&amp;#39;## The following object is masked from &amp;#39;package:base&amp;#39;:## ## uniondata()data(&amp;quot;sp1&amp;quot;)View(sp1)head(sp1)## group id top bottom bound_distinct bound_topography name texture prop## 1 2 P001 0 2 A S A1 GRVLS 13## 2 2 P001 2 14 G S A2 GRVLS 7## 3 2 P001 14 49 G S AB GRVLS 9## 4 2 P001 49 57 C S BA GRVLS 14## 5 2 P001 57 89 C S Bt GRVSCL 21## 6 2 P001 89 89 &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; Rt &amp;lt;NA&amp;gt; NA## structure_grade structure_size structure_type stickiness plasticity## 1 1 F PL &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 2 1 M SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 3 1 M SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 4 1 CO SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 5 2 CO SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 6 NA &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## field_ph hue value chroma## 1 7.</description>
     </item>
     
     <item>
