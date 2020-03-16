@@ -12,13 +12,20 @@ categories: []
 
 
 
-<div id="victor-sevilla" class="section level1">
-<h1>Victor Sevilla</h1>
-<div id="objetivo" class="section level3">
-<h3>Objetivo:</h3>
-<p>El objetivo de esta entrada es mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) en R para estudios agroambientales. Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.</p>
-<p>Nuestra area de trabajo sera una cuenca hidrografica y sus datos de sitios de muetreos de suelos.</p>
-<p>verificamos nuestro directotio de trabajo</p>
+<div id="por-victor-sevilla" class="section level1">
+<h1>Por: Victor Sevilla</h1>
+<div id="objetivos" class="section level3">
+<h3>Objetivos:</h3>
+<p>Mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) y raster (tiff) en R para realizar estudios agroambientales.</p>
+<p>Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, asi colaborar con nuestra comunidad.</p>
+</div>
+<div id="materiales-y-metodos" class="section level3">
+<h3>Materiales y metodos:</h3>
+<p>-Emplearemos aplicaciones como R, RStudio y QGis.</p>
+<p>-Datos de la cuenca hidrografica del rio Canoabo en Venezuela, tales como partes de agua, modelos digital de elevacion, sitios de muestreos de suelos entre otros.</p>
+<p>-Los procedmientos que llevaremos a cabo incluyen: Creaciones de objetos R (vectores y raster), ploteo de capas, proyeccion cartografica, entre otros que a contiuacion se describen.</p>
+<p>** INICIAMOS**</p>
+<p>Verificacion de directotio de trabajo</p>
 <pre class="r"><code>getwd()</code></pre>
 <pre><code>## [1] &quot;C:/Sevilla/rsig/content/post&quot;</code></pre>
 <p><em>Cursivas</em></p>
@@ -39,16 +46,198 @@ ls()</code></pre>
 <pre><code>## [1] &quot;DEM&quot;       &quot;perimetro&quot;</code></pre>
 <p>Podemos revisar la proyeccion cartografica de los objetos R creados:</p>
 <p>Pendiente11:</p>
-<div class="figure">
-<img src="/post/2020-03-14-locote-2_files/toldo.jpg" />
-
-</div>
-<p><img alt = 'my new screenshot' width='200' src='/post/2020-03-14-locote-2_files/toldo.jpg' /></p>
+<p><img alt = 'my new screenshot' width='700' src='/post/2020-03-14-locote-2_files/toldo.jpg' /> Figura 1.</p>
 <p>Mostrar la proyeccion.</p>
 <p>Cambiar la proyeccion de canoa a regeven.</p>
 <p>Montar los puntos de suelos y ploteralo junto al dem y el perimetro.</p>
 <p>ver los datos de suelos (los primeros 6 registros)</p>
 <p>hacer un resumen de una caracteristica como pH.</p>
 <p>Cambiamos el nombre del campo “Tree” por “arboles”: datos1 &lt;- rename(Orange, arboles = Tree)</p>
+<pre class="r"><code>knitr::kable(
+  head(mtcars[, 1:8], 15), booktabs=TRUE,
+  caption=&#39;Los primeros 15 renglones de nuestra base mtcars.&#39;)</code></pre>
+<table>
+<caption><span id="tab:unnamed-chunk-4">Table 1: </span>Los primeros 15 renglones de nuestra base mtcars.</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">mpg</th>
+<th align="right">cyl</th>
+<th align="right">disp</th>
+<th align="right">hp</th>
+<th align="right">drat</th>
+<th align="right">wt</th>
+<th align="right">qsec</th>
+<th align="right">vs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mazda RX4</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.620</td>
+<td align="right">16.46</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.875</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>Datsun 710</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">108.0</td>
+<td align="right">93</td>
+<td align="right">3.85</td>
+<td align="right">2.320</td>
+<td align="right">18.61</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>Hornet 4 Drive</td>
+<td align="right">21.4</td>
+<td align="right">6</td>
+<td align="right">258.0</td>
+<td align="right">110</td>
+<td align="right">3.08</td>
+<td align="right">3.215</td>
+<td align="right">19.44</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Hornet Sportabout</td>
+<td align="right">18.7</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">175</td>
+<td align="right">3.15</td>
+<td align="right">3.440</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Valiant</td>
+<td align="right">18.1</td>
+<td align="right">6</td>
+<td align="right">225.0</td>
+<td align="right">105</td>
+<td align="right">2.76</td>
+<td align="right">3.460</td>
+<td align="right">20.22</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Duster 360</td>
+<td align="right">14.3</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">245</td>
+<td align="right">3.21</td>
+<td align="right">3.570</td>
+<td align="right">15.84</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Merc 240D</td>
+<td align="right">24.4</td>
+<td align="right">4</td>
+<td align="right">146.7</td>
+<td align="right">62</td>
+<td align="right">3.69</td>
+<td align="right">3.190</td>
+<td align="right">20.00</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Merc 230</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">140.8</td>
+<td align="right">95</td>
+<td align="right">3.92</td>
+<td align="right">3.150</td>
+<td align="right">22.90</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>Merc 280</td>
+<td align="right">19.2</td>
+<td align="right">6</td>
+<td align="right">167.6</td>
+<td align="right">123</td>
+<td align="right">3.92</td>
+<td align="right">3.440</td>
+<td align="right">18.30</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Merc 280C</td>
+<td align="right">17.8</td>
+<td align="right">6</td>
+<td align="right">167.6</td>
+<td align="right">123</td>
+<td align="right">3.92</td>
+<td align="right">3.440</td>
+<td align="right">18.90</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>Merc 450SE</td>
+<td align="right">16.4</td>
+<td align="right">8</td>
+<td align="right">275.8</td>
+<td align="right">180</td>
+<td align="right">3.07</td>
+<td align="right">4.070</td>
+<td align="right">17.40</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>Merc 450SL</td>
+<td align="right">17.3</td>
+<td align="right">8</td>
+<td align="right">275.8</td>
+<td align="right">180</td>
+<td align="right">3.07</td>
+<td align="right">3.730</td>
+<td align="right">17.60</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Merc 450SLC</td>
+<td align="right">15.2</td>
+<td align="right">8</td>
+<td align="right">275.8</td>
+<td align="right">180</td>
+<td align="right">3.07</td>
+<td align="right">3.780</td>
+<td align="right">18.00</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>Cadillac Fleetwood</td>
+<td align="right">10.4</td>
+<td align="right">8</td>
+<td align="right">472.0</td>
+<td align="right">205</td>
+<td align="right">2.93</td>
+<td align="right">5.250</td>
+<td align="right">17.98</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
