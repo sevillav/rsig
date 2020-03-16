@@ -33,16 +33,6 @@ Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso
     </item>
     
     <item>
-      <title>Abrir capas raster en R</title>
-      <link>/2019/07/27/primero-entrada-sevilla/</link>
-      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/07/27/primero-entrada-sevilla/</guid>
-      <description>Objetivo:Nuestro meta es introducirlo al manejo de capas raster georreferenciadas en R dos.
-Contenido:Como adicionar capas raster a un proyecto RComo saber su proyección cartográficaDescargo:Muestra intensión es mostrar una manera de realizar tareas en R con RStudio. De ninguna manera pretendemos dejar entender que es la mejor forma de hacerlo. Solo es la forma que nosotros realizamos nuestro trabajo. Apreciaríamos cualquier colaboración para facilitar y mejorar los métodos expuestos.</description>
-    </item>
-    
-    <item>
       <title>A Plain Markdown Post</title>
       <link>/2016/12/30/a-plain-markdown-post/</link>
       <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
