@@ -24,15 +24,17 @@ _Aplicaciones:_
 
 * R, RStudio y QGis.
 
-*Datos:*
+_Datos:_
 
 * Datos de la cuenca hidrográfica del río Canoabo en Venezuela, como Partes de agua, Modelos digital de elevación, Sitios de muestreos de suelos entre otros.
 
-*Procedmientos:*
+_Procedmientos:_
 
 * Creaciones de objetos R (vectores y raster)
 * Ploteo de capas.
 * Proyección cartográfica, entre otros que a continuación se describen.
+
+> cita
 
 **INICIAMOS PROCEDIMIENTOS**
 
