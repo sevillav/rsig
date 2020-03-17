@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>Algunas funciones aqp</title>
+      <title>Perfiles de suelos en R (aqp)</title>
       <link>/2020/03/16/aqp/</link>
       <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/03/16/aqp/</guid>
-      <description>library(aqp)## This is aqp 1.17## ## Attaching package: &amp;#39;aqp&amp;#39;## The following object is masked from &amp;#39;package:base&amp;#39;:## ## uniondata()data(&amp;quot;sp1&amp;quot;)View(sp1)head(sp1)## group id top bottom bound_distinct bound_topography name texture prop## 1 2 P001 0 2 A S A1 GRVLS 13## 2 2 P001 2 14 G S A2 GRVLS 7## 3 2 P001 14 49 G S AB GRVLS 9## 4 2 P001 49 57 C S BA GRVLS 14## 5 2 P001 57 89 C S Bt GRVSCL 21## 6 2 P001 89 89 &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; Rt &amp;lt;NA&amp;gt; NA## structure_grade structure_size structure_type stickiness plasticity## 1 1 F PL &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 2 1 M SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 3 1 M SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 4 1 CO SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 5 2 CO SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 6 NA &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## field_ph hue value chroma## 1 7.</description>
+      <description>Por: Victor Sevilla.library(aqp)## This is aqp 1.17## ## Attaching package: &amp;#39;aqp&amp;#39;## The following object is masked from &amp;#39;package:base&amp;#39;:## ## uniondata()data(&amp;quot;sp1&amp;quot;)View(sp1)head(sp1)## group id top bottom bound_distinct bound_topography name texture prop## 1 2 P001 0 2 A S A1 GRVLS 13## 2 2 P001 2 14 G S A2 GRVLS 7## 3 2 P001 14 49 G S AB GRVLS 9## 4 2 P001 49 57 C S BA GRVLS 14## 5 2 P001 57 89 C S Bt GRVSCL 21## 6 2 P001 89 89 &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; Rt &amp;lt;NA&amp;gt; NA## structure_grade structure_size structure_type stickiness plasticity## 1 1 F PL &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 2 1 M SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 3 1 M SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 4 1 CO SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 5 2 CO SBK &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## 6 NA &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt; &amp;lt;NA&amp;gt;## field_ph hue value chroma## 1 7.</description>
     </item>
     
     <item>
@@ -27,15 +27,6 @@
       
       <guid>/2020/03/16/triangulo1/</guid>
       <description>Por: Victor Sevilla.#install.packages(pkgs = &amp;quot;soiltexture&amp;quot;)library(soiltexture)TT.plot(class.sys = &amp;quot;USDA-NCSS.TT&amp;quot;,lang = &amp;quot;es2&amp;quot;,main = &amp;quot;Triangulo de Textura de Suelo&amp;quot;,lwd.axis = 0.5,cex.lab = 0.8,cex.axis = 0.8)TT.plot(class.sys = &amp;quot;USDA.TT&amp;quot;,class.p.bg.col = c(&amp;quot;aquamarine&amp;quot;, &amp;quot;aquamarine2&amp;quot;,&amp;quot;aquamarine3&amp;quot;, &amp;quot;cornsilk&amp;quot;, &amp;quot;burlywood1&amp;quot;,&amp;quot;burlywood3&amp;quot;, &amp;quot;darkseagreen1&amp;quot;, &amp;quot;darkseagreen3&amp;quot;,&amp;quot;darkolivegreen1&amp;quot;, &amp;quot;darkolivegreen2&amp;quot;,&amp;quot;deepskyblue&amp;quot;, &amp;quot;deepskyblue4&amp;quot;),lang = &amp;quot;es2&amp;quot;,lwd.axis = 0.5,cex.lab = 0.8,cex.axis = 0.8)TT.classes.tbl (class.sys = &amp;quot;USDA.TT&amp;quot;) [ ,1:2]## abbr name ## [1,] &amp;quot;Cl&amp;quot; &amp;quot;clay&amp;quot; ## [2,] &amp;quot;SiCl&amp;quot; &amp;quot;silty clay&amp;quot; ## [3,] &amp;quot;SaCl&amp;quot; &amp;quot;sandy clay&amp;quot; ## [4,] &amp;quot;ClLo&amp;quot; &amp;quot;clay loam&amp;quot; ## [5,] &amp;quot;SiClLo&amp;quot; &amp;quot;silty clay loam&amp;quot;## [6,] &amp;quot;SaClLo&amp;quot; &amp;quot;sandy clay loam&amp;quot;## [7,] &amp;quot;Lo&amp;quot; &amp;quot;loam&amp;quot; ## [8,] &amp;quot;SiLo&amp;quot; &amp;quot;silty loam&amp;quot; ## [9,] &amp;quot;SaLo&amp;quot; &amp;quot;sandy loam&amp;quot; ## [10,] &amp;quot;Si&amp;quot; &amp;quot;silt&amp;quot; ## [11,] &amp;quot;LoSa&amp;quot; &amp;quot;loamy sand&amp;quot; ## [12,] &amp;quot;Sa&amp;quot; &amp;quot;sand&amp;quot;data()</description>
-    </item>
-    
-    <item>
-      <title>aqp sp2</title>
-      <link>/2020/03/16/aqp-sp2/</link>
-      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/03/16/aqp-sp2/</guid>
-      <description></description>
     </item>
     
     <item>
