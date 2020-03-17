@@ -1,0 +1,51 @@
+---
+title: Triangulo de texturas del suelo
+author: Victor Sevilla
+date: '2020-03-16'
+slug: triangulo1
+categories: []
+tags: []
+---
+
+##Por: Victor Sevilla.
+
+```{r}
+#install.packages(pkgs = "soiltexture")
+library(soiltexture)
+```
+```{r}
+TT.plot(
+class.sys = "USDA-NCSS.TT",
+lang = "es2",
+main = "Triangulo de Textura de Suelo",
+lwd.axis = 0.5,
+cex.lab = 0.8,
+cex.axis = 0.8)
+```
+
+```{r}
+TT.plot(
+class.sys = "USDA.TT",
+class.p.bg.col = c("aquamarine", "aquamarine2",
+"aquamarine3", "cornsilk", "burlywood1",
+"burlywood3", "darkseagreen1", "darkseagreen3",
+"darkolivegreen1", "darkolivegreen2",
+"deepskyblue", "deepskyblue4"),
+lang = "es2",
+lwd.axis = 0.5,
+cex.lab = 0.8,
+cex.axis = 0.8)
+```
+
+```{r}
+TT.classes.tbl (class.sys = "USDA.TT") [ ,1:2]
+```
+
+```{r}
+data()
+```
+
+
+
+
+

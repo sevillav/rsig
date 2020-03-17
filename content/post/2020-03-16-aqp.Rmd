@@ -1,5 +1,5 @@
 ---
-title: Algunas funciones aqp
+title: Perfiles de suelos en R (aqp)
 author: Victor Sevilla
 date: '2020-03-16'
 slug: aqp
@@ -7,7 +7,7 @@ categories: []
 tags: []
 ---
 
-
+##Por: Victor Sevilla.
 
 ```{r}
 library(aqp)
@@ -17,7 +17,40 @@ data("sp1")
 View(sp1)
 
 head(sp1)
+```
 
+```{r}
+data(sp1)
+# convert colors from Munsell to hex-encoded RGB
+sp1$soil_color <- with(sp1, munsell2rgb(hue, value, chroma))
+```
 
+```{r}
+# promote to SoilProfileCollection
+depths(sp1) <- id ~ top + bottom
+site(sp1) <- ~ group
+```
+
+```{r}
+# re-sample each profile into 1 cm (thick) depth slices
+# for the variables 'prop', 'name', 'soil_color'
+# result is a SoilProfileCollection object
+s <- slice(sp1, 0:20 ~ prop + name + soil_color)
+# plot, note slices
+plot(s)
+```
+
+```{r}
+# aggregate all profiles along 1 cm depth slices,
+# using data from column 'prop'
+s1 <- slab(sp1, fm= ~ prop)
+```
+
+```{r}
+# check median & IQR
+library(lattice)
+xyplot(top ~ p.q50 + p.q25 + p.q75,
+data=s1, type='S', horizontal=TRUE, col=1, lty=c(1,2,2),
+panel=panel.superpose, ylim=c(110,-5), asp=2)
 ```
 

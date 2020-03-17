@@ -64,7 +64,7 @@
 
   <article class="article">
     
-    <span class="article-duration">1 min read</span>
+    <span class="article-duration">2 min read</span>
     
 
     <h1 class="article-title">Algunas funciones aqp</h1>
@@ -111,6 +111,29 @@ head(sp1)</code></pre>
 ## 4      7.9  10YR     3      2
 ## 5      7.4 7.5YR     4      2
 ## 6       NA  &lt;NA&gt;    NA     NA</code></pre>
+<pre class="r"><code>data(sp1)
+# convert colors from Munsell to hex-encoded RGB
+sp1$soil_color &lt;- with(sp1, munsell2rgb(hue, value, chroma))</code></pre>
+<pre class="r"><code># promote to SoilProfileCollection
+depths(sp1) &lt;- id ~ top + bottom
+site(sp1) &lt;- ~ group</code></pre>
+<pre class="r"><code># re-sample each profile into 1 cm (thick) depth slices
+# for the variables &#39;prop&#39;, &#39;name&#39;, &#39;soil_color&#39;
+# result is a SoilProfileCollection object
+s &lt;- slice(sp1, 0:20 ~ prop + name + soil_color)
+# plot, note slices
+plot(s)</code></pre>
+<pre><code>## guessing horizon designations are stored in `name`</code></pre>
+<p><img src="/post/2020-03-16-aqp_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code># aggregate all profiles along 1 cm depth slices,
+# using data from column &#39;prop&#39;
+s1 &lt;- slab(sp1, fm= ~ prop)</code></pre>
+<pre class="r"><code># check median &amp; IQR
+library(lattice)
+xyplot(top ~ p.q50 + p.q25 + p.q75,
+data=s1, type=&#39;S&#39;, horizontal=TRUE, col=1, lty=c(1,2,2),
+panel=panel.superpose, ylim=c(110,-5), asp=2)</code></pre>
+<p><img src="/post/2020-03-16-aqp_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 
     </div>
   </article>
@@ -147,6 +170,9 @@ head(sp1)</code></pre>
 
 
     
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 
     
   </body>

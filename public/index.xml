@@ -21,6 +21,24 @@
     </item>
     
     <item>
+      <title>Triangulo de texturas del suelo</title>
+      <link>/2020/03/16/triangulo1/</link>
+      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/03/16/triangulo1/</guid>
+      <description>Por: Victor Sevilla.#install.packages(pkgs = &amp;quot;soiltexture&amp;quot;)library(soiltexture)TT.plot(class.sys = &amp;quot;USDA-NCSS.TT&amp;quot;,lang = &amp;quot;es2&amp;quot;,main = &amp;quot;Triangulo de Textura de Suelo&amp;quot;,lwd.axis = 0.5,cex.lab = 0.8,cex.axis = 0.8)TT.plot(class.sys = &amp;quot;USDA.TT&amp;quot;,class.p.bg.col = c(&amp;quot;aquamarine&amp;quot;, &amp;quot;aquamarine2&amp;quot;,&amp;quot;aquamarine3&amp;quot;, &amp;quot;cornsilk&amp;quot;, &amp;quot;burlywood1&amp;quot;,&amp;quot;burlywood3&amp;quot;, &amp;quot;darkseagreen1&amp;quot;, &amp;quot;darkseagreen3&amp;quot;,&amp;quot;darkolivegreen1&amp;quot;, &amp;quot;darkolivegreen2&amp;quot;,&amp;quot;deepskyblue&amp;quot;, &amp;quot;deepskyblue4&amp;quot;),lang = &amp;quot;es2&amp;quot;,lwd.axis = 0.5,cex.lab = 0.8,cex.axis = 0.8)TT.classes.tbl (class.sys = &amp;quot;USDA.TT&amp;quot;) [ ,1:2]## abbr name ## [1,] &amp;quot;Cl&amp;quot; &amp;quot;clay&amp;quot; ## [2,] &amp;quot;SiCl&amp;quot; &amp;quot;silty clay&amp;quot; ## [3,] &amp;quot;SaCl&amp;quot; &amp;quot;sandy clay&amp;quot; ## [4,] &amp;quot;ClLo&amp;quot; &amp;quot;clay loam&amp;quot; ## [5,] &amp;quot;SiClLo&amp;quot; &amp;quot;silty clay loam&amp;quot;## [6,] &amp;quot;SaClLo&amp;quot; &amp;quot;sandy clay loam&amp;quot;## [7,] &amp;quot;Lo&amp;quot; &amp;quot;loam&amp;quot; ## [8,] &amp;quot;SiLo&amp;quot; &amp;quot;silty loam&amp;quot; ## [9,] &amp;quot;SaLo&amp;quot; &amp;quot;sandy loam&amp;quot; ## [10,] &amp;quot;Si&amp;quot; &amp;quot;silt&amp;quot; ## [11,] &amp;quot;LoSa&amp;quot; &amp;quot;loamy sand&amp;quot; ## [12,] &amp;quot;Sa&amp;quot; &amp;quot;sand&amp;quot;data()</description>
+    </item>
+    
+    <item>
+      <title>aqp sp2</title>
+      <link>/2020/03/16/aqp-sp2/</link>
+      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/03/16/aqp-sp2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Trabajando con capas shape y raster (SIG) en R</title>
       <link>/2020/03/14/locote-2/</link>
       <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>

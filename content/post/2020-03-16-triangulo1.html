@@ -1,0 +1,51 @@
+---
+title: Triangulo de texturas del suelo
+author: Victor Sevilla
+date: '2020-03-16'
+slug: triangulo1
+categories: []
+tags: []
+---
+
+
+
+<div id="por-victor-sevilla." class="section level2">
+<h2>Por: Victor Sevilla.</h2>
+<pre class="r"><code>#install.packages(pkgs = &quot;soiltexture&quot;)
+library(soiltexture)</code></pre>
+<pre class="r"><code>TT.plot(
+class.sys = &quot;USDA-NCSS.TT&quot;,
+lang = &quot;es2&quot;,
+main = &quot;Triangulo de Textura de Suelo&quot;,
+lwd.axis = 0.5,
+cex.lab = 0.8,
+cex.axis = 0.8)</code></pre>
+<p><img src="/post/2020-03-16-triangulo1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>TT.plot(
+class.sys = &quot;USDA.TT&quot;,
+class.p.bg.col = c(&quot;aquamarine&quot;, &quot;aquamarine2&quot;,
+&quot;aquamarine3&quot;, &quot;cornsilk&quot;, &quot;burlywood1&quot;,
+&quot;burlywood3&quot;, &quot;darkseagreen1&quot;, &quot;darkseagreen3&quot;,
+&quot;darkolivegreen1&quot;, &quot;darkolivegreen2&quot;,
+&quot;deepskyblue&quot;, &quot;deepskyblue4&quot;),
+lang = &quot;es2&quot;,
+lwd.axis = 0.5,
+cex.lab = 0.8,
+cex.axis = 0.8)</code></pre>
+<p><img src="/post/2020-03-16-triangulo1_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>TT.classes.tbl (class.sys = &quot;USDA.TT&quot;) [ ,1:2]</code></pre>
+<pre><code>##       abbr     name             
+##  [1,] &quot;Cl&quot;     &quot;clay&quot;           
+##  [2,] &quot;SiCl&quot;   &quot;silty clay&quot;     
+##  [3,] &quot;SaCl&quot;   &quot;sandy clay&quot;     
+##  [4,] &quot;ClLo&quot;   &quot;clay loam&quot;      
+##  [5,] &quot;SiClLo&quot; &quot;silty clay loam&quot;
+##  [6,] &quot;SaClLo&quot; &quot;sandy clay loam&quot;
+##  [7,] &quot;Lo&quot;     &quot;loam&quot;           
+##  [8,] &quot;SiLo&quot;   &quot;silty loam&quot;     
+##  [9,] &quot;SaLo&quot;   &quot;sandy loam&quot;     
+## [10,] &quot;Si&quot;     &quot;silt&quot;           
+## [11,] &quot;LoSa&quot;   &quot;loamy sand&quot;     
+## [12,] &quot;Sa&quot;     &quot;sand&quot;</code></pre>
+<pre class="r"><code>data()</code></pre>
+</div>
