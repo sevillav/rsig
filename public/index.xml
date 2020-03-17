@@ -37,8 +37,9 @@
       <guid>/2020/03/14/locote-2/</guid>
       <description>Por: Victor SevillaObjetivos:Mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) y raster (tiff) en R para realizar estudios agroambientales.
 Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.
-Materiales y metodos:-Emplearemos aplicaciones como R, RStudio y QGis.
--Datos de la cuenca hidrográfica del río Canoabo en Venezuela, tales como partes de agua, modelos digital de elevación, sitios de muestreos de suelos entre otros.</description>
+Materiales y metodos:Aplicaciones:
+R, RStudio y QGis.Datos:
+Datos de la cuenca hidrográfica del río Canoabo en Venezuela, como Partes de agua, Modelos digital de elevación, Sitios de muestreos de suelos entre otros.</description>
     </item>
     
     <item>
