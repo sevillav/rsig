@@ -34,7 +34,7 @@ _Procedmientos:_
 * Ploteo de capas.
 * Proyección cartográfica, entre otros que a continuación se describen.
 
-> cita
+>> cita
 
 **INICIAMOS PROCEDIMIENTOS**
 
