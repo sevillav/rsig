@@ -1,5 +1,5 @@
 ---
-title: "Trabajando con capas shape y raster (SIG) en R"
+title: "Trabajando con layers Shapefile y raster de SIG en R"
 author: "Victor Sevilla"
 date: '2020-03-14'
 output:
@@ -10,81 +10,164 @@ tags: []
 categories: []
 ---
 
-## Por: Victor Sevilla
+### Por: CampoAmbiente.com
 
-###Objetivos:
+El objetivo de esta entrada es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar analisis estadisticos que sean utiles en estudios agroambientales.
 
-Mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) y raster (tiff) en R para realizar estudios agroambientales. 
+Trataremos diferentes aspectos como:
 
-Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.
+* Forma de importar layers Shapefile y Raster de Sistemas de Informacion Geografica (SIG) a R.
+* Crear graficos con ellas (plotearlos).
+* Conocer su proyeccion cartografica.
+* Reproyectarlas.
+* ....
 
-### Materiales y metodos:
+Para cumplir nuestro objetivo emplearemos aplicaciones como R y RStudio, datos espaciales (Partes de aguas, Modelos digital de elevación, etc) y atributivos (Muestreo de suelos) de la cuenca hidrográfica del río Canoabo en Venezuela.
 
-_Aplicaciones:_
+**Descargo:** Si conocen otra forma de hacerlo diferente a la mostrada en esta entrada, seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.
 
-* R, RStudio y QGis.
 
-_Datos:_
+###Iniciamos procedimeintos:
 
-* Datos de la cuenca hidrográfica del río Canoabo en Venezuela, como Partes de agua, Modelos digital de elevación, Sitios de muestreos de suelos entre otros.
-
-_Procedmientos:_
-
-* Creaciones de objetos R (vectores y raster)
-* Ploteo de capas.
-* Proyección cartográfica, entre otros que a continuación se describen.
-
->> cita
-
-**INICIAMOS PROCEDIMIENTOS**
-
-Primero verificamos el directorio de trabajo:
+Primero verificaremos nuestro directorio de trabajo:
 ```{r}
 getwd()
 ```
-**Activamos las librerias o paquetes necesarios:**
+Activaremos las librerias o paquetes necesarios:**
 ```{r}
 library(raster)
 ```
-Trabajamos con capas espaciales de SIG:
+Ahora importaremos capas SIG vectoriales y raster prexistentes y crearemos objetos R, ademas lo plotearemos en conjunto:
 ```{r}
 #Creamos un objeto R de un archivo shapefile shp
 perimetro <- shapefile("C:/Sevilla/Canoabo1/cuenca1.shp")
+
 #Creamos un objeto R de un archivo formato tiff raster
 DEM <- raster("C:/Sevilla/Canoabo1/MDE3.tif")
+
+# Si desea ver los objetos R creados en memoria
+ls()
+
 #Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
 plot(DEM, main="Modelo Digital de Elevacion (msnm)")
-lines(perimetro)
+lines(perimetro, col="blue")
+```
+La Figura  muestra la Cuenca del rio Canoabo, donde se puede ver el Modelo digital de elevacion y la linea perimetral que coincide con el parte de agua de la cuenca.
 
-# Si desea ver los objetos R en memoria
-ls()
+Continuamos conociendo la proyeccion cartografica de nuestras dos capas (CRS):
+
+```{r}
+#Primero la del objeto R shape (Perimetro):
+crs(perimetro)
+#Proyeccion UTM Huso 19 Norte, unidad metros, elipsoide internacional 1924.
+
+#Segundo la del objeto raster (DEM)
+crs(DEM)
 ```
 
-Podemos revisar la proyección cartográfica de los objetos R creados:
+Si deseamos cambiar de proyeccion se procede como a continuacion se desribe para cada uno de los objetos R creados (shape o raster):
 
-Pendiente11:
+```{r}
+#En el caso de desear reproyectar un objeto R vectorial shape puede hacerlo de la siguiente forma
+#aqui cambiamos solo del datum de "La Canoa" a "WGS 84":
+perimetro_rv <- spTransform(perimetro, CRS("+proj=utm +zone=19 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "))
+
+# una manera de estar seguro de la similitud en extension de dos capas. especificamente en
+# el estudio de Cuencas, es cortar la capa raster con la capa vectorial (perimtetro), como 
+# se muestra a continaucion:
+DEM1 = crop(DEM, perimetro)
+DEM2 = mask(DEM1, perimetro)
+
+# y aqui continuamos con un ejemplo de como reproyectar una capa del tipo raster, en este caso, solo cambiamos del datum "La Canoa" a "WGS 84":
+DEM2_rv = projectRaster(DEM, crs = "+proj=utm +zone=19 +ellps=WGS84 +datum=WGS84 +units=m +no_defs", method='bilinear')
+```
+
+Ahora vamos a crear un objeto R a partir de una capa shape que contiene la informacion de perfiles de suelos.
+```{r}
+# Creamos el objeto R vectorial (shape) de perfiles de suelos:
+suelos <- shapefile("C:/Sevilla/Canoabo1/suelos8.shp")
+
+# Vemos las principales carataeristicas del obejto recioen creado:
+suelos
+
+# Le asignamos la proyeccion cartografica correspondiente, ya  que no la tenia en la capa original, pero nosotros la conocemos:
+suelos@proj4string <- crs("+proj=utm +zone=19 +ellps=intl +units=m +no_defs")
+```
+Ploteamos los tres objetos R creados en un solo graficos:
+```{r}
+plot(DEM)
+lines(perimetro, lwd=2)
+points(suelos, col="blue", pch=19)
+legend("topleft", "pH > 5.5", pch=19, col = "blue")
+legend("topleft", "pH < 5.5", pch=19, col = "red")
+text(labels(suelos@data$ID))
+#labels <- rownames(suelos)
+
+```
+Continuamos revisando algunas caraterisicas del objeto R de perfiles de suelos:
+```{r}
+# Observamos los 6 primeros registro de su base de datos:
+head(suelos, 5)
+
+# Observamos los 6 ultimos registro de su base de datos:
+tail(suelos,5)
+
+# Vemos el numero de filas y columnas:
+dim(suelos)
+
+# Observamos la clase del objeto R suelos:
+class(suelos)
+
+# Vemos el espacio que ocupa en memoria el objeto R suelos (Bytes):
+object.size(suelos)
+
+# Vemos los nombres de sus columnas, campos o variables:
+names(suelos)
+
+# Observamos un resumen de las es
+
+# extraeremos un subgrupo del objeto R origina de suelos, que cumplan un criterio, el cual es que su pH sea menor y mayor a 5.5 pH.
+suelos_ma <- subset(suelos, H1_PH > 5.5, c(3,4,5,52))
+suelos_ma
+
+suelos_me <- subset(suelos, H1_PH <= 5.5, c(3,4,5,52))
+suelos_me
+
+plot(DEM, main="Perfiles de suelos")
+points(suelos_ma, pch=19, col="blue", cex=1.2)
+points(suelos_me, pch=19, col="red", cex=1.2)
+
+plot(suelos$H1_PH, pch=19, col="blue", type="b")
+legend(2,8, "pH", pch = 19, col = "blue")
+abline(h=5.5)
+#box(lty = '1373', col = 'red')
 
 
-<img alt = 'my new screenshot' width='700' src='/post/2020-03-14-locote-2_files/toldo.jpg' />
-Figura 1.
 
-Mostrar la proyección.
+suelosph <- suelos@data[suelos$H1_PH > 0, c("NOMBRE", "H1_PH")]
 
-Cambiar la proyección de canoa a regven.
+plot(suelosph$H1_PH, pch=19, col="blue", type="b")
 
-Montar los puntos de suelos y ploteralo junto al dem y el perímetro.
+plot(suelos$H1_PH)
+legend(2, 7, "alirio", pch=17)
 
-ver los datos de suelos (los primeros 6 registros)
+which(is.na(suelos$H1_PH))
+
+
+summary(suelosph$H1_PH)
+summary(suelos$H1_PH)
+```
+
+```{r}
+plot(suelosph$H1_PH, pch=19, col="blue", type="b")
+text(10, 20, "aqui no")
+```
+
+Pendientes:
 
 hacer un resumen de una característica como pH.
 
+hacemos un mapas con los sitios de suelos con mayor y menor a 5.5 de pH.
+
 Cambiamos el nombre del campo "Tree" por "arboles":
 datos1 <- rename(Orange, arboles = Tree)
-
-
-```{r}
-knitr::kable(
-  head(mtcars[, 1:8], 15), booktabs=TRUE,
-  caption='Los primeros 15 renglones de nuestra base mtcars.')
-```
-

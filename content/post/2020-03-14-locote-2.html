@@ -1,5 +1,5 @@
 ---
-title: "Trabajando con capas shape y raster (SIG) en R"
+title: "Trabajando con layers Shapefile y raster de SIG en R"
 author: "Victor Sevilla"
 date: '2020-03-14'
 output:
@@ -12,247 +12,368 @@ categories: []
 
 
 
-<div id="por-victor-sevilla" class="section level2">
-<h2>Por: Victor Sevilla</h2>
-<div id="objetivos" class="section level3">
-<h3>Objetivos:</h3>
-<p>Mostrar una manera de trabajar objetos espaciales del tipo vectorial (Shape) y raster (tiff) en R para realizar estudios agroambientales.</p>
-<p>Si conocen otra forma de hacerlo seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.</p>
+<div id="por-campoambiente.com" class="section level3">
+<h3>Por: CampoAmbiente.com</h3>
+<p>El objetivo de esta entrada es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar analisis estadisticos que sean utiles en estudios agroambientales.</p>
+<p>Trataremos diferentes aspectos como:</p>
+<ul>
+<li>Forma de importar layers Shapefile y Raster de Sistemas de Informacion Geografica (SIG) a R.</li>
+<li>Crear graficos con ellas (plotearlos).</li>
+<li>Conocer su proyeccion cartografica.</li>
+<li>Reproyectarlas.</li>
+<li>….</li>
+</ul>
+<p>Para cumplir nuestro objetivo emplearemos aplicaciones como R y RStudio, datos espaciales (Partes de aguas, Modelos digital de elevación, etc) y atributivos (Muestreo de suelos) de la cuenca hidrográfica del río Canoabo en Venezuela.</p>
+<p><strong>Descargo:</strong> Si conocen otra forma de hacerlo diferente a la mostrada en esta entrada, seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.</p>
 </div>
-<div id="materiales-y-metodos" class="section level3">
-<h3>Materiales y metodos:</h3>
-<p><em>Aplicaciones:</em></p>
-<ul>
-<li>R, RStudio y QGis.</li>
-</ul>
-<p><em>Datos:</em></p>
-<ul>
-<li>Datos de la cuenca hidrográfica del río Canoabo en Venezuela, como Partes de agua, Modelos digital de elevación, Sitios de muestreos de suelos entre otros.</li>
-</ul>
-<p><em>Procedmientos:</em></p>
-<ul>
-<li>Creaciones de objetos R (vectores y raster)</li>
-<li>Ploteo de capas.</li>
-<li>Proyección cartográfica, entre otros que a continuación se describen.</li>
-</ul>
-<blockquote>
-<blockquote>
-<p>cita</p>
-</blockquote>
-</blockquote>
-<p><strong>INICIAMOS PROCEDIMIENTOS</strong></p>
-<p>Primero verificamos el directorio de trabajo:</p>
+<div id="iniciamos-procedimeintos" class="section level3">
+<h3>Iniciamos procedimeintos:</h3>
+<p>Primero verificaremos nuestro directorio de trabajo:</p>
 <pre class="r"><code>getwd()</code></pre>
 <pre><code>## [1] &quot;C:/Sevilla/rsig/content/post&quot;</code></pre>
-<p><strong>Activamos las librerias o paquetes necesarios:</strong></p>
+<p>Activaremos las librerias o paquetes necesarios:**</p>
 <pre class="r"><code>library(raster)</code></pre>
 <pre><code>## Loading required package: sp</code></pre>
-<p>Trabajamos con capas espaciales de SIG:</p>
+<p>Ahora importaremos capas SIG vectoriales y raster prexistentes y crearemos objetos R, ademas lo plotearemos en conjunto:</p>
 <pre class="r"><code>#Creamos un objeto R de un archivo shapefile shp
 perimetro &lt;- shapefile(&quot;C:/Sevilla/Canoabo1/cuenca1.shp&quot;)
+
 #Creamos un objeto R de un archivo formato tiff raster
 DEM &lt;- raster(&quot;C:/Sevilla/Canoabo1/MDE3.tif&quot;)
-#Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
-plot(DEM, main=&quot;Modelo Digital de Elevacion (msnm)&quot;)
-lines(perimetro)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code># Si desea ver los objetos R en memoria
+
+# Si desea ver los objetos R creados en memoria
 ls()</code></pre>
 <pre><code>## [1] &quot;DEM&quot;       &quot;perimetro&quot;</code></pre>
-<p>Podemos revisar la proyección cartográfica de los objetos R creados:</p>
-<p>Pendiente11:</p>
-<p><img alt = 'my new screenshot' width='700' src='/post/2020-03-14-locote-2_files/toldo.jpg' /> Figura 1.</p>
-<p>Mostrar la proyección.</p>
-<p>Cambiar la proyección de canoa a regven.</p>
-<p>Montar los puntos de suelos y ploteralo junto al dem y el perímetro.</p>
-<p>ver los datos de suelos (los primeros 6 registros)</p>
+<pre class="r"><code>#Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
+plot(DEM, main=&quot;Modelo Digital de Elevacion (msnm)&quot;)
+lines(perimetro, col=&quot;blue&quot;)</code></pre>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-3-1.png" width="672" /> La Figura muestra la Cuenca del rio Canoabo, donde se puede ver el Modelo digital de elevacion y la linea perimetral que coincide con el parte de agua de la cuenca.</p>
+<p>Continuamos conociendo la proyeccion cartografica de nuestras dos capas (CRS):</p>
+<pre class="r"><code>#Primero la del objeto R shape (Perimetro):
+crs(perimetro)</code></pre>
+<pre><code>## CRS arguments:
+##  +proj=utm +zone=19 +ellps=intl +units=m +no_defs</code></pre>
+<pre class="r"><code>#Proyeccion UTM Huso 19 Norte, unidad metros, elipsoide internacional 1924.
+
+#Segundo la del objeto raster (DEM)
+crs(DEM)</code></pre>
+<pre><code>## CRS arguments:
+##  +proj=utm +zone=19 +ellps=intl +units=m +no_defs</code></pre>
+<p>Si deseamos cambiar de proyeccion se procede como a continuacion se desribe para cada uno de los objetos R creados (shape o raster):</p>
+<pre class="r"><code>#En el caso de desear reproyectar un objeto R vectorial shape puede hacerlo de la siguiente forma
+#aqui cambiamos solo del datum de &quot;La Canoa&quot; a &quot;WGS 84&quot;:
+perimetro_rv &lt;- spTransform(perimetro, CRS(&quot;+proj=utm +zone=19 +ellps=WGS84 +datum=WGS84 +units=m +no_defs &quot;))
+
+# una manera de estar seguro de la similitud en extension de dos capas. especificamente en
+# el estudio de Cuencas, es cortar la capa raster con la capa vectorial (perimtetro), como 
+# se muestra a continaucion:
+DEM1 = crop(DEM, perimetro)
+DEM2 = mask(DEM1, perimetro)
+
+# y aqui continuamos con un ejemplo de como reproyectar una capa del tipo raster, en este caso, solo cambiamos del datum &quot;La Canoa&quot; a &quot;WGS 84&quot;:
+DEM2_rv = projectRaster(DEM, crs = &quot;+proj=utm +zone=19 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;, method=&#39;bilinear&#39;)</code></pre>
+<p>Ahora vamos a crear un objeto R a partir de una capa shape que contiene la informacion de perfiles de suelos.</p>
+<pre class="r"><code># Creamos el objeto R vectorial (shape) de perfiles de suelos:
+suelos &lt;- shapefile(&quot;C:/Sevilla/Canoabo1/suelos8.shp&quot;)</code></pre>
+<pre><code>## Warning in .local(x, ...): .prj file is missing</code></pre>
+<pre class="r"><code># Vemos las principales carataeristicas del obejto recioen creado:
+suelos</code></pre>
+<pre><code>## class       : SpatialPointsDataFrame 
+## features    : 49 
+## extent      : 572839, 585510, 1135243, 1151455  (xmin, xmax, ymin, ymax)
+## crs         : NA 
+## variables   : 120
+## names       : ID, NUMERO,             NOMBRE,   ESTE,   NORTE, ALTURA_C, DIST_PAR, SB, ALTURA,     PEDREGO, MUESTRA, H1_PROF, H2_PROF,  H3_PROF,  H4_PROF, ... 
+## min values  :  1,      1, Afloramiento Verde, 572839, 1135243,        0,        0,  0,   1063,    Excesiva,      Si,  0 - 10, 10 - 20,     &gt; 22,    &gt; 100, ... 
+## max values  : 49,      9,        Valle Hondo, 585510, 1151455,     1270,        1,  1,    963, Pedregoso (,      Si,  Arriba,   Abajo, 80 - 100, 80 - 100, ...</code></pre>
+<pre class="r"><code># Le asignamos la proyeccion cartografica correspondiente, ya  que no la tenia en la capa original, pero nosotros la conocemos:
+suelos@proj4string &lt;- crs(&quot;+proj=utm +zone=19 +ellps=intl +units=m +no_defs&quot;)</code></pre>
+<p>Ploteamos los tres objetos R creados en un solo graficos:</p>
+<pre class="r"><code>plot(DEM)
+lines(perimetro, lwd=2)
+points(suelos, col=&quot;blue&quot;, pch=19)
+legend(&quot;topleft&quot;, &quot;pH &gt; 5.5&quot;, pch=19, col = &quot;blue&quot;)
+legend(&quot;topleft&quot;, &quot;pH &lt; 5.5&quot;, pch=19, col = &quot;red&quot;)
+text(labels(suelos@data$ID))</code></pre>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>#labels &lt;- rownames(suelos)</code></pre>
+<p>Continuamos revisando algunas caraterisicas del objeto R de perfiles de suelos:</p>
+<pre class="r"><code># Observamos los 6 primeros registro de su base de datos:
+head(suelos, 5)</code></pre>
+<pre><code>##   ID NUMERO         NOMBRE   ESTE   NORTE ALTURA_C DIST_PAR SB ALTURA PEDREGO
+## 1  1    1-1    Valle Hondo 581193 1136428      800        1  1    760  Ligera
+## 2  2    1-2     La Mejiena 585510 1138812     1270        1  1   1283  Ligera
+## 3  3    1-3 Las Mandarinas 577507 1137486      660        0  0    660  Ligera
+## 4  4    1-4        El Cafe 576379 1137191      850        1  0    867  Ligera
+## 5  5    2-1       Guineo C 581904 1140554      314        0  1    318  Ligera
+##   MUESTRA H1_PROF H2_PROF H3_PROF H4_PROF H1_AREN H2_AREN H3_AREN H4_AREN
+## 1      Si  0 - 12 12 - 30    &gt; 30    &lt;NA&gt;      54      40      40       0
+## 2      Si  0 - 20 20 - 50    &gt; 50    &lt;NA&gt;      58      50      46       0
+## 3    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &gt; 35    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      50       0
+## 4    &lt;NA&gt;  0 - 15 15 - 35    &gt; 35    &lt;NA&gt;      60    &lt;NA&gt;      46       0
+## 5    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      58      40      52       0
+##   H1_LIMO H2_LIMO H3_LIMO H4_LIMO H1_ARCI H2_ARCI H3_ARCI H4_ARCI H1_TEXT
+## 1      22      22      20       0      24      38      40       0     FAa
+## 2      20      22      16       0      22      28      38       0     FAa
+## 3    &lt;NA&gt;    &lt;NA&gt;      28       0    &lt;NA&gt;    &lt;NA&gt;      22       0    &lt;NA&gt;
+## 4      22    &lt;NA&gt;      20       0      18    &lt;NA&gt;      34       0      Fa
+## 5      22      24      44       0      20      36       4       0      Fa
+##   H2_TEXT H3_TEXT H4_TEXT H1_FOSF H2_FOSF H3_FOSF H4_FOSF H1_POTA H2_POTA
+## 1      FA       A    &lt;NA&gt;      30      49       2       0     574     384
+## 2     FAa      Aa    &lt;NA&gt;       4       2       3       0     275      37
+## 3    &lt;NA&gt;       F    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;       2       0    &lt;NA&gt;    &lt;NA&gt;
+## 4    &lt;NA&gt;     FAa    &lt;NA&gt;       4    &lt;NA&gt;       2       0      82    &lt;NA&gt;
+## 5      FA      Fa    &lt;NA&gt;       2       2       2       0      47      52
+##   H3_POTA H4_POTA H1_CALC H2_CALC H3_CALC H4_CALC H1_MAGN H2_MAGN H3_MAGN
+## 1      91       0     678      91      64       0     326      58      31
+## 2      17       0     364       7      34       0     142       9      11
+## 3      38       0    &lt;NA&gt;    &lt;NA&gt;      92       0    &lt;NA&gt;    &lt;NA&gt;     158
+## 4      25       0     322    &lt;NA&gt;      11       0     274    &lt;NA&gt;      40
+## 5      24       0     116      22      14       0     130     317     176
+##   H4_MAGN H1_MO H2_MO H3_MO H4_MO H1_PH H2_PH H3_PH H4_PH H1_CE H2_CE H3_CE
+## 1       0  4.74  1.81  0.99     0  5.87  4.94  4.66     0  0.09  0.05  0.05
+## 2       0  6.59  2.37  0.79     0  5.08  4.73  4.53     0  0.05  0.04  0.03
+## 3       0  0.00  0.00  0.87     0  0.00  0.00  5.05     0  0.00  0.00  0.03
+## 4       0  3.42  0.00  2.28     0  5.01  0.00  4.53     0  0.07  0.00  0.03
+## 5       0  2.09  0.70  0.14     0  4.83  5.10  6.04     0  0.03  0.04  0.37
+##   H4_CE       LOCALIDAD                            USO            VEGETACION
+## 1     0 Sur Valle Hondo            Ganaderia Extensiva  Bosque SV Medio Ralo
+## 2     0      La Soledad Ganaderia Extensiva - Citricos Bosque SV Medio Denso
+## 3     0    Las Garcitas               Citricos - CaÃ±a   Bosque Deciduo Ralo
+## 4     0    Las Garcitas                Cafe - Citricos  B sque SV Medio Ralo
+## 5     0       El Guineo                        Sin Uso           Arbustal SD
+##             EROSION                     MAT_PAREN D_INTERNO D_EXTERNO C_DRENAJE
+## 1 Imperceptible (0) Coluvial - Esquistos y Gne ss    Rapido    Rapido        BD
+## 2 Imperceptible (0) Coluvial - Esquistos y Gneiss    Rapido    Rapido        BD
+## 3        Fuerte (3)             Coluvial - Gneiss    Rapido    Rapido        BD
+## 4 Imperceptible (0)   Regolito in situ - Coluvial    Rapido    Rapido        BD
+## 5 Imperceptible (0)             Coluvial - Gneiss    Rapido    Rapido        BD
+##   EPIPEDON ENDOPEDON                  TAXO_1 TAXO_2 TAXO_3 RUTINA CPENDIEN
+## 1  Umbrico  Argilico Umbric Ultic Hapludalfs   &lt;NA&gt;   &lt;NA&gt;      1        4
+## 2  Umbrico  Argilico        Humic Hapludults   &lt;NA&gt;   &lt;NA&gt;      1        3
+## 3   Ocrico   Cambico      Typic Dystrustepts   &lt;NA&gt;   &lt;NA&gt;      1        4
+## 4  Umbrico  Argilico        Humic Hapludults   &lt;NA&gt;   &lt;NA&gt;      1        5
+## 5   Ocrico  Argilico       Typic Haplustalfs   &lt;NA&gt;   &lt;NA&gt;      2        3
+##   PENDIENTE VEGETA_MAP INTERV_MAP CI_CA CI_MG CI_H CI_NA CI_K AI_AL   C_C
+## 1        35         BD   Moderada  1.20  0.76 0.06  0.06 0.33     3  8.86
+## 2        15         BN     Fuerte  0.86  0.51 0.12  0.08 0.08     4 11.99
+## 3        39      BD+BS     Fuerte  0.00  0.00 0.00  0.00 0.00     0  0.00
+## 4        47         BS       Baja  0.00  0.00 0.00  0.00 0.00     0  0.00
+## 5        10         BD   Moderada  4.36  3.30 0.00  0.44 0.05     0  0.00
+##   DTP_AMG DTP_AG DTP_AM DTP_AF DTP_AMF DTP_AT DTP_ARCT DTP_LIMT DTP_CT
+## 1    2.16   4.86  11.02  18.47   11.88  48.38    25.92    25.70    FAa
+## 2    2.58   8.06  21.28  18.81    7.61  58.34    22.40    19.26    FAa
+## 3    0.00   0.00   0.00   0.00    0.00   0.00     0.00     0.00   &lt;NA&gt;
+## 4    4.42   8.52  11.25  13.14    8.83  46.16    33.65    20.19    FAa
+## 5    0.00   0.00   0.00   0.00    0.00   0.00     0.00     0.00   &lt;NA&gt;
+##   Z_SB_CICP    C_PEND1    MICRORELI TEXT_GE C_TEXTURAL  PEDREGOSI
+## 1     43.93 Fuerte (4) Moderado (2)      FA   Fina (3) Ligera (1)
+## 2     27.67 Severa (5) Moderado (2)     FAa  Media (2) Ligera (1)
+## 3        NA Fuerte (4) Moderado (2)       F  Media (2) Ligera (1)
+## 4        NA Fuerte (4) Moderado (2)       F  Media (2) Ligera (1)
+## 5    100.00 Ligera (2) Moderado (2)     FAa  Media (2) Ligera (1)
+##           PROFUNDI  SALINIDAD   FERTILIDAD SAT_AL FOSFORO_1 POTASIO_1 MO_1
+## 1 Muy Profundo (1) Ligera (1) Moderada (2)  56.07        41       460 2.98
+## 2 Muy Profundo (1) Ligera (1) Moderada (2)  72.33         3       196 5.18
+## 3     Profundo (2) Ligera (1) Moderada (2)     NA         2        38 0.87
+## 4 Muy Profundo (1) Ligera (1) Moderada (2)     NA         3        54 2.85
+## 5 Muy Profundo (1) Ligera (1) Moderada (2)   0.00         2        49 1.63
+##   FOSF_NIV POTA_NIV MAORG_NIV    TOXICI_AL     PERMEABI  DRENAJE_I  DRENAJE_E
+## 1     Alto     Alto     Medio Media a Alta Moderada (3) Rapido (4) Rapido (5)
+## 2     Bajo     Alto      Alto Media a Alta   Rapida (4) Rapido (4) Rapido (5)
+## 3     Bajo     Bajo      Bajo         Baja   Rapida (4) Rapido (4) Rapido (5)
+## 4     Bajo    Medio     Medio Media a Alta   Rapida (4) Rapido (4) Rapido (5)
+## 5     Bajo     Bajo     Medio         Baja   Rapida (4) Rapido (4) Rapido (5)
+##   INUNDACION  CUSO   ZV                   ESTRUCTURA PERMEA_KA COD_EST COD_PER
+## 1    Sin (1)   VTp BhPm   Blocosa Subangular; Fuerte    Rapida       4       2
+## 2    Sin (1) VIITp BhPm   Blocosa Subangular; Fuerte    Rapida       4       2
+## 3    Sin (1)   VTp BhPm Blocosa Subangular; Moderada  Moderada       4       3
+## 4    Sin (1)   VTp BhPm   Blocosa Subangular; Fuerte    Rapida       4       2
+## 5    Sin (1) IIITp  BsT   Blocosa Subangular; Fuerte    Rapida       4       2</code></pre>
+<pre class="r"><code># Observamos los 6 ultimos registro de su base de datos:
+tail(suelos,5)</code></pre>
+<pre><code>##    ID NUMERO             NOMBRE   ESTE   NORTE ALTURA_C DIST_PAR SB ALTURA
+## 45 45   &lt;NA&gt;             Capa 2 578378 1140237      286        0  0    287
+## 46 46   &lt;NA&gt;        Santa Ana 2 577882 1141953      288        1  0    267
+## 47 47   &lt;NA&gt; Afloramiento Verde 575665 1145396      310        0  0    340
+## 48 48   &lt;NA&gt;        Confluencia 573738 1151455        0        0  0    240
+## 49 49   &lt;NA&gt;     Margen Embalse 574015 1148377        0        0  0    360
+##     PEDREGO MUESTRA H1_PROF H2_PROF H3_PROF H4_PROF H1_AREN H2_AREN H3_AREN
+## 45   Ligera    &lt;NA&gt;  0 - 25 25 - 40 40 - 60    &lt;NA&gt;      46      44      42
+## 46   Ligera    &lt;NA&gt; 00 - 20 20   35  35 -80    &gt; 80       0      22      32
+## 47 Moderada    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      68      42      60
+## 48   Ligera    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      58      40      52
+## 49   Ligera    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      68      42      60
+##    H4_AREN H1_LIMO H2_LIMO H3_LIMO H4_LIMO H1_ARCI H2_ARCI H3_ARCI H4_ARCI
+## 45       0      32      30      26       0      22      26      32       0
+## 46       0       0      68      58       0       0      10      10       0
+## 47       0      14      24      26       0      18      34      14       0
+## 48       0      22      24      44       0      20      36       4       0
+## 49       0      14      24      26       0      18      34      14       0
+##    H1_TEXT H2_TEXT H3_TEXT H4_TEXT H1_FOSF H2_FOSF H3_FOSF H4_FOSF H1_POTA
+## 45       F       F      FA    &lt;NA&gt;      71      22      10       0     203
+## 46    &lt;NA&gt;      FL      FL    &lt;NA&gt;      23      69      17       0      97
+## 47      Fa      FA      Fa    &lt;NA&gt;       1       1       1       0      36
+## 48      Fa      FA      Fa    &lt;NA&gt;       2       2       2       0      47
+## 49      Fa      FA      Fa    &lt;NA&gt;       1       1       1       0      36
+##    H2_POTA H3_POTA H4_POTA H1_CALC H2_CALC H3_CALC H4_CALC H1_MAGN H2_MAGN
+## 45     109      66       0    1100    4380    6380       0     274     206
+## 46      66      28       0     852    1198     782       0     348     300
+## 47      19      20       0     204      59      28       0     178     302
+## 48      52      24       0     116      22      14       0     130     316
+## 49      19      20       0     204      59      28       0     178     302
+##    H3_MAGN H4_MAGN H1_MO H2_MO H3_MO H4_MO H1_PH H2_PH H3_PH H4_PH H1_CE H2_CE
+## 45     270       0  2.56  0.96  0.37     0  7.21  7.99  8.11     0  0.14  0.19
+## 46     202       0  4.37  3.63  0.76     0  5.72  6.71  8.04     0  0.53  0.43
+## 47     370       0  3.19  1.34  0.58     0  4.86  4.77  5.18     0  0.05  0.12
+## 48     176       0  2.09  0.70  0.14     0  4.83  5.10  6.04     0  0.03  0.04
+## 49     370       0  3.19  1.34  0.58     0  4.86  4.77  5.18     0  0.05  0.12
+##    H3_CE H4_CE LOCALIDAD                 USO     VEGETACION           EROSION
+## 45  0.36     0      Capa            Citricos       Agricola Imperceptible (0)
+## 46  0.12     0 Santa Ana            Citricos       Agricola Imperceptible (0)
+## 47  0.26     0 Via Urama Ganaderia Extensiva Bosque Deciduo      Moderada (2)
+## 48  0.37     0 Via Urama             Sin Uso    Arbustal SD Imperceptible (0)
+## 49  0.26     0 Via Urama             Sin Uso    Arbustal SD Imperceptible (0)
+##                        MAT_PAREN D_INTERNO D_EXTERNO C_DRENAJE EPIPEDON
+## 45              Aluvial - Gneiss  Moderado  Moderado       MBD   Molico
+## 46              Aluvial - Gneiss    Rapido    Rapido        BD   Ocrico
+## 47 Coluvial - Esquistos y Gneiss    Rapido    Rapido        BD   Ocrico
+## 48             Coluvial - Gneiss    Rapido    Rapido        BD   Ocrico
+## 49             Coluvial - Gneiss    Rapido    Rapido        BD   Ocrico
+##    ENDOPEDON                TAXO_1 TAXO_2 TAXO_3 RUTINA CPENDIEN PENDIENTE
+## 45  Argilico     Aquic Haplustalfs   &lt;NA&gt;   &lt;NA&gt;      2        2         4
+## 46   Cambico Fluventic Haplustepts   &lt;NA&gt;   &lt;NA&gt;      1        2         4
+## 47  Argilico     Typic Haplustalfs   &lt;NA&gt;   &lt;NA&gt;      2        4        42
+## 48  Argilico     Typic Haplustalfs   &lt;NA&gt;   &lt;NA&gt;      2        4        43
+## 49  Argilico     Typic Haplustalfs   &lt;NA&gt;   &lt;NA&gt;      2        4        30
+##      VEGETA_MAP INTERV_MAP CI_CA CI_MG CI_H CI_NA CI_K AI_AL C_C DTP_AMG DTP_AG
+## 45           BD     Fuerte  4.74  3.63 0.00  0.18 0.32  0.00   0       0   0.00
+## 46           BD   Moderada  0.00  0.00 0.00  0.00 0.00  0.00   0       0   0.32
+## 47           BD   Moderada  0.00  0.00 0.00  0.00 0.00  0.00   0       0   0.00
+## 48 BD (Desnudo)     Fuerte 12.87 10.07 0.31  0.25 0.28  3.06   0       0   0.00
+## 49           BD   Moderada  0.00  0.00 0.00  0.00 0.00  0.00   0       0   0.00
+##    DTP_AM DTP_AF DTP_AMF DTP_AT DTP_ARCT DTP_LIMT DTP_CT Z_SB_CICP     C_PEND1
+## 45   0.00   0.00    0.00   0.00     0.00     0.00   &lt;NA&gt;    100.00 Ninguna (1)
+## 46   0.74  10.68   24.52  36.26    16.91    46.83      F        NA Ninguna (1)
+## 47   0.00   0.00    0.00   0.00     0.00     0.00   &lt;NA&gt;        NA  Fuerte (4)
+## 48   0.00   0.00    0.00   0.00     0.00     0.00   &lt;NA&gt;     88.47  Fuerte (4)
+## 49   0.00   0.00    0.00   0.00     0.00     0.00   &lt;NA&gt;        NA  Fuerte (4)
+##       MICRORELI TEXT_GE C_TEXTURAL    PEDREGOSI         PROFUNDI  SALINIDAD
+## 45   Ligero (1)       F  Media (2)   Ligera (1) Muy Profundo (1) Ligera (1)
+## 46   Ligero (1)      FL   Fina (3)   Ligera (1) Muy Profundo (1) Ligera (1)
+## 47 Moderado (2)     FAa  Media (2) Moderada (2)     Profundo (2) Ligera (1)
+## 48 Moderado (2)     FAa  Media (2)   Ligera (1) Muy Profundo (1) Ligera (1)
+## 49 Moderado (2)     FAa  Media (2)   Ligera (1) Muy Profundo (1) Ligera (1)
+##      FERTILIDAD SAT_AL FOSFORO_1 POTASIO_1 MO_1 FOSF_NIV POTA_NIV MAORG_NIV
+## 45   Ligera (1)   0.00        63       187 2.29     Alto     Alto     Medio
+## 46   Ligera (1)     NA        38        87 4.12     Alto    Medio      Alto
+## 47   Fuerte (3)     NA         1        30 2.57     Bajo     Bajo     Medio
+## 48 Moderada (2)  11.53         2        49 1.63     Bajo     Bajo     Medio
+## 49   Fuerte (3)     NA         1        30 2.57     Bajo     Bajo     Medio
+##    TOXICI_AL   PERMEABI    DRENAJE_I    DRENAJE_E         INUNDACION  CUSO  ZV
+## 45      Baja Rapida (4) Moderado (3) Moderado (4)      Frecuente (3) VScDi BsT
+## 46      Baja Rapida (4) Moderado (3) Moderado (4) Ocasionalmente (2)  IVDi BsT
+## 47      Baja Rapida (4)   Rapido (4)   Rapido (5)            Sin (1)  VITp BsT
+## 48      Baja Rapida (4)   Rapido (4)   Rapido (5)            Sin (1)  VITp BsT
+## 49      Baja Rapida (4)   Rapido (4)   Rapido (5)            Sin (1)  VITp BsT
+##                    ESTRUCTURA PERMEA_KA COD_EST COD_PER
+## 45 Blocosa Subangular; Fuerte  Moderada       4       3
+## 46 Blocosa Subangular; Fuerte  Moderada       4       3
+## 47 Blocosa Subangular; Fuerte    Rapida       4       2
+## 48 Blocosa Subangular; Fuerte    Rapida       4       2
+## 49 Blocosa Subangular; Fuerte    Rapida       4       2</code></pre>
+<pre class="r"><code># Vemos el numero de filas y columnas:
+dim(suelos)</code></pre>
+<pre><code>## [1]  49 120</code></pre>
+<pre class="r"><code># Observamos la clase del objeto R suelos:
+class(suelos)</code></pre>
+<pre><code>## [1] &quot;SpatialPointsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;</code></pre>
+<pre class="r"><code># Vemos el espacio que ocupa en memoria el objeto R suelos (Bytes):
+object.size(suelos)</code></pre>
+<pre><code>## 122824 bytes</code></pre>
+<pre class="r"><code># Vemos los nombres de sus columnas, campos o variables:
+names(suelos)</code></pre>
+<pre><code>##   [1] &quot;ID&quot;         &quot;NUMERO&quot;     &quot;NOMBRE&quot;     &quot;ESTE&quot;       &quot;NORTE&quot;     
+##   [6] &quot;ALTURA_C&quot;   &quot;DIST_PAR&quot;   &quot;SB&quot;         &quot;ALTURA&quot;     &quot;PEDREGO&quot;   
+##  [11] &quot;MUESTRA&quot;    &quot;H1_PROF&quot;    &quot;H2_PROF&quot;    &quot;H3_PROF&quot;    &quot;H4_PROF&quot;   
+##  [16] &quot;H1_AREN&quot;    &quot;H2_AREN&quot;    &quot;H3_AREN&quot;    &quot;H4_AREN&quot;    &quot;H1_LIMO&quot;   
+##  [21] &quot;H2_LIMO&quot;    &quot;H3_LIMO&quot;    &quot;H4_LIMO&quot;    &quot;H1_ARCI&quot;    &quot;H2_ARCI&quot;   
+##  [26] &quot;H3_ARCI&quot;    &quot;H4_ARCI&quot;    &quot;H1_TEXT&quot;    &quot;H2_TEXT&quot;    &quot;H3_TEXT&quot;   
+##  [31] &quot;H4_TEXT&quot;    &quot;H1_FOSF&quot;    &quot;H2_FOSF&quot;    &quot;H3_FOSF&quot;    &quot;H4_FOSF&quot;   
+##  [36] &quot;H1_POTA&quot;    &quot;H2_POTA&quot;    &quot;H3_POTA&quot;    &quot;H4_POTA&quot;    &quot;H1_CALC&quot;   
+##  [41] &quot;H2_CALC&quot;    &quot;H3_CALC&quot;    &quot;H4_CALC&quot;    &quot;H1_MAGN&quot;    &quot;H2_MAGN&quot;   
+##  [46] &quot;H3_MAGN&quot;    &quot;H4_MAGN&quot;    &quot;H1_MO&quot;      &quot;H2_MO&quot;      &quot;H3_MO&quot;     
+##  [51] &quot;H4_MO&quot;      &quot;H1_PH&quot;      &quot;H2_PH&quot;      &quot;H3_PH&quot;      &quot;H4_PH&quot;     
+##  [56] &quot;H1_CE&quot;      &quot;H2_CE&quot;      &quot;H3_CE&quot;      &quot;H4_CE&quot;      &quot;LOCALIDAD&quot; 
+##  [61] &quot;USO&quot;        &quot;VEGETACION&quot; &quot;EROSION&quot;    &quot;MAT_PAREN&quot;  &quot;D_INTERNO&quot; 
+##  [66] &quot;D_EXTERNO&quot;  &quot;C_DRENAJE&quot;  &quot;EPIPEDON&quot;   &quot;ENDOPEDON&quot;  &quot;TAXO_1&quot;    
+##  [71] &quot;TAXO_2&quot;     &quot;TAXO_3&quot;     &quot;RUTINA&quot;     &quot;CPENDIEN&quot;   &quot;PENDIENTE&quot; 
+##  [76] &quot;VEGETA_MAP&quot; &quot;INTERV_MAP&quot; &quot;CI_CA&quot;      &quot;CI_MG&quot;      &quot;CI_H&quot;      
+##  [81] &quot;CI_NA&quot;      &quot;CI_K&quot;       &quot;AI_AL&quot;      &quot;C_C&quot;        &quot;DTP_AMG&quot;   
+##  [86] &quot;DTP_AG&quot;     &quot;DTP_AM&quot;     &quot;DTP_AF&quot;     &quot;DTP_AMF&quot;    &quot;DTP_AT&quot;    
+##  [91] &quot;DTP_ARCT&quot;   &quot;DTP_LIMT&quot;   &quot;DTP_CT&quot;     &quot;Z_SB_CICP&quot;  &quot;C_PEND1&quot;   
+##  [96] &quot;MICRORELI&quot;  &quot;TEXT_GE&quot;    &quot;C_TEXTURAL&quot; &quot;PEDREGOSI&quot;  &quot;PROFUNDI&quot;  
+## [101] &quot;SALINIDAD&quot;  &quot;FERTILIDAD&quot; &quot;SAT_AL&quot;     &quot;FOSFORO_1&quot;  &quot;POTASIO_1&quot; 
+## [106] &quot;MO_1&quot;       &quot;FOSF_NIV&quot;   &quot;POTA_NIV&quot;   &quot;MAORG_NIV&quot;  &quot;TOXICI_AL&quot; 
+## [111] &quot;PERMEABI&quot;   &quot;DRENAJE_I&quot;  &quot;DRENAJE_E&quot;  &quot;INUNDACION&quot; &quot;CUSO&quot;      
+## [116] &quot;ZV&quot;         &quot;ESTRUCTURA&quot; &quot;PERMEA_KA&quot;  &quot;COD_EST&quot;    &quot;COD_PER&quot;</code></pre>
+<pre class="r"><code># Observamos un resumen de las es
+
+# extraeremos un subgrupo del objeto R origina de suelos, que cumplan un criterio, el cual es que su pH sea menor y mayor a 5.5 pH.
+suelos_ma &lt;- subset(suelos, H1_PH &gt; 5.5, c(3,4,5,52))
+suelos_ma</code></pre>
+<pre><code>## class       : SpatialPointsDataFrame 
+## features    : 13 
+## extent      : 577882, 581193, 1136428, 1141953  (xmin, xmax, ymin, ymax)
+## crs         : +proj=utm +zone=19 +ellps=intl +units=m +no_defs 
+## variables   : 4
+## names       :      NOMBRE,   ESTE,   NORTE, H1_PH 
+## min values  :      Capa 1, 577882, 1136428,  5.72 
+## max values  : Valle Hondo, 581193, 1141953,  8.05</code></pre>
+<pre class="r"><code>suelos_me &lt;- subset(suelos, H1_PH &lt;= 5.5, c(3,4,5,52))
+suelos_me</code></pre>
+<pre><code>## class       : SpatialPointsDataFrame 
+## features    : 36 
+## extent      : 572839, 585510, 1135243, 1151455  (xmin, xmax, ymin, ymax)
+## crs         : +proj=utm +zone=19 +ellps=intl +units=m +no_defs 
+## variables   : 4
+## names       :             NOMBRE,   ESTE,   NORTE, H1_PH 
+## min values  : Afloramiento Verde, 572839, 1135243,     0 
+## max values  :              Valle, 585510, 1151455,  5.45</code></pre>
+<pre class="r"><code>plot(DEM, main=&quot;Perfiles de suelos&quot;)
+points(suelos_ma, pch=19, col=&quot;blue&quot;, cex=1.2)
+points(suelos_me, pch=19, col=&quot;red&quot;, cex=1.2)</code></pre>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>plot(suelos$H1_PH, pch=19, col=&quot;blue&quot;, type=&quot;b&quot;)
+legend(2,8, &quot;pH&quot;, pch = 19, col = &quot;blue&quot;)
+abline(h=5.5)</code></pre>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<pre class="r"><code>#box(lty = &#39;1373&#39;, col = &#39;red&#39;)
+
+
+
+suelosph &lt;- suelos@data[suelos$H1_PH &gt; 0, c(&quot;NOMBRE&quot;, &quot;H1_PH&quot;)]
+
+plot(suelosph$H1_PH, pch=19, col=&quot;blue&quot;, type=&quot;b&quot;)</code></pre>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
+<pre class="r"><code>plot(suelos$H1_PH)
+legend(2, 7, &quot;alirio&quot;, pch=17)</code></pre>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-8-4.png" width="672" /></p>
+<pre class="r"><code>which(is.na(suelos$H1_PH))</code></pre>
+<pre><code>## integer(0)</code></pre>
+<pre class="r"><code>summary(suelosph$H1_PH)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   3.830   4.817   5.010   5.317   5.888   8.050</code></pre>
+<pre class="r"><code>summary(suelos$H1_PH)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   4.670   4.870   4.774   5.720   8.050</code></pre>
+<pre class="r"><code>plot(suelosph$H1_PH, pch=19, col=&quot;blue&quot;, type=&quot;b&quot;)
+text(10, 20, &quot;aqui no&quot;)</code></pre>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Pendientes:</p>
 <p>hacer un resumen de una característica como pH.</p>
+<p>hacemos un mapas con los sitios de suelos con mayor y menor a 5.5 de pH.</p>
 <p>Cambiamos el nombre del campo “Tree” por “arboles”: datos1 &lt;- rename(Orange, arboles = Tree)</p>
-<pre class="r"><code>knitr::kable(
-  head(mtcars[, 1:8], 15), booktabs=TRUE,
-  caption=&#39;Los primeros 15 renglones de nuestra base mtcars.&#39;)</code></pre>
-<table>
-<caption><span id="tab:unnamed-chunk-4">Table 1: </span>Los primeros 15 renglones de nuestra base mtcars.</caption>
-<thead>
-<tr class="header">
-<th></th>
-<th align="right">mpg</th>
-<th align="right">cyl</th>
-<th align="right">disp</th>
-<th align="right">hp</th>
-<th align="right">drat</th>
-<th align="right">wt</th>
-<th align="right">qsec</th>
-<th align="right">vs</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mazda RX4</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.620</td>
-<td align="right">16.46</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>Mazda RX4 Wag</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.875</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td>Datsun 710</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">108.0</td>
-<td align="right">93</td>
-<td align="right">3.85</td>
-<td align="right">2.320</td>
-<td align="right">18.61</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td>Hornet 4 Drive</td>
-<td align="right">21.4</td>
-<td align="right">6</td>
-<td align="right">258.0</td>
-<td align="right">110</td>
-<td align="right">3.08</td>
-<td align="right">3.215</td>
-<td align="right">19.44</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Hornet Sportabout</td>
-<td align="right">18.7</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">175</td>
-<td align="right">3.15</td>
-<td align="right">3.440</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>Valiant</td>
-<td align="right">18.1</td>
-<td align="right">6</td>
-<td align="right">225.0</td>
-<td align="right">105</td>
-<td align="right">2.76</td>
-<td align="right">3.460</td>
-<td align="right">20.22</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Duster 360</td>
-<td align="right">14.3</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">245</td>
-<td align="right">3.21</td>
-<td align="right">3.570</td>
-<td align="right">15.84</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>Merc 240D</td>
-<td align="right">24.4</td>
-<td align="right">4</td>
-<td align="right">146.7</td>
-<td align="right">62</td>
-<td align="right">3.69</td>
-<td align="right">3.190</td>
-<td align="right">20.00</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Merc 230</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">140.8</td>
-<td align="right">95</td>
-<td align="right">3.92</td>
-<td align="right">3.150</td>
-<td align="right">22.90</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td>Merc 280</td>
-<td align="right">19.2</td>
-<td align="right">6</td>
-<td align="right">167.6</td>
-<td align="right">123</td>
-<td align="right">3.92</td>
-<td align="right">3.440</td>
-<td align="right">18.30</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Merc 280C</td>
-<td align="right">17.8</td>
-<td align="right">6</td>
-<td align="right">167.6</td>
-<td align="right">123</td>
-<td align="right">3.92</td>
-<td align="right">3.440</td>
-<td align="right">18.90</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td>Merc 450SE</td>
-<td align="right">16.4</td>
-<td align="right">8</td>
-<td align="right">275.8</td>
-<td align="right">180</td>
-<td align="right">3.07</td>
-<td align="right">4.070</td>
-<td align="right">17.40</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td>Merc 450SL</td>
-<td align="right">17.3</td>
-<td align="right">8</td>
-<td align="right">275.8</td>
-<td align="right">180</td>
-<td align="right">3.07</td>
-<td align="right">3.730</td>
-<td align="right">17.60</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>Merc 450SLC</td>
-<td align="right">15.2</td>
-<td align="right">8</td>
-<td align="right">275.8</td>
-<td align="right">180</td>
-<td align="right">3.07</td>
-<td align="right">3.780</td>
-<td align="right">18.00</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td>Cadillac Fleetwood</td>
-<td align="right">10.4</td>
-<td align="right">8</td>
-<td align="right">472.0</td>
-<td align="right">205</td>
-<td align="right">2.93</td>
-<td align="right">5.250</td>
-<td align="right">17.98</td>
-<td align="right">0</td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
