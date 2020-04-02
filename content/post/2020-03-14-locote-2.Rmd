@@ -41,20 +41,27 @@ getwd()
 library(raster)
 ```
 > Si desea conocer mas de las funciones del paquete Raster puede
-dirigirse a la pagina CRAN-R en la seccion de paquetes, aqui les dejamos un enlace directo. `Raster` https://cran.r-project.org/web/packages/raster/index.html
+dirigirse a la pagina CRAN-R en la seccion de paquetes, aqui les dejamos un enlace directo. [Raster](https://cran.r-project.org/web/packages/raster/index.html)
 
-4. Importemos los Layers Shapefile y Raster originados en SIG (por ejemplpo) y creamos objetos R:
+4. Importamos los Layers Shapefile y Raster originados en SIG y creamos objetos R:
+
+**Layers Shapefile:**
 ```{r}
-#Creamos un objeto R de un archivo shapefile shp
 perimetro <- shapefile("C:/Sevilla/Canoabo1/cuenca1.shp")
+```
+Como observo creamos un objeto R llamado **perimetro** empleando la funcion `shapefile` e indicamos en que directoria se encuentra el layers Shapefile. Si realizaste el paso previo de establecer el directorio de trabajo (`setwd`), entonces bastaria solo colocar el nombre del layers Shapefile con su extension shp, en nuestro caso seria _cuenca1.shp_.
 
-#Creamos un objeto R de un archivo formato tiff raster
+**Layers Raster** 
+```{r}
 DEM <- raster("C:/Sevilla/Canoabo1/MDE3.tif")
+```
+Como observo creamos un objeto R llamdo **DEM** mediante la funcion `raster` e indicamos en que directoria se encuentra el layers Raster (tif). Si realizaste el paso previo de establecer el directorio de trabajo (`setwd`), entonces bastaria solo colocar el nombre del layers Raster con su extension tif, en nuestro caso seria _MDE3.tif_.vemos
 
-# Si desea ver los objetos R creados en memoria
+5.- Observemos nuestros objetos R recien creado en el directorio o en la memoria de R con la funcion `ls`:
+```{r}
 ls()
-
-#Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
+```
+6. Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
 plot(DEM, main="Modelo Digital de Elevacion (msnm)")
 lines(perimetro, col="blue")
 ```
