@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.56.0" />
 
 
-<title>Trabajando con layers Shapefile y raster de SIG en R - R-SIG</title>
-<meta property="og:title" content="Trabajando con layers Shapefile y raster de SIG en R - R-SIG">
+<title>Trabajando con layers Shapefile y Raster de SIG en R - R-SIG</title>
+<meta property="og:title" content="Trabajando con layers Shapefile y Raster de SIG en R - R-SIG">
 
 
   <link href='/CA.ico' rel='icon' type='image/x-icon'/>
@@ -67,7 +67,7 @@
     <span class="article-duration">16 min read</span>
     
 
-    <h1 class="article-title">Trabajando con layers Shapefile y raster de SIG en R</h1>
+    <h1 class="article-title">Trabajando con layers Shapefile y Raster de SIG en R</h1>
 
     
     <span class="article-date">2020-03-14</span>
@@ -79,27 +79,40 @@
 
 <div id="por-campoambiente.com" class="section level3">
 <h3>Por: CampoAmbiente.com</h3>
-<p>El objetivo de esta entrada es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar analisis estadisticos que sean utiles en estudios agroambientales.</p>
+<p>Nuestro objetivo es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar analisis estadisticos que sean utiles en estudios agroambientales.</p>
 <p>Trataremos diferentes aspectos como:</p>
 <ul>
-<li>Forma de importar layers Shapefile y Raster de Sistemas de Informacion Geografica (SIG) a R.</li>
+<li>Importar layers Shapefile y Raster de Sistemas de Informacion Geografica (SIG) a R.</li>
 <li>Crear graficos con ellas (plotearlos).</li>
 <li>Conocer su proyeccion cartografica.</li>
 <li>Reproyectarlas.</li>
 <li>….</li>
 </ul>
-<p>Para cumplir nuestro objetivo emplearemos aplicaciones como R y RStudio, datos espaciales (Partes de aguas, Modelos digital de elevación, etc) y atributivos (Muestreo de suelos) de la cuenca hidrográfica del río Canoabo en Venezuela.</p>
-<p><strong>Descargo:</strong> Si conocen otra forma de hacerlo diferente a la mostrada en esta entrada, seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.</p>
+<p>Emplearemos las aplicaciones R y RStudio y, datos espaciales o layers como: Partes de aguas, Modelos digital de elevación y una capa de muestreo de suelos con datos atributivos de los mismos. Todos pertenceintes a la cuenca hidrográfica del río Canoabo en Venezuela.</p>
+<p><strong>Descargo:</strong> Por supuesto que existe una gran cantidad de formas y maneras de trabajar layers de SIG en R. Esta es solo una de esas formas, la que nosotros empleamos. Si conocen otra manera de hacerlo diferente a la mostrada, para nosotros seria un gusto y un valioso aporte recibir sus ideas y opiniones. Con esto en conjunto podriamor incremetar nuestro aporte a la comunidad de R-SIG.</p>
 </div>
-<div id="iniciamos-procedimeintos" class="section level3">
-<h3>Iniciamos procedimeintos:</h3>
-<p>Primero verificaremos nuestro directorio de trabajo:</p>
+<div id="iniciamos-procedimientos" class="section level3">
+<h3>Iniciamos procedimientos:</h3>
+<ol style="list-style-type: decimal">
+<li>Estableceremos nuestro directorio de trabajo, donde ubicaremos toda nuestra informacion y crearemos los objetos nuevos:</li>
+</ol>
+<pre class="r"><code>setwd(&quot;C:/Sevilla/rsig/content/post&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Verificamos que efectivamente nos ubicamos en el directorio de trabajo deseado:</li>
+</ol>
 <pre class="r"><code>getwd()</code></pre>
 <pre><code>## [1] &quot;C:/Sevilla/rsig/content/post&quot;</code></pre>
-<p>Activaremos las librerias o paquetes necesarios:**</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Activamos las librerias o paquetes necesarios que contienen las funciones a <code>emplear</code>:</li>
+</ol>
 <pre class="r"><code>library(raster)</code></pre>
 <pre><code>## Loading required package: sp</code></pre>
-<p>Ahora importaremos capas SIG vectoriales y raster prexistentes y crearemos objetos R, ademas lo plotearemos en conjunto:</p>
+<blockquote>
+<p>Si desea conocer mas de las funciones del paquete Raster puede dirigirse a la pagina CRAN-R en la seccion de paquetes, aqui les dejamos un enlace directo. <code>Raster</code> <a href="https://cran.r-project.org/web/packages/raster/index.html" class="uri">https://cran.r-project.org/web/packages/raster/index.html</a></p>
+</blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>Importemos los Layers Shapefile y Raster originados en SIG (por ejemplpo) y creamos objetos R:</li>
+</ol>
 <pre class="r"><code>#Creamos un objeto R de un archivo shapefile shp
 perimetro &lt;- shapefile(&quot;C:/Sevilla/Canoabo1/cuenca1.shp&quot;)
 
@@ -112,7 +125,7 @@ ls()</code></pre>
 <pre class="r"><code>#Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
 plot(DEM, main=&quot;Modelo Digital de Elevacion (msnm)&quot;)
 lines(perimetro, col=&quot;blue&quot;)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-3-1.png" width="672" /> La Figura muestra la Cuenca del rio Canoabo, donde se puede ver el Modelo digital de elevacion y la linea perimetral que coincide con el parte de agua de la cuenca.</p>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-4-1.png" width="672" /> La Figura muestra la Cuenca del rio Canoabo, donde se puede ver el Modelo digital de elevacion y la linea perimetral que coincide con el parte de agua de la cuenca.</p>
 <p>Continuamos conociendo la proyeccion cartografica de nuestras dos capas (CRS):</p>
 <pre class="r"><code>#Primero la del objeto R shape (Perimetro):
 crs(perimetro)</code></pre>
@@ -160,7 +173,7 @@ points(suelos, col=&quot;blue&quot;, pch=19)
 legend(&quot;topleft&quot;, &quot;pH &gt; 5.5&quot;, pch=19, col = &quot;blue&quot;)
 legend(&quot;topleft&quot;, &quot;pH &lt; 5.5&quot;, pch=19, col = &quot;red&quot;)
 text(labels(suelos@data$ID))</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code>#labels &lt;- rownames(suelos)</code></pre>
 <p>Continuamos revisando algunas caraterisicas del objeto R de perfiles de suelos:</p>
 <pre class="r"><code># Observamos los 6 primeros registro de su base de datos:
@@ -410,11 +423,11 @@ suelos_me</code></pre>
 <pre class="r"><code>plot(DEM, main=&quot;Perfiles de suelos&quot;)
 points(suelos_ma, pch=19, col=&quot;blue&quot;, cex=1.2)
 points(suelos_me, pch=19, col=&quot;red&quot;, cex=1.2)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="r"><code>plot(suelos$H1_PH, pch=19, col=&quot;blue&quot;, type=&quot;b&quot;)
 legend(2,8, &quot;pH&quot;, pch = 19, col = &quot;blue&quot;)
 abline(h=5.5)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
 <pre class="r"><code>#box(lty = &#39;1373&#39;, col = &#39;red&#39;)
 
 
@@ -422,10 +435,10 @@ abline(h=5.5)</code></pre>
 suelosph &lt;- suelos@data[suelos$H1_PH &gt; 0, c(&quot;NOMBRE&quot;, &quot;H1_PH&quot;)]
 
 plot(suelosph$H1_PH, pch=19, col=&quot;blue&quot;, type=&quot;b&quot;)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
 <pre class="r"><code>plot(suelos$H1_PH)
 legend(2, 7, &quot;alirio&quot;, pch=17)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-8-4.png" width="672" /></p>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-9-4.png" width="672" /></p>
 <pre class="r"><code>which(is.na(suelos$H1_PH))</code></pre>
 <pre><code>## integer(0)</code></pre>
 <pre class="r"><code>summary(suelosph$H1_PH)</code></pre>
@@ -436,7 +449,7 @@ legend(2, 7, &quot;alirio&quot;, pch=17)</code></pre>
 ##   0.000   4.670   4.870   4.774   5.720   8.050</code></pre>
 <pre class="r"><code>plot(suelosph$H1_PH, pch=19, col=&quot;blue&quot;, type=&quot;b&quot;)
 text(10, 20, &quot;aqui no&quot;)</code></pre>
-<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="/post/2020-03-14-locote-2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Pendientes:</p>
 <p>hacer un resumen de una característica como pH.</p>
 <p>hacemos un mapas con los sitios de suelos con mayor y menor a 5.5 de pH.</p>

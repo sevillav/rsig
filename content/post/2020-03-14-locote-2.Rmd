@@ -1,5 +1,5 @@
 ---
-title: "Trabajando con layers Shapefile y raster de SIG en R"
+title: "Trabajando con layers Shapefile y Raster de SIG en R"
 author: "Victor Sevilla"
 date: '2020-03-14'
 output:
@@ -12,32 +12,38 @@ categories: []
 
 ### Por: CampoAmbiente.com
 
-El objetivo de esta entrada es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar analisis estadisticos que sean utiles en estudios agroambientales.
+Nuestro objetivo es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar analisis estadisticos que sean utiles en estudios agroambientales.
 
 Trataremos diferentes aspectos como:
 
-* Forma de importar layers Shapefile y Raster de Sistemas de Informacion Geografica (SIG) a R.
+* Importar layers Shapefile y Raster de Sistemas de Informacion Geografica (SIG) a R.
 * Crear graficos con ellas (plotearlos).
 * Conocer su proyeccion cartografica.
 * Reproyectarlas.
 * ....
 
-Para cumplir nuestro objetivo emplearemos aplicaciones como R y RStudio, datos espaciales (Partes de aguas, Modelos digital de elevación, etc) y atributivos (Muestreo de suelos) de la cuenca hidrográfica del río Canoabo en Venezuela.
+Emplearemos las aplicaciones R y RStudio y, datos espaciales o layers como: Partes de aguas, Modelos digital de elevación y una capa de muestreo de suelos con datos atributivos de los mismos. Todos pertenceintes a la cuenca hidrográfica del río Canoabo en Venezuela.
 
-**Descargo:** Si conocen otra forma de hacerlo diferente a la mostrada en esta entrada, seria un gusto para nosotros recibir su valioso aporte y, así colaborar con nuestra comunidad.
+**Descargo:** Por supuesto que existe una gran cantidad de formas y maneras de trabajar layers de SIG en R. Esta es solo una de esas formas, la que nosotros empleamos. Si conocen otra manera de hacerlo diferente a la mostrada, para nosotros seria un gusto y un valioso aporte recibir sus ideas y opiniones. Con esto en conjunto podriamor incremetar nuestro aporte a la comunidad de R-SIG.
 
+###Iniciamos procedimientos:
 
-###Iniciamos procedimeintos:
-
-Primero verificaremos nuestro directorio de trabajo:
+1. Estableceremos nuestro directorio de trabajo, donde ubicaremos toda nuestra informacion y crearemos los objetos nuevos:
+```{r, eval=FALSE}
+setwd("C:/Sevilla/rsig/content/post")
+```
+2. Verificamos que efectivamente nos ubicamos en el directorio de trabajo deseado:
 ```{r}
 getwd()
 ```
-Activaremos las librerias o paquetes necesarios:**
+3. Activamos las librerias o paquetes necesarios que contienen las funciones a `emplear`:
 ```{r}
 library(raster)
 ```
-Ahora importaremos capas SIG vectoriales y raster prexistentes y crearemos objetos R, ademas lo plotearemos en conjunto:
+> Si desea conocer mas de las funciones del paquete Raster puede
+dirigirse a la pagina CRAN-R en la seccion de paquetes, aqui les dejamos un enlace directo. `Raster` https://cran.r-project.org/web/packages/raster/index.html
+
+4. Importemos los Layers Shapefile y Raster originados en SIG (por ejemplpo) y creamos objetos R:
 ```{r}
 #Creamos un objeto R de un archivo shapefile shp
 perimetro <- shapefile("C:/Sevilla/Canoabo1/cuenca1.shp")

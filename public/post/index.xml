@@ -30,14 +30,14 @@
     </item>
     
     <item>
-      <title>Trabajando con layers Shapefile y raster de SIG en R</title>
+      <title>Trabajando con layers Shapefile y Raster de SIG en R</title>
       <link>/2020/03/14/locote-2/</link>
       <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/03/14/locote-2/</guid>
-      <description>Por: CampoAmbiente.comEl objetivo de esta entrada es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar analisis estadisticos que sean utiles en estudios agroambientales.
+      <description>Por: CampoAmbiente.comNuestro objetivo es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar analisis estadisticos que sean utiles en estudios agroambientales.
 Trataremos diferentes aspectos como:
-Forma de importar layers Shapefile y Raster de Sistemas de Informacion Geografica (SIG) a R.Crear graficos con ellas (plotearlos).Conocer su proyeccion cartografica.Reproyectarlas.….Para cumplir nuestro objetivo emplearemos aplicaciones como R y RStudio, datos espaciales (Partes de aguas, Modelos digital de elevación, etc) y atributivos (Muestreo de suelos) de la cuenca hidrográfica del río Canoabo en Venezuela.</description>
+Importar layers Shapefile y Raster de Sistemas de Informacion Geografica (SIG) a R.Crear graficos con ellas (plotearlos).Conocer su proyeccion cartografica.Reproyectarlas.….Emplearemos las aplicaciones R y RStudio y, datos espaciales o layers como: Partes de aguas, Modelos digital de elevación y una capa de muestreo de suelos con datos atributivos de los mismos.</description>
     </item>
     
     <item>
