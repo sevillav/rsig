@@ -61,29 +61,42 @@ Como observo creamos un objeto R llamdo **DEM** mediante la funcion `raster` e i
 ```{r}
 ls()
 ```
-6. Ploteamos juntos los objetos R recien creados (Modelo digital de elevacion y el perimetro)
+6. Grafiquemos nuestros objetos R recien creados (Modelo digital de elevacion - DEM y el perimetro)
+```{r}
 plot(DEM, main="Modelo Digital de Elevacion (msnm)")
 lines(perimetro, col="blue")
 ```
-La Figura  muestra la Cuenca del rio Canoabo, donde se puede ver el Modelo digital de elevacion y la linea perimetral que coincide con el parte de agua de la cuenca.
+Como se ve en la Figura anterior, la funcion `plot` nos permite graficar el objeto R que representa el modelo digital de elevacion **(DEM)**, mostrando las alturas del terreno con respecto al nivel medio del mar. Ademas adicionamos el objeto R llamado **Perimetro**, que no es mas que el limite de la cuenca.
 
-Continuamos conociendo la proyeccion cartografica de nuestras dos capas (CRS):
+7. Observemos las estadicticas basicas del Modelo digital de elevacion:
+```{r}
+summary(DEM, maxsamp = ncell(DEM))
+#Para calcular las estadíticas sobre todo el raster y no sobre una muetra
+#aleatoria se empleo la opcion getOption = maxsamp.
 
+# BUSCAR COMO PONERLO EN UNA TABLA.
+```
+
+8. Busquemos conocer la proyeccion cartografica de nuestros dos layers (CRS = "Sistema de referencia de coordenadas"):
 ```{r}
 #Primero la del objeto R shape (Perimetro):
 crs(perimetro)
-#Proyeccion UTM Huso 19 Norte, unidad metros, elipsoide internacional 1924.
-
+```
+```{r}
 #Segundo la del objeto raster (DEM)
 crs(DEM)
 ```
+Observemos que ambos objetos R poseen: Proyeccion UTM Huso 19 Norte, unidad metros, elipsoide internacional 1924.
 
-Si deseamos cambiar de proyeccion se procede como a continuacion se desribe para cada uno de los objetos R creados (shape o raster):
-
+9. Si deseamos cambiar de proyeccion (reproyectar) se procede como a continuacion se describe un ejemplo para cada tipo de objeto R creados (shape o raster).
+Vamos a reproyecatarlas al sistema de coordenadas geograficas con el datum WGS84:
 ```{r}
 #En el caso de desear reproyectar un objeto R vectorial shape puede hacerlo de la siguiente forma
 #aqui cambiamos solo del datum de "La Canoa" a "WGS 84":
-perimetro_rv <- spTransform(perimetro, CRS("+proj=utm +zone=19 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "))
+perimetro_gw <- spTransform(perimetro, CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"))
+
+library(mapview)
+mapView(perimetro_gw)
 
 # una manera de estar seguro de la similitud en extension de dos capas. especificamente en
 # el estudio de Cuencas, es cortar la capa raster con la capa vectorial (perimtetro), como 
@@ -92,7 +105,7 @@ DEM1 = crop(DEM, perimetro)
 DEM2 = mask(DEM1, perimetro)
 
 # y aqui continuamos con un ejemplo de como reproyectar una capa del tipo raster, en este caso, solo cambiamos del datum "La Canoa" a "WGS 84":
-DEM2_rv = projectRaster(DEM, crs = "+proj=utm +zone=19 +ellps=WGS84 +datum=WGS84 +units=m +no_defs", method='bilinear')
+DEM2_gw = projectRaster(DEM, crs = "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0", method='bilinear')
 ```
 
 Ahora vamos a crear un objeto R a partir de una capa shape que contiene la informacion de perfiles de suelos.
