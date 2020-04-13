@@ -12,23 +12,25 @@ categories: []
 
 ### Por: CampoAmbiente.com
 
-Nuestro objetivo es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar analisis estadisticos que sean utiles en estudios agroambientales.
+Nuestro objetivo es mostrar una manera de trabajar layers SIG del tipo Shapefile (Vectoriales) y Tiff (Raster) en R para realizar análisis estadísticos que sean útiles en estudios agro ambientales.
 
 Trataremos diferentes aspectos como:
 
-* Importar layers Shapefile y Raster de Sistemas de Informacion Geografica (SIG) a R.
-* Crear graficos con ellas (plotearlos).
-* Conocer su proyeccion cartografica.
+* Importar layers Shapefile y Raster de Sistemas de Información Geográfica (SIG) a R.
+* Crear gráficos con ellas (plotearlos).
+* Conocer su proyección cartográfica.
 * Reproyectarlas.
 * ....
 
-Emplearemos las aplicaciones R y RStudio y, datos espaciales o layers como: Partes de aguas, Modelos digital de elevación y una capa de muestreo de suelos con datos atributivos de los mismos. Todos pertenceintes a la cuenca hidrográfica del río Canoabo en Venezuela.
+Emplearemos las aplicaciones R y RStudio y, datos espaciales o layers como: Partes de aguas, Modelos digital de elevación y una capa de muestreo de suelos con datos atributivos de los mismos. Todos pertenecientes a la cuenca hidrográfica del río Canoabo en Venezuela.
 
-**Descargo:** Por supuesto que existe una gran cantidad de formas y maneras de trabajar layers de SIG en R. Esta es solo una de esas formas, la que nosotros empleamos. Si conocen otra manera de hacerlo diferente a la mostrada, para nosotros seria un gusto y un valioso aporte recibir sus ideas y opiniones. Con esto en conjunto podriamor incremetar nuestro aporte a la comunidad de R-SIG.
+**Descargo:** Por supuesto que existe una gran cantidad de formas y maneras de trabajar layers de SIG en R. Esta es solo una de esas formas, la que nosotros empleamos. Si conocen otra manera de hacerlo diferente a la mostrada, para nosotros seria un gusto y un valioso aporte recibir sus ideas y opiniones. Con esto en conjunto se podria incrementar nuestro aporte a la comunidad de R-SIG.
 
 ###Iniciamos procedimientos:
 
-1. Estableceremos nuestro directorio de trabajo, donde ubicaremos toda nuestra informacion y crearemos los objetos nuevos:
+Iniciamos nuestras aplicaciones **R** y **RStudio**. En la realidad solo necesitamos abrir RStudio, ya que R viene implícita y comencemos:
+
+1. Estableceremos nuestro directorio de trabajo, donde ubicaremos toda nuestra información y crearemos los objetos nuevos:
 ```{r, eval=FALSE}
 setwd("C:/Sevilla/rsig/content/post")
 ```
@@ -36,7 +38,7 @@ setwd("C:/Sevilla/rsig/content/post")
 ```{r}
 getwd()
 ```
-3. Activamos las librerias o paquetes necesarios que contienen las funciones a `emplear`:
+3. Activamos las librerías o paquetes necesarios que contienen las funciones a `emplear`:
 ```{r}
 library(raster)
 ```
@@ -49,35 +51,75 @@ dirigirse a la pagina CRAN-R en la seccion de paquetes, aqui les dejamos un enla
 ```{r}
 perimetro <- shapefile("C:/Sevilla/Canoabo1/cuenca1.shp")
 ```
-Como observo creamos un objeto R llamado **perimetro** empleando la funcion `shapefile` e indicamos en que directoria se encuentra el layers Shapefile. Si realizaste el paso previo de establecer el directorio de trabajo (`setwd`), entonces bastaria solo colocar el nombre del layers Shapefile con su extension shp, en nuestro caso seria _cuenca1.shp_.
+Como observo creamos un objeto R llamado **perimetro** empleando la función `shapefile` e indicamos en que directoria se encuentra el layers Shapefile. Si realizaste el paso previo de establecer el directorio de trabajo (`setwd`), entonces bastaría solo colocar el nombre del layers Shapefile con su extensión shp, en nuestro caso seria _cuenca1.shp_.
 
 **Layers Raster** 
 ```{r}
 DEM <- raster("C:/Sevilla/Canoabo1/MDE3.tif")
 ```
-Como observo creamos un objeto R llamdo **DEM** mediante la funcion `raster` e indicamos en que directoria se encuentra el layers Raster (tif). Si realizaste el paso previo de establecer el directorio de trabajo (`setwd`), entonces bastaria solo colocar el nombre del layers Raster con su extension tif, en nuestro caso seria _MDE3.tif_.vemos
+Como observo creamos un objeto R llamado **DEM** mediante la función `raster` e indicamos en que directoria se encuentra el layers Raster (tif). Si realizaste el paso previo de establecer el directorio de trabajo (`setwd`), entonces bastaría solo colocar el nombre del layers Raster con su extensión tif, en nuestro caso seria _MDE3.tif_.vemos
 
-5.- Observemos nuestros objetos R recien creado en el directorio o en la memoria de R con la funcion `ls`:
+5.- Observemos nuestros objetos R recién creado en el directorio o en la memoria de R con la función `ls`:
 ```{r}
 ls()
 ```
-6. Grafiquemos nuestros objetos R recien creados (Modelo digital de elevacion - DEM y el perimetro)
+6. Graficamos nuestros objetos R recién creados (Modelo digital de elevación - DEM y el perímetro)
 ```{r}
 plot(DEM, main="Modelo Digital de Elevacion (msnm)")
 lines(perimetro, col="blue")
 ```
-Como se ve en la Figura anterior, la funcion `plot` nos permite graficar el objeto R que representa el modelo digital de elevacion **(DEM)**, mostrando las alturas del terreno con respecto al nivel medio del mar. Ademas adicionamos el objeto R llamado **Perimetro**, que no es mas que el limite de la cuenca.
+Como se ve en la Figura anterior, la función `plot` nos permite graficar el objeto R que representa el modelo digital de elevación **(DEM)**, mostrando las alturas del terreno con respecto al nivel medio del mar. Ademas adicionamos el objeto R llamado **Perimetro**, que no es mas que el limite de la cuenca.
 
-7. Observemos las estadicticas basicas del Modelo digital de elevacion:
+7. Observemos las estadísticas básicas de los datos del Modelo digital de elevación:
 ```{r}
 summary(DEM, maxsamp = ncell(DEM))
-#Para calcular las estadíticas sobre todo el raster y no sobre una muetra
-#aleatoria se empleo la opcion getOption = maxsamp.
-
-# BUSCAR COMO PONERLO EN UNA TABLA.
+#Para calcular las estadíticas sobre todo el raster y no sobre
+#una muetra aleatoria se empleo la opcion getOption = maxsamp.
 ```
+observamos que la altura minima es de 133.4 msnm y la zona mas alta llega a 1702.2 msnm, el valor de la mediana es de 561.6 msnm.
 
-8. Busquemos conocer la proyeccion cartografica de nuestros dos layers (CRS = "Sistema de referencia de coordenadas"):
+Otra manera de ver las estadisticas es empleando las funciones siguientes:
+_Numero de celdas del objeto DEM:_
+```{r}
+ncell(DEM)
+```
+_Valor minimo del objeto DEM:_
+```{r}
+cellStats(DEM, min)
+```
+_Valor maximo del objeto DEM:_
+```{r}
+cellStats(DEM, max)
+```
+_Valor promedio del objeto DEM:_
+```{r}
+cellStats(DEM,mean) 
+```
+_Valor de la desviacion:_
+```{r}
+cellStats(DEM,sd) 
+```
+8. Creemos histogramas con la funcion basica `hist`, primero uno basico:
+```{r}
+hist(DEM, col = "blue", border = "gray", xlab="Valores", ylab="Frecuencia", main="Histograma de frecuencias")
+#los argumentos:
+#col(color de las barras).
+#border (color de la linea borde de las barras).
+#xlab y ylab (etiquetas de los ejes x y y).
+#main (titulo principal del grafico)
+```
+Ahora podemos diseñar un histograma con una curva de distribuccion normal, pero para eso primero debemos convetir el objeto raster _DEM_ en **dataframe** y luego diseñamos el hitograma, hagamolos: 
+```{r}
+#Convertimos a dataframe:
+DEM_df <- raster::as.data.frame(DEM, xy = TRUE)
+
+#Diseñamos el hitograma con la curva normal:
+hist(DEM_df$MDE3, freq = FALSE, xlim=c(0,2000), col="green", border = "black", xlab = "Valores", ylab = "Densidad", main="Histograma con curva de normalidad")
+curve(dnorm(x, mean = mean(DEM_df$MDE3), sd = sd(DEM_df$MDE3)), add = TRUE, col="red", lwd =2)
+#argumentos:
+#lwd (ancho de la linea).
+```
+9. Observamos la proyeccion de los objetos R creados:
 ```{r}
 #Primero la del objeto R shape (Perimetro):
 crs(perimetro)
@@ -85,11 +127,13 @@ crs(perimetro)
 ```{r}
 #Segundo la del objeto raster (DEM)
 crs(DEM)
+#Otra forma de conocer la proyeccion es:
+projection(DEM)
 ```
-Observemos que ambos objetos R poseen: Proyeccion UTM Huso 19 Norte, unidad metros, elipsoide internacional 1924.
+Observemos que ambos objetos R poseen: Proyección UTM Huso 19 Norte, unidad metros, elipsoide internacional 1924.
 
-9. Si deseamos cambiar de proyeccion (reproyectar) se procede como a continuacion se describe un ejemplo para cada tipo de objeto R creados (shape o raster).
-Vamos a reproyecatarlas al sistema de coordenadas geograficas con el datum WGS84:
+10. Si deseamos cambiar de proyección (re proyectar) se procede como a continuación se describe un ejemplo para cada tipo de objeto R creados (shape o raster).
+Vamos a reproyectar al sistema de coordenadas geográficas con el datum WGS84:
 ```{r}
 #En el caso de desear reproyectar un objeto R vectorial shape puede hacerlo de la siguiente forma
 #aqui cambiamos solo del datum de "La Canoa" a "WGS 84":
@@ -108,7 +152,7 @@ DEM2 = mask(DEM1, perimetro)
 DEM2_gw = projectRaster(DEM, crs = "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0", method='bilinear')
 ```
 
-Ahora vamos a crear un objeto R a partir de una capa shape que contiene la informacion de perfiles de suelos.
+Ahora vamos a crear un objeto R a partir de una capa shape que contiene la información de perfiles de suelos.
 ```{r}
 # Creamos el objeto R vectorial (shape) de perfiles de suelos:
 suelos <- shapefile("C:/Sevilla/Canoabo1/suelos8.shp")
@@ -119,7 +163,7 @@ suelos
 # Le asignamos la proyeccion cartografica correspondiente, ya  que no la tenia en la capa original, pero nosotros la conocemos:
 suelos@proj4string <- crs("+proj=utm +zone=19 +ellps=intl +units=m +no_defs")
 ```
-Ploteamos los tres objetos R creados en un solo graficos:
+Graficamos los tres objetos R creados en un solo gráficos:
 ```{r}
 plot(DEM)
 lines(perimetro, lwd=2)
@@ -130,7 +174,7 @@ text(labels(suelos@data$ID))
 #labels <- rownames(suelos)
 
 ```
-Continuamos revisando algunas caraterisicas del objeto R de perfiles de suelos:
+Continuamos revisando algunas características del objeto R de perfiles de suelos:
 ```{r}
 # Observamos los 6 primeros registro de su base de datos:
 head(suelos, 5)
@@ -197,3 +241,10 @@ hacemos un mapas con los sitios de suelos con mayor y menor a 5.5 de pH.
 
 Cambiamos el nombre del campo "Tree" por "arboles":
 datos1 <- rename(Orange, arboles = Tree)
+
+Proximos post:
+
+como Graficos con ggplot2 y ggplot
+paquete sp
+paquete rgdal
+
