@@ -1,9 +1,0 @@
----
-title: "prueba2"
-author: "Victor Sevilla"
-date: "16 de marzo de 2020"
-output: html_document
----
-
-
-No se que estoy haciendo.
