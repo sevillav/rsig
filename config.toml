@@ -1,7 +1,7 @@
 baseurl = "/"
 languageCode = "es-es"
 title = "R-SIG"
-theme = "hugo-lithium"
+theme = "hugo.386"
 googleAnalytics = "160645872"
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
