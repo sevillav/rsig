@@ -6,10 +6,19 @@
     <description>Recent content in Posts on R-SIG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-es</language>
-    <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>locotron</title>
+      <link>/2020/04/27/locotron/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/04/27/locotron/</guid>
+      <description>prueba</description>
+    </item>
     
     <item>
       <title>Perfiles de suelos en R (aqp)</title>
