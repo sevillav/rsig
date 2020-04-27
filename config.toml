@@ -11,16 +11,16 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [[menu.main]]
     name = "Inicio"
-    url = "https://campoambiente.com/nosotros/"
+    url = "https://sevillav.netlify.app/"
 [[menu.main]]
     name = "Nosotros"
     url = "https://campoambiente.com/nosotros/"
 [[menu.main]]
     name = "Twitter"
-    url = "https://twitter.com/Campo_Ambiente"
+    url = "https://twitter.com/Campo_Ambiente/"
 [[menu.main]]
     name = "CampoAmbiente"
-    url = "https://campoambiente.com"
+    url = "https://campoambiente.com/"
     
 [params]
     description = "A website built through Hugo and blogdown."
