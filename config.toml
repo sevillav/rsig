@@ -17,7 +17,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     url = "https://campoambiente.com/nosotros/"
 [[menu.main]]
     name = "Twitter"
-    url = "@Campo_Ambiente"
+    url = "https://twitter.com/Campo_Ambiente"
 [[menu.main]]
     name = "CampoAmbiente"
     url = "https://campoambiente.com"
