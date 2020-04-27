@@ -1,9 +1,0 @@
----
-title: locotron
-author: Victor Sevilla
-date: '2020-04-27'
-slug: locotron
-categories: []
-tags: []
----
-#prueba

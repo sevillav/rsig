@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>A Hugo website</title>
+    <title>R-SIG Sevilla</title>
     <link>/</link>
-    <description>Recent content on A Hugo website</description>
+    <description>Recent content on R-SIG Sevilla</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 05 May 2016 21:48:51 -0700</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>locotron</title>
-      <link>/2020/04/27/locotron/</link>
-      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/04/27/locotron/</guid>
-      <description>prueba</description>
-    </item>
-    
-    <item>
-      <title>yo</title>
-      <link>/2020/04/27/yo/</link>
-      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/04/27/yo/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Perfiles de suelos en R (aqp)</title>
