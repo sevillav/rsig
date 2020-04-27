@@ -1,8 +1,8 @@
-baseurl = "/"
+baseurl = "https://sevillav.netlify.com//"
 languageCode = "es-es"
 title = "R-SIG"
-theme = "hugo.386"
-googleAnalytics = "160645872"
+theme = "Hugo-lithium"
+googleAnalytics = "UA-160645872-1"
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
@@ -21,6 +21,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [[menu.main]]
     name = "CampoAmbiente"
     url = "https://campoambiente.com"
+
 
 
 

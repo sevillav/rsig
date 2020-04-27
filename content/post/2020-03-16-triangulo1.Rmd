@@ -1,5 +1,5 @@
 ---
-title: Triangulo de texturas del suelo
+title: Triangulo textural de suelos
 author: Victor Sevilla
 date: '2020-03-16'
 slug: triangulo1
@@ -7,20 +7,27 @@ categories: []
 tags: []
 ---
 
-##Por: Victor Sevilla.
+##Por: CampoAmbiente.com
 
+###palabra clave: **Triangulo textural.**
+
+Mostraremos como realizar un triangulo textural para poder clasificar los valores de porcentajes (%) de arena, Limo y Arcilla de cada horizonte de los suelos. Para esto echaremos mano de la funcion xxxxx del paquete xxxxx, Ver figura 1.
+
+Instalamos el paquete `soiltexture` (si es necesarios) y lo activamos:
 ```{r}
-#install.packages(pkgs = "soiltexture")
-library(soiltexture)
+#install.packages(pkgs = "soiltexture") de esta forma lo instala.
+
+library(soiltexture) #activamos el paquete.
 ```
+
 ```{r}
 TT.plot(
 class.sys = "USDA-NCSS.TT",
 lang = "es2",
 main = "Triangulo de Textura de Suelo",
-lwd.axis = 0.5,
-cex.lab = 0.8,
-cex.axis = 0.8)
+lwd.axis = 1,
+cex.lab = 0.7,
+cex.axis = 0.7)
 ```
 
 ```{r}
@@ -31,10 +38,11 @@ class.p.bg.col = c("aquamarine", "aquamarine2",
 "burlywood3", "darkseagreen1", "darkseagreen3",
 "darkolivegreen1", "darkolivegreen2",
 "deepskyblue", "deepskyblue4"),
+main = "Triangulo Textural de Suelo segun USDA",
 lang = "es2",
-lwd.axis = 0.5,
-cex.lab = 0.8,
-cex.axis = 0.8)
+lwd.axis = 1,
+cex.lab = 0.7,
+cex.axis = 0.6)
 ```
 
 ```{r}

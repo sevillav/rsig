@@ -12,51 +12,6 @@
     
     
     <item>
-      <title>por fin</title>
-      <link>/2020/04/26/por-fin/</link>
-      <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/04/26/por-fin/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hoyes</title>
-      <link>/2020/04/25/hoyes/</link>
-      <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/04/25/hoyes/</guid>
-      <description>kjhgkjgh</description>
-    </item>
-    
-    <item>
-      <title>locote de hoy</title>
-      <link>/2020/04/25/locote-de-hoy/</link>
-      <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/04/25/locote-de-hoy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hola</title>
-      <link>/2020/04/14/hola/</link>
-      <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/04/14/hola/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>prueba1</title>
-      <link>/2020/04/14/prueba1/</link>
-      <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/04/14/prueba1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Perfiles de suelos en R (aqp)</title>
       <link>/2020/03/16/aqp/</link>
       <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
@@ -66,12 +21,14 @@
     </item>
     
     <item>
-      <title>Triangulo de texturas del suelo</title>
+      <title>Triangulo textural de suelos</title>
       <link>/2020/03/16/triangulo1/</link>
       <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/03/16/triangulo1/</guid>
-      <description>Por: Victor Sevilla.#install.packages(pkgs = &amp;quot;soiltexture&amp;quot;)library(soiltexture)TT.plot(class.sys = &amp;quot;USDA-NCSS.TT&amp;quot;,lang = &amp;quot;es2&amp;quot;,main = &amp;quot;Triangulo de Textura de Suelo&amp;quot;,lwd.axis = 0.5,cex.lab = 0.8,cex.axis = 0.8)TT.plot(class.sys = &amp;quot;USDA.TT&amp;quot;,class.p.bg.col = c(&amp;quot;aquamarine&amp;quot;, &amp;quot;aquamarine2&amp;quot;,&amp;quot;aquamarine3&amp;quot;, &amp;quot;cornsilk&amp;quot;, &amp;quot;burlywood1&amp;quot;,&amp;quot;burlywood3&amp;quot;, &amp;quot;darkseagreen1&amp;quot;, &amp;quot;darkseagreen3&amp;quot;,&amp;quot;darkolivegreen1&amp;quot;, &amp;quot;darkolivegreen2&amp;quot;,&amp;quot;deepskyblue&amp;quot;, &amp;quot;deepskyblue4&amp;quot;),lang = &amp;quot;es2&amp;quot;,lwd.axis = 0.5,cex.lab = 0.8,cex.axis = 0.8)TT.classes.tbl (class.sys = &amp;quot;USDA.TT&amp;quot;) [ ,1:2]## abbr name ## [1,] &amp;quot;Cl&amp;quot; &amp;quot;clay&amp;quot; ## [2,] &amp;quot;SiCl&amp;quot; &amp;quot;silty clay&amp;quot; ## [3,] &amp;quot;SaCl&amp;quot; &amp;quot;sandy clay&amp;quot; ## [4,] &amp;quot;ClLo&amp;quot; &amp;quot;clay loam&amp;quot; ## [5,] &amp;quot;SiClLo&amp;quot; &amp;quot;silty clay loam&amp;quot;## [6,] &amp;quot;SaClLo&amp;quot; &amp;quot;sandy clay loam&amp;quot;## [7,] &amp;quot;Lo&amp;quot; &amp;quot;loam&amp;quot; ## [8,] &amp;quot;SiLo&amp;quot; &amp;quot;silty loam&amp;quot; ## [9,] &amp;quot;SaLo&amp;quot; &amp;quot;sandy loam&amp;quot; ## [10,] &amp;quot;Si&amp;quot; &amp;quot;silt&amp;quot; ## [11,] &amp;quot;LoSa&amp;quot; &amp;quot;loamy sand&amp;quot; ## [12,] &amp;quot;Sa&amp;quot; &amp;quot;sand&amp;quot;data()</description>
+      <description>Por: CampoAmbiente.compalabra clave: Triangulo textural.Mostraremos como realizar un triangulo textural para poder clasificar los valores de porcentajes (%) de arena, Limo y Arcilla de cada horizonte de los suelos. Para esto echaremos mano de la funcion xxxxx del paquete xxxxx, Ver figura 1.
+Instalamos el paquete soiltexture (si es necesarios) y lo activamos:
+#install.packages(pkgs = &amp;quot;soiltexture&amp;quot;) de esta forma lo instala.library(soiltexture) #activamos el paquete.TT.plot(class.sys = &amp;quot;USDA-NCSS.</description>
     </item>
     
     <item>

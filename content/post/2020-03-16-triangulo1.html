@@ -1,5 +1,5 @@
 ---
-title: Triangulo de texturas del suelo
+title: Triangulo textural de suelos
 author: Victor Sevilla
 date: '2020-03-16'
 slug: triangulo1
@@ -9,17 +9,22 @@ tags: []
 
 
 
-<div id="por-victor-sevilla." class="section level2">
-<h2>Por: Victor Sevilla.</h2>
-<pre class="r"><code>#install.packages(pkgs = &quot;soiltexture&quot;)
-library(soiltexture)</code></pre>
+<div id="por-campoambiente.com" class="section level2">
+<h2>Por: CampoAmbiente.com</h2>
+<div id="palabra-clave-triangulo-textural." class="section level3">
+<h3>palabra clave: <strong>Triangulo textural.</strong></h3>
+<p>Mostraremos como realizar un triangulo textural para poder clasificar los valores de porcentajes (%) de arena, Limo y Arcilla de cada horizonte de los suelos. Para esto echaremos mano de la funcion xxxxx del paquete xxxxx, Ver figura 1.</p>
+<p>Instalamos el paquete <code>soiltexture</code> (si es necesarios) y lo activamos:</p>
+<pre class="r"><code>#install.packages(pkgs = &quot;soiltexture&quot;) de esta forma lo instala.
+
+library(soiltexture) #activamos el paquete.</code></pre>
 <pre class="r"><code>TT.plot(
 class.sys = &quot;USDA-NCSS.TT&quot;,
 lang = &quot;es2&quot;,
 main = &quot;Triangulo de Textura de Suelo&quot;,
-lwd.axis = 0.5,
-cex.lab = 0.8,
-cex.axis = 0.8)</code></pre>
+lwd.axis = 1,
+cex.lab = 0.7,
+cex.axis = 0.7)</code></pre>
 <p><img src="/post/2020-03-16-triangulo1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>TT.plot(
 class.sys = &quot;USDA.TT&quot;,
@@ -28,10 +33,11 @@ class.p.bg.col = c(&quot;aquamarine&quot;, &quot;aquamarine2&quot;,
 &quot;burlywood3&quot;, &quot;darkseagreen1&quot;, &quot;darkseagreen3&quot;,
 &quot;darkolivegreen1&quot;, &quot;darkolivegreen2&quot;,
 &quot;deepskyblue&quot;, &quot;deepskyblue4&quot;),
+main = &quot;Triangulo Textural de Suelo segun USDA&quot;,
 lang = &quot;es2&quot;,
-lwd.axis = 0.5,
-cex.lab = 0.8,
-cex.axis = 0.8)</code></pre>
+lwd.axis = 1,
+cex.lab = 0.7,
+cex.axis = 0.6)</code></pre>
 <p><img src="/post/2020-03-16-triangulo1_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code>TT.classes.tbl (class.sys = &quot;USDA.TT&quot;) [ ,1:2]</code></pre>
 <pre><code>##       abbr     name             
@@ -48,4 +54,5 @@ cex.axis = 0.8)</code></pre>
 ## [11,] &quot;LoSa&quot;   &quot;loamy sand&quot;     
 ## [12,] &quot;Sa&quot;     &quot;sand&quot;</code></pre>
 <pre class="r"><code>data()</code></pre>
+</div>
 </div>
