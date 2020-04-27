@@ -8,6 +8,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
     post = "/:year/:month/:day/:slug/"
+    
+# Enable comments by entering your Disqus shortname
+disqusShortname = "sevillav"
 
 [[menu.main]]
     name = "Inicio"
