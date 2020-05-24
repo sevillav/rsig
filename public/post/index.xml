@@ -6,10 +6,39 @@
     <description>Recent content in Posts on R-SIG Sevilla</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hola</title>
+      <link>/2020/05/24/hola/</link>
+      <pubDate>Sun, 24 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/05/24/hola/</guid>
+      <description>data(iris)plot(iris$Sepal.Length)</description>
+    </item>
+    
+    <item>
+      <title>PAE Argentina</title>
+      <link>/2020/05/24/pae-argentina/</link>
+      <pubDate>Sun, 24 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/05/24/pae-argentina/</guid>
+      <description>VALIDACION DE LEVANTAMIENTO FOTOGRAMETRICOEspacio de trabajo:
+setwd(&amp;quot;C:/proyectos/diego/pae&amp;quot;)getwd()Libreria requerida:
+library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);## Loading required package: sp## Loading required package: carData## rgdal: version: 1.4-8, (SVN revision 845)## Geospatial Data Abstraction Library extensions to R successfully loaded## Loaded GDAL runtime: GDAL 2.2.3, released 2017/11/20## Path to GDAL shared files: C:/Users/Antares/Documents/R/win-library/3.6/rgdal/gdal## GDAL binary built with GEOS: TRUE ## Loaded PROJ.</description>
+    </item>
+    
+    <item>
+      <title>Tesis</title>
+      <link>/2020/04/27/tesis/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/04/27/tesis/</guid>
+      <description>xxx</description>
+    </item>
     
     <item>
       <title>Perfiles de suelos en R (aqp)</title>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.69.0" />
+
+
+<title>PAE Argentina - R-SIG Sevilla</title>
+<meta property="og:title" content="PAE Argentina - R-SIG Sevilla">
+
+
+  <link href='ca.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/Logo_CA_arroz4.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="https://campoambiente.com/">CampoAmbiente</a></li>
+    
+    <li><a href="https://sevillav.netlify.app/">Inicio</a></li>
+    
+    <li><a href="https://campoambiente.com/nosotros/">Nosotros</a></li>
+    
+    <li><a href="https://twitter.com/Campo_Ambiente/">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3 min read</span>
+    
+
+    <h1 class="article-title">PAE Argentina</h1>
+
+    
+    <span class="article-date">2020-05-24</span>
+    
+
+    <div class="article-content">
+       
+
+
+
+<div id="validacion-de-levantamiento-fotogrametrico" class="section level3">
+<h3>VALIDACION DE LEVANTAMIENTO FOTOGRAMETRICO</h3>
+<p>Espacio de trabajo:</p>
+<pre class="r"><code>setwd(&quot;C:/proyectos/diego/pae&quot;)
+getwd()</code></pre>
+<p>Libreria requerida:</p>
+<pre class="r"><code>library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);</code></pre>
+<pre><code>## Loading required package: sp</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## rgdal: version: 1.4-8, (SVN revision 845)
+##  Geospatial Data Abstraction Library extensions to R successfully loaded
+##  Loaded GDAL runtime: GDAL 2.2.3, released 2017/11/20
+##  Path to GDAL shared files: C:/Users/Antares/Documents/R/win-library/3.6/rgdal/gdal
+##  GDAL binary built with GEOS: TRUE 
+##  Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
+##  Path to PROJ.4 shared files: C:/Users/Antares/Documents/R/win-library/3.6/rgdal/proj
+##  Linking to sp version: 1.4-1</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Warning: package &#39;lattice&#39; was built under R version 4.0.0</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Metrics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:caret&#39;:
+## 
+##     precision, recall</code></pre>
+<p>Cargar capas necesarias:</p>
+<pre class="r"><code>dsm &lt;- raster(&quot;C:/Proyectos/Diego/PAE/Arg_Prof_dsm.tif&quot;)
+puntos &lt;- read.csv(&quot;C:/Proyectos/Diego/PAE/Pcontrol.csv&quot;)
+puntos_sp &lt;- puntos
+coordinates(puntos_sp) &lt;- ~ Este + Norte</code></pre>
+<p>Graficar modelo digital de elevacion con sus puntos de control:</p>
+<pre class="r"><code>plot(dsm)
+points(puntos_sp, pch = 16, col = &quot;black&quot;, cex= 0.8)</code></pre>
+<p><img src="//post/2020-05-24-pae-argentina_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Resumen estadistico de las alturas de los puntos de control:</p>
+<pre class="r"><code>summary(puntos_sp$AlturaZ)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   240.6   243.6   248.2   247.7   251.7   253.8</code></pre>
+<p>Adecuacion de proyeccion cartograficas:</p>
+<pre class="r"><code>crs(puntos_sp); crs(dsm)</code></pre>
+<pre><code>## CRS arguments: NA</code></pre>
+<pre><code>## CRS arguments:
+##  +proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
+## +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</code></pre>
+<pre class="r"><code>puntos_sp@proj4string &lt;- CRS(&quot;+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
++towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;)</code></pre>
+<p>Extraccion de datos de alturas del MDE:</p>
+<pre class="r"><code>puntos_sp &lt;- extract(x = dsm, y = puntos_sp, sp = TRUE)
+#Estadicticos de alturas puntos de control obtenidas de Estacion:
+summary(puntos_sp$AlturaZ);</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   240.6   243.6   248.2   247.7   251.7   253.8</code></pre>
+<pre class="r"><code>#Estadisticos de alturas de puntos de control obtenidas del MDE:
+summary(puntos_sp$Arg_Prof_dsm)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   239.4   243.8   248.3   247.7   251.8   254.0</code></pre>
+<p>Calculos estadisticos de errores:</p>
+<pre class="r"><code>puntos_sp$diferencia &lt;- puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ</code></pre>
+<p>Estadisticos de los errores o diferencias:</p>
+<pre class="r"><code>summary(res_pae &lt;- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.02066 0.11098 0.16460 0.26513 0.21098 1.29812</code></pre>
+<pre class="r"><code>s &lt;- quantile(res_pae,.75, na.rm=TRUE)
+a &lt;-(rmse(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ))
+g &lt;- (cor(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ)^2)
+ME_RK &lt;- mean(puntos_sp$diferencia, na.rm=TRUE)
+MAE_RK &lt;- mean(abs(puntos_sp$diferencia), na.rm=TRUE)
+MSE_RK &lt;- mean(puntos_sp$diferencia^2, na.rm=TRUE)
+RMSE_RK &lt;- sqrt(sum(puntos_sp$diferencia^2, na.rm=TRUE) / length(puntos_sp$diferencia))
+AVE_RK &lt;- 1 - sum(puntos_sp$diferencia^2, na.rm=TRUE) / 
+  sum( (puntos_sp$AlturaZ - mean(puntos_sp$AlturaZ, na.rm = TRUE))^2, 
+       na.rm = TRUE)
+metodo &lt;- factor(&quot;Fotogrametria&quot;)
+metodo &lt;- data.frame(metodo)
+resultados &lt;- cbind(metodo, ME_RK, MAE_RK, MSE_RK, RMSE_RK, AVE_RK, s, g)
+etiquetas &lt;- c(&quot;Metodos&quot;, &quot;ME&quot;, &quot;MAE&quot;, &quot;MSE&quot;, &quot;RMSE&quot;, &quot;AVE&quot;, &quot;Err Q75&quot;, &quot;R2&quot;)
+names(resultados) &lt;- etiquetas
+print(resultados)</code></pre>
+<pre><code>##           Metodos          ME       MAE       MSE      RMSE       AVE   Err Q75
+## 75% Fotogrametria -0.07019155 0.2651256 0.1929829 0.4392981 0.9916958 0.2109804
+##            R2
+## 75% 0.9954763</code></pre>
+<p>Graficos:</p>
+<pre class="r"><code>par(mfrow=c(1,1))
+plot(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ, main=&quot;Comparacion entre valores modelados por fotogrametria y valores reales de puntos de control&quot;, xlab=&quot; Valor altura modelados&quot;, 
+     ylab=&#39;Valor altura reales&#39;, pch= 16, col = &quot;blue&quot;, text(15,0.5, &quot;TEXT&quot;))
+abline(0,1, lty=2, col=&#39;red&#39;)
+abline(lm(puntos_sp$AlturaZ ~ puntos_sp$Arg_Prof_dsm), col = &#39;blue&#39;, lty=2)
+legend(x = 240, y = 252,  legend = c(&quot;Relacion 1:1&quot;, &quot;Regresion&quot;), col = c(&quot;Red&quot;, &quot;Blue&quot;), 
+       title = &quot;Leyenda&quot;, lty = 2, cex = 0.75)
+text(20,4,&quot;R2 : 0.41&quot;, cex = 1.5)</code></pre>
+<p><img src="//post/2020-05-24-pae-argentina_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Graficos de magnitud de resisuos espaciales:</p>
+<pre class="r"><code>area &lt;- shapefile(&quot;C:/Proyectos/Diego/PAE/area.shp&quot;)
+area@proj4string &lt;- CRS(projargs = &quot;+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
++towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;)
+area.sp &lt;- as(area, &quot;SpatialPolygonsDataFrame&quot;, filled.contour())
+bubble(puntos_sp[!is.na(puntos_sp$diferencia),], &quot;diferencia&quot;, pch = 16, 
+       col=c(&#39;red&#39;, &#39;green&#39;), main = &quot;Errores espaciales de prediccion&quot;, sp.layout=list(&quot;sp.polygons&quot;, area.sp, fill=&quot;0&quot;) )</code></pre>
+<p><img src="//post/2020-05-24-pae-argentina_files/figure-html/unnamed-chunk-12-1.png" width="672" /> Final.</p>
+</div>
+
+    </div>
+  </article>
+
+  <div id="disqus_thread"></div>
+<script>
+(function() {
+var d = document, s = d.createElement('script');
+s.src = 'https://sevillav.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-160645872-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+  </body>
+</html>
+

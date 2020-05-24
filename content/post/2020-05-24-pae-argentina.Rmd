@@ -1,0 +1,103 @@
+---
+title: PAE Argentina
+author: Diego Machado
+date: '2020-05-24'
+output:
+  html_document:
+    df_print: paged
+slug: pae-argentina
+categories: []
+tags: []
+--- 
+###VALIDACION DE LEVANTAMIENTO FOTOGRAMETRICO
+
+Espacio de trabajo:
+```{r eval=FALSE}
+setwd("C:/proyectos/diego/pae")
+getwd()
+```
+Libreria requerida:
+```{r }
+library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);
+```
+Cargar capas necesarias:
+```{r}
+dsm <- raster("C:/Proyectos/Diego/PAE/Arg_Prof_dsm.tif")
+puntos <- read.csv("C:/Proyectos/Diego/PAE/Pcontrol.csv")
+puntos_sp <- puntos
+coordinates(puntos_sp) <- ~ Este + Norte
+```
+Graficar modelo digital de elevacion con sus puntos de control:
+```{r}
+plot(dsm)
+points(puntos_sp, pch = 16, col = "black", cex= 0.8)
+```
+
+
+Resumen estadistico de las alturas de los puntos de control:
+```{r message=FALSE}
+summary(puntos_sp$AlturaZ)
+```
+Adecuacion de proyeccion cartograficas:
+```{r}
+crs(puntos_sp); crs(dsm)
+puntos_sp@proj4string <- CRS("+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
++towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
+```
+Extraccion de datos de alturas del MDE:
+```{r}
+puntos_sp <- extract(x = dsm, y = puntos_sp, sp = TRUE)
+#Estadicticos de alturas puntos de control obtenidas de Estacion:
+summary(puntos_sp$AlturaZ);
+#Estadisticos de alturas de puntos de control obtenidas del MDE:
+summary(puntos_sp$Arg_Prof_dsm)
+```
+Calculos estadisticos de errores:
+```{r}
+puntos_sp$diferencia <- puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ
+```
+Estadisticos de los errores o diferencias:
+```{r}
+summary(res_pae <- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))
+```
+```{r}
+s <- quantile(res_pae,.75, na.rm=TRUE)
+a <-(rmse(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ))
+g <- (cor(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ)^2)
+ME_RK <- mean(puntos_sp$diferencia, na.rm=TRUE)
+MAE_RK <- mean(abs(puntos_sp$diferencia), na.rm=TRUE)
+MSE_RK <- mean(puntos_sp$diferencia^2, na.rm=TRUE)
+RMSE_RK <- sqrt(sum(puntos_sp$diferencia^2, na.rm=TRUE) / length(puntos_sp$diferencia))
+AVE_RK <- 1 - sum(puntos_sp$diferencia^2, na.rm=TRUE) / 
+  sum( (puntos_sp$AlturaZ - mean(puntos_sp$AlturaZ, na.rm = TRUE))^2, 
+       na.rm = TRUE)
+metodo <- factor("Fotogrametria")
+metodo <- data.frame(metodo)
+resultados <- cbind(metodo, ME_RK, MAE_RK, MSE_RK, RMSE_RK, AVE_RK, s, g)
+etiquetas <- c("Metodos", "ME", "MAE", "MSE", "RMSE", "AVE", "Err Q75", "R2")
+names(resultados) <- etiquetas
+print(resultados)
+
+```
+Graficos:
+```{r}
+par(mfrow=c(1,1))
+plot(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ, main="Comparacion entre valores modelados por fotogrametria y valores reales de puntos de control", xlab=" Valor altura modelados", 
+     ylab='Valor altura reales', pch= 16, col = "blue", text(15,0.5, "TEXT"))
+abline(0,1, lty=2, col='red')
+abline(lm(puntos_sp$AlturaZ ~ puntos_sp$Arg_Prof_dsm), col = 'blue', lty=2)
+legend(x = 240, y = 252,  legend = c("Relacion 1:1", "Regresion"), col = c("Red", "Blue"), 
+       title = "Leyenda", lty = 2, cex = 0.75)
+text(20,4,"R2 : 0.41", cex = 1.5)
+```
+
+Graficos de magnitud de resisuos espaciales:
+```{r}
+area <- shapefile("C:/Proyectos/Diego/PAE/area.shp")
+area@proj4string <- CRS(projargs = "+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
++towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
+area.sp <- as(area, "SpatialPolygonsDataFrame", filled.contour())
+bubble(puntos_sp[!is.na(puntos_sp$diferencia),], "diferencia", pch = 16, 
+       col=c('red', 'green'), main = "Errores espaciales de prediccion", sp.layout=list("sp.polygons", area.sp, fill="0") )
+```
+Final.

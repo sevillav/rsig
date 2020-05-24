@@ -1,0 +1,13 @@
+---
+title: hola
+author: Victor Sevilla
+date: '2020-05-24'
+slug: hola
+categories: []
+tags: []
+---
+```{r}
+data(iris)
+plot(iris$Sepal.Length)
+```
+
