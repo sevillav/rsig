@@ -69,5 +69,7 @@ area.sp &lt;- as(area, &quot;SpatialPolygonsDataFrame&quot;, filled.contour())
 bubble(puntos_sp[!is.na(puntos_sp$diferencia),], &quot;diferencia&quot;, pch = 16, 
        col=c(&#39;red&#39;, &#39;green&#39;), main = &quot;Errores espaciales de prediccion&quot;, sp.layout=list(&quot;sp.polygons&quot;, area.sp, fill=&quot;0&quot;) )</code></pre>
 <p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /> Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.</p>
-<p>En conclusión las diferencias o errores del modelo en general son bajos con un error absoluto promedio de 26 cm, un error cuadrático de 43 cm y una coincidencia entre valores de altura reales y del modelo muy alta de 0,995. En definitiva la mayoría de los puntos no sobre pasan los 21 cm de diferencias.</p>
+<p><strong>Conclusiones</strong></p>
+<p>Las diferencias o errores del modelo en general son bajos con un error absoluto promedio de 26 cm, un error cuadrático de 43 cm y una coincidencia entre valores de altura reales y modelados muy alta de 0,995. En definitiva la mayoría de los puntos no sobre pasan los 21 cm de diferencias.</p>
+<p>El sector Nor-Oeste resulto con las mayores diferencias.</p>
 </div>

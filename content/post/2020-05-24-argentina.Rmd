@@ -103,4 +103,9 @@ bubble(puntos_sp[!is.na(puntos_sp$diferencia),], "diferencia", pch = 16,
 ```
 Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.
 
-En conclusión las diferencias o errores del modelo en general son bajos con un error absoluto promedio de 26 cm, un error cuadrático de 43 cm y una coincidencia entre valores de altura reales y del modelo muy alta de 0,995. En definitiva la mayoría de los puntos no sobre pasan los 21 cm de diferencias.
+**Conclusiones**
+
+
+Las diferencias o errores del modelo en general son bajos con un error absoluto promedio de 26 cm, un error cuadrático de 43 cm y una coincidencia entre valores de altura reales y modelados muy alta de 0,995. En definitiva la mayoría de los puntos no sobre pasan los 21 cm de diferencias.
+
+El sector Nor-Oeste resulto con las mayores diferencias.
