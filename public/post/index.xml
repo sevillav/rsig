@@ -17,7 +17,7 @@
       <pubDate>Sun, 24 May 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/05/24/argentina/</guid>
-      <description>Por: Diego A. Machado P.Nuestro objetivo es mostrar el analisis estadistico realizado para conocer la precision que tuvo el modelado fotogrametrico para generar el modelo digital de elevacion (MDE) de PAE. Los indicadores empleados seran los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadratico (MSE), raiz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.
+      <description>Por: Diego A. Machado P.Nuestro objetivo es mostrar el análisis estadístico realizado para conocer la precisión que tuvo el modelado fotogrametrico para generar el modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.
 Procedimientos:
 Librerías requerida para el análisis estadístico:</description>
     </item>

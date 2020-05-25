@@ -79,7 +79,7 @@
 
 <div id="por-diego-a.-machado-p." class="section level3">
 <h3><strong>Por: Diego A. Machado P.</strong></h3>
-<p>Nuestro objetivo es mostrar el analisis estadistico realizado para conocer la precision que tuvo el modelado fotogrametrico para generar el modelo digital de elevacion (MDE) de PAE. Los indicadores empleados seran los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadratico (MSE), raiz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.</p>
+<p>Nuestro objetivo es mostrar el análisis estadístico realizado para conocer la precisión que tuvo el modelado fotogrametrico para generar el modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.</p>
 <p><strong>Procedimientos:</strong></p>
 <p>Librerías requerida para el análisis estadístico:</p>
 <pre class="r"><code>library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);</code></pre>
@@ -136,8 +136,8 @@ area@proj4string &lt;- CRS(projargs = &quot;+proj=tmerc +lat_0=-90 +lon_0=-69 +k
 area.sp &lt;- as(area, &quot;SpatialPolygonsDataFrame&quot;, filled.contour())
 bubble(puntos_sp[!is.na(puntos_sp$diferencia),], &quot;diferencia&quot;, pch = 16, 
        col=c(&#39;red&#39;, &#39;green&#39;), main = &quot;Errores espaciales de prediccion&quot;, sp.layout=list(&quot;sp.polygons&quot;, area.sp, fill=&quot;0&quot;) )</code></pre>
-<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<p>Esta ultimo gráfico muestra las diferencias de alturas espacialmente de los puntos de control. exponiendo si es sobrestimacion (Verde)o subestimacion (Rojo)por parte del modelo digital de elevación. El tamaño del circulo muestra una magnitud relativa. Final.</p>
+<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /> Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.</p>
+<p>En conclusión las diferencias o errores del modelo en general son bajos con un error absoluto promedio de 26 cm, un error cuadrático de 43 cm y una coincidencia entre valores de altura reales y del modelo muy alta de 0,995. En definitiva la mayoría de los puntos no sobre pasan los 21 cm de diferencias.</p>
 </div>
 
     </div>

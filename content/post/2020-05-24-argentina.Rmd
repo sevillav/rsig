@@ -8,7 +8,7 @@ tags: []
 ---
 ###**Por: Diego A. Machado P.**
 
-Nuestro objetivo es mostrar el analisis estadistico realizado para conocer la precision que tuvo el modelado fotogrametrico para generar el modelo digital de elevacion (MDE) de PAE. Los indicadores empleados seran los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadratico (MSE), raiz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.
+Nuestro objetivo es mostrar el análisis estadístico realizado para conocer la precisión que tuvo el modelado fotogrametrico para generar el modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.
 
 **Procedimientos:**
 
@@ -101,6 +101,6 @@ area.sp <- as(area, "SpatialPolygonsDataFrame", filled.contour())
 bubble(puntos_sp[!is.na(puntos_sp$diferencia),], "diferencia", pch = 16, 
        col=c('red', 'green'), main = "Errores espaciales de prediccion", sp.layout=list("sp.polygons", area.sp, fill="0") )
 ```
+Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.
 
-Esta ultimo gráfico muestra las diferencias de alturas espacialmente de los puntos de control. exponiendo si es sobrestimacion (Verde)o subestimacion (Rojo)por parte del modelo digital de elevación. El tamaño del circulo muestra una magnitud relativa.
-Final.
+En conclusión las diferencias o errores del modelo en general son bajos con un error absoluto promedio de 26 cm, un error cuadrático de 43 cm y una coincidencia entre valores de altura reales y del modelo muy alta de 0,995. En definitiva la mayoría de los puntos no sobre pasan los 21 cm de diferencias.
