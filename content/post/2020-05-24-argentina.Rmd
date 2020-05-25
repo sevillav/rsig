@@ -114,4 +114,4 @@ Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control
 **Conclusiones**
 
 
-Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 5 mm, un error cuadrático de 6 mm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,99. En definitiva la mayoría de los puntos no sobre pasan los 7 mm de diferencias.
+Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 4 mm, un error cuadrático de 20 cm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,99. En definitiva la mayoría de los puntos no sobre pasan los 23 cm de diferencias.
