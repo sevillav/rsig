@@ -24,7 +24,6 @@ coordinates(puntos_sp) &lt;- ~ Este + Norte</code></pre>
 <pre class="r"><code>plot(dsm, main= &quot;Modelo digital de elevacion msnm (MDE)&quot;)
 points(puntos_sp, pch = 16, col = &quot;black&quot;, cex= 0.8)</code></pre>
 <p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Resumen estadístico de las alturas de los puntos de control:</p>
 <p>Adecuación de proyección cartográficas:</p>
 <pre class="r"><code>crs(puntos_sp);</code></pre>
 <pre><code>## CRS arguments: NA</code></pre>
@@ -36,15 +35,15 @@ points(puntos_sp, pch = 16, col = &quot;black&quot;, cex= 0.8)</code></pre>
 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;)</code></pre>
 <p>Extracción de datos de alturas del MDE:</p>
 <pre class="r"><code>puntos_sp &lt;- extract(x = dsm, y = puntos_sp, sp = TRUE)</code></pre>
-<p>Estadísticos de alturas puntos de control obtenidas de Estación:</p>
+<p>Estadísticos de las alturas en los puntos de control, obtenidas de Estación:</p>
 <pre class="r"><code>summary(puntos_sp$AlturaZ);</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   240.6   243.6   248.2   247.7   251.7   253.8</code></pre>
-<p>Estadísticos de alturas de puntos de control obtenidas del MDE:</p>
+<p>Estadísticos de las alturas en los puntos de control, obtenidas del MDE:</p>
 <pre class="r"><code>summary(puntos_sp$Arg_Prof_dsm)</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   240.6   243.7   248.2   247.8   251.7   253.9</code></pre>
-<p>Estadísticos de los errores, diferencias o residuos:</p>
+<p>Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):</p>
 <pre class="r"><code>summary(res_pae &lt;- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))</code></pre>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 ## 0.005446 0.022803 0.038593 0.046468 0.070950 0.106136</code></pre>
@@ -62,8 +61,8 @@ abline(0,1, lty=2, col=&#39;red&#39;)
 abline(lm(puntos_sp$AlturaZ ~ puntos_sp$Arg_Prof_dsm), col = &#39;blue&#39;, lty=2)
 legend(x = 241, y = 253,  legend = c(&quot;Relacion ideal 1:1&quot;, &quot;Fotogrametria&quot;), col = c(&quot;Red&quot;, &quot;Blue&quot;), 
        title = &quot;Leyenda&quot;, lty = 2, cex = 0.75)
-text(20,4,&quot;R2 : 0.41&quot;, cex = 1.5)</code></pre>
-<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+text(252,242,&quot;R2 : 0.99&quot;, cex = 1.2)</code></pre>
+<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Gráficos de magnitud de residuos espaciales:</p>
 <pre class="r"><code>area &lt;- shapefile(&quot;C:/Proyectos/Diego/PAE/area.shp&quot;)
 area@proj4string &lt;- CRS(projargs = &quot;+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
@@ -71,7 +70,7 @@ area@proj4string &lt;- CRS(projargs = &quot;+proj=tmerc +lat_0=-90 +lon_0=-69 +k
 area.sp &lt;- as(area, &quot;SpatialPolygonsDataFrame&quot;, filled.contour())
 bubble(puntos_sp[!is.na(puntos_sp$diferencia),], &quot;diferencia&quot;, pch = 16, 
        col=c(&#39;red&#39;, &#39;green&#39;), main = &quot;Errores espaciales de prediccion&quot;, sp.layout=list(&quot;sp.polygons&quot;, area.sp, fill=&quot;0&quot;) )</code></pre>
-<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-15-1.png" width="672" /> Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.</p>
+<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /> Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.</p>
 <p><strong>Conclusiones</strong></p>
 <p>Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 5 mm, un error cuadrático de 6 mm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,99. En definitiva la mayoría de los puntos no sobre pasan los 7 mm de diferencias.</p>
 </div>

@@ -38,10 +38,6 @@ points(puntos_sp, pch = 16, col = "black", cex= 0.8)
 ```
 
 
-Resumen estadístico de las alturas de los puntos de control:
-```{r message=FALSE, warning=FALSE, include=FALSE}
-summary(puntos_sp$AlturaZ)
-```
 Adecuación de proyección cartográficas:
 ```{r message=TRUE, warning=FALSE}
 crs(puntos_sp);
@@ -53,11 +49,11 @@ Extracción de datos de alturas del MDE:
 ```{r}
 puntos_sp <- extract(x = dsm, y = puntos_sp, sp = TRUE)
 ```
-Estadísticos de alturas puntos de control obtenidas de Estación:
+Estadísticos de las alturas en los puntos de control, obtenidas de Estación:
 ```{r}
 summary(puntos_sp$AlturaZ);
 ```
-Estadísticos de alturas de puntos de control obtenidas del MDE:
+Estadísticos de las alturas en los puntos de control, obtenidas del MDE:
 ```{r}
 summary(puntos_sp$Arg_Prof_dsm)
 ```
@@ -66,7 +62,7 @@ summary(puntos_sp$Arg_Prof_dsm)
 puntos_sp$diferencia <- puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ
 ```
 
-Estadísticos de los errores, diferencias o residuos:
+Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):
 ```{r}
 summary(res_pae <- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))
 ```
@@ -101,7 +97,7 @@ abline(0,1, lty=2, col='red')
 abline(lm(puntos_sp$AlturaZ ~ puntos_sp$Arg_Prof_dsm), col = 'blue', lty=2)
 legend(x = 241, y = 253,  legend = c("Relacion ideal 1:1", "Fotogrametria"), col = c("Red", "Blue"), 
        title = "Leyenda", lty = 2, cex = 0.75)
-text(20,4,"R2 : 0.41", cex = 1.5)
+text(252,242,"R2 : 0.99", cex = 1.2)
 ```
 
 Gráficos de magnitud de residuos espaciales:
