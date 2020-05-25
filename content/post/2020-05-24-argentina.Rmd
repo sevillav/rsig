@@ -19,8 +19,11 @@ library(raster); library(car); library(rgdal); library(gstat); library(caret); l
 * Cargar capas necesarias:
 ```{r}
 #dsm <- raster("C:/Proyectos/Diego/PAE/DEM_AG_VS.tif") #penultimo jose
-dsm <- raster("C:/Proyectos/Diego/PAE/TG3.TIF") #ultimo diego
+#dsm <- raster("C:/Proyectos/Diego/PAE/TG3.TIF") #ultimo diego
+dsm <- raster("C:/Proyectos/Diego/PAE/DEM_AG_VS_30cmA.tif") #ultimo jose
 puntos <- read.csv("C:/Proyectos/Diego/PAE/Pcontrol.csv")
+puntos$AlturaZ_res <- puntos$AlturaZ
+puntos$AlturaZ <- puntos$AlturaZ - 18.251
 puntos_sp <- puntos
 coordinates(puntos_sp) <- ~ Este + Norte
 ```
@@ -78,7 +81,7 @@ puntos_sp@data$MDE <- puntos_sp@data$Arg_Prof_dsm
 
 ```{r echo=FALSE}
 knitr::kable(
-  puntos_sp@data[,c(1, 5, 6, 4)],
+  puntos_sp@data[,c(1, 6, 7, 5)],
   caption = "Diferencias de alturas."
 )
 ```
@@ -105,14 +108,14 @@ print(resultados)
 * Gráfico de comparacion:
 ```{r echo=FALSE}
 par(mfrow=c(1,1))
-plot(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ, main="Relacion entre alturas modeladas por fotogrametria y alturas reales ", xlab="Altura modelada (MDE)", ylab='Altura reales de pts de control', pch= 16, col = "blue", text(15,0.5, "TEXT"), xlim=c(220, 240), ylim=c(220, 260))
+plot(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ, main="Relacion entre alturas modeladas por fotogrametria y alturas reales ", xlab="Altura modelada (MDE)", ylab='Altura reales de pts de control', pch= 16, col = "blue", text(15,0.5, "TEXT"), xlim=c(220, 238), ylim=c(220, 240))
 abline(1, 1, col="red", lty=2)
 #abline(0,1, lty=2, col='red')
 
 abline(lm(puntos_sp$AlturaZ ~ puntos_sp$Arg_Prof_dsm), col = 'blue', lty=2)
-legend(x = 221, y = 255,  legend = c("Relacion ideal", "Fotogrametria"), col = c("Red", "Blue"), 
+legend(x = 220, y = 239,  legend = c("Relacion ideal", "Fotogrametria"), col = c("Red", "Blue"), 
        title = "Leyenda", lty = 2, cex = 0.75)
-text(235,230,"AVE: -13.28", cex = 1.2)
+text(236,221,"AVE: 0.998", cex = 1.2)
 ```
 
 * Gráfico de magnitud de residuos espaciales:
@@ -131,4 +134,4 @@ Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control
 **Conclusiones**
 
 
-Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 4 mm, un error cuadrático de 20 cm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,99. En definitiva la mayoría de los puntos no sobre pasan los 23 cm de diferencias.
+Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 15 cm, la raiz cuadrada del error medio es de 18 cm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,998. En definitiva los errores en la mayoría de los puntos de control (75%) no sobrepasan de 18 cm y tienden mas es a sobrestimar muy poco los valores de alturas.

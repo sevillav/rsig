@@ -21,8 +21,11 @@ tags: []
 <li>Cargar capas necesarias:</li>
 </ul>
 <pre class="r"><code>#dsm &lt;- raster(&quot;C:/Proyectos/Diego/PAE/DEM_AG_VS.tif&quot;) #penultimo jose
-dsm &lt;- raster(&quot;C:/Proyectos/Diego/PAE/TG3.TIF&quot;) #ultimo diego
+#dsm &lt;- raster(&quot;C:/Proyectos/Diego/PAE/TG3.TIF&quot;) #ultimo diego
+dsm &lt;- raster(&quot;C:/Proyectos/Diego/PAE/DEM_AG_VS_30cmA.tif&quot;) #ultimo jose
 puntos &lt;- read.csv(&quot;C:/Proyectos/Diego/PAE/Pcontrol.csv&quot;)
+puntos$AlturaZ_res &lt;- puntos$AlturaZ
+puntos$AlturaZ &lt;- puntos$AlturaZ - 18.251
 puntos_sp &lt;- puntos
 coordinates(puntos_sp) &lt;- ~ Este + Norte</code></pre>
 <ul>
@@ -38,7 +41,7 @@ crs(puntos_sp);</code></pre>
 <pre class="r"><code>crs(dsm);</code></pre>
 <pre><code>## CRS arguments:
 ##  +proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
-## +units=m +no_defs</code></pre>
+## +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</code></pre>
 <ul>
 <li>Extracción de datos de alturas del MDE:</li>
 </ul>
@@ -47,17 +50,17 @@ crs(puntos_sp);</code></pre>
 <li>Estadísticos de las alturas en los puntos de control, obtenidas de Estación:</li>
 </ul>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   240.6   243.6   248.2   247.7   251.7   253.8</code></pre>
+##   222.4   225.4   229.9   229.5   233.4   235.6</code></pre>
 <ul>
 <li>Estadísticos de las alturas en los puntos de control, obtenidas del MDE:</li>
 </ul>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   222.4   225.4   230.0   229.5   233.4   235.6</code></pre>
+##   222.4   225.5   230.2   229.6   233.5   235.9</code></pre>
 <ul>
 <li>Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):</li>
 </ul>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  -18.28  -18.24  -18.22  -18.22  -18.20  -18.18</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.01007  0.09231  0.12629  0.14612  0.18052  0.35433</code></pre>
 <p><em>Tabla de alturas:</em></p>
 <table>
 <caption><span id="tab:unnamed-chunk-12">Table 1: </span>Diferencias de alturas.</caption>
@@ -72,78 +75,78 @@ crs(puntos_sp);</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">246.014</td>
-<td align="right">227.8197</td>
-<td align="right">-18.19433</td>
+<td align="right">227.763</td>
+<td align="right">227.9137</td>
+<td align="right">0.1507268</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">247.855</td>
-<td align="right">229.6736</td>
-<td align="right">-18.18142</td>
+<td align="right">229.604</td>
+<td align="right">229.9583</td>
+<td align="right">0.3543282</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">253.812</td>
-<td align="right">235.6236</td>
-<td align="right">-18.18845</td>
+<td align="right">235.561</td>
+<td align="right">235.8730</td>
+<td align="right">0.3119858</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">242.849</td>
-<td align="right">224.6252</td>
-<td align="right">-18.22379</td>
+<td align="right">224.598</td>
+<td align="right">224.7240</td>
+<td align="right">0.1260295</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">251.717</td>
-<td align="right">233.4859</td>
-<td align="right">-18.23108</td>
+<td align="right">233.466</td>
+<td align="right">233.5925</td>
+<td align="right">0.1265446</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">240.606</td>
-<td align="right">222.3645</td>
-<td align="right">-18.24151</td>
+<td align="right">222.355</td>
+<td align="right">222.4379</td>
+<td align="right">0.0828967</td>
 </tr>
 <tr class="odd">
 <td align="right">7</td>
-<td align="right">253.842</td>
-<td align="right">235.6258</td>
-<td align="right">-18.21621</td>
+<td align="right">235.591</td>
+<td align="right">235.5988</td>
+<td align="right">0.0077549</td>
 </tr>
 <tr class="even">
 <td align="right">8</td>
-<td align="right">251.451</td>
-<td align="right">233.2001</td>
-<td align="right">-18.25091</td>
+<td align="right">233.200</td>
+<td align="right">233.3905</td>
+<td align="right">0.1904572</td>
 </tr>
 <tr class="odd">
 <td align="right">9</td>
-<td align="right">248.530</td>
-<td align="right">230.3232</td>
-<td align="right">-18.20676</td>
+<td align="right">230.279</td>
+<td align="right">230.3996</td>
+<td align="right">0.1205514</td>
 </tr>
 <tr class="even">
 <td align="right">12</td>
-<td align="right">240.650</td>
-<td align="right">222.3690</td>
-<td align="right">-18.28104</td>
+<td align="right">222.399</td>
+<td align="right">222.3889</td>
+<td align="right">-0.0100687</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>Resultados de los cálculos de residuos o errores en las alturas:</li>
 </ul>
-<pre><code>##           Metodos        ME      MAE      MSE     RMSE  Err Q75        R2
-## 75% Fotogrametria -18.22155 18.22155 332.0257 18.22157 18.23891 0.9999706
-##           AVE
-## 75% -13.28735</code></pre>
+<pre><code>##           Metodos        ME       MAE        MSE      RMSE   Err Q75        R2
+## 75% Fotogrametria 0.1461206 0.1481344 0.03353392 0.1831227 0.1805246 0.9995503
+##          AVE
+## 75% 0.998557</code></pre>
 <ul>
 <li><p>Gráfico de comparacion: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p></li>
 <li><p>Gráfico de magnitud de residuos espaciales: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p></li>
 </ul>
 <p>Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.</p>
 <p><strong>Conclusiones</strong></p>
-<p>Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 4 mm, un error cuadrático de 20 cm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,99. En definitiva la mayoría de los puntos no sobre pasan los 23 cm de diferencias.</p>
+<p>Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 15 cm, la raiz cuadrada del error medio es de 18 cm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,998. En definitiva los errores en la mayoría de los puntos de control (75%) no sobrepasan de 18 cm y tienden mas es a sobrestimar muy poco los valores de alturas.</p>
 </div>
