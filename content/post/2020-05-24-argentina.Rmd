@@ -18,7 +18,8 @@ library(raster); library(car); library(rgdal); library(gstat); library(caret); l
 ```
 * Cargar capas necesarias:
 ```{r}
-dsm <- raster("C:/Proyectos/Diego/PAE/DEM_AG_VS.tif")
+#dsm <- raster("C:/Proyectos/Diego/PAE/DEM_AG_VS.tif") #penultimo jose
+dsm <- raster("C:/Proyectos/Diego/PAE/TG3.TIF") #ultimo diego
 puntos <- read.csv("C:/Proyectos/Diego/PAE/Pcontrol.csv")
 puntos_sp <- puntos
 coordinates(puntos_sp) <- ~ Este + Norte
