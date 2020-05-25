@@ -8,7 +8,7 @@ tags: []
 ---
 ###**Por: Diego A. Machado P.**
 
-Nuestro objetivo es mostrar el análisis estadístico realizado para conocer la precisión que tuvo el modelado fotogrametrico para generar el modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.
+Nuestro objetivo es mostrar el análisis estadístico realizado para conocer la precisión que tuvo el modelado fotogrametrico para generar el modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R^2^.
 
 **Procedimientos:**
 
@@ -118,4 +118,4 @@ Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control
 **Conclusiones**
 
 
-Las diferencias o errores del modelo en general son bajos con un error absoluto promedio de 5 mm, un error cuadrático de 6 mm y una coincidencia entre valores de altura reales y modelados muy alta de 0,99. En definitiva la mayoría de los puntos no sobre pasan los 7 mm de diferencias.
+Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 5 mm, un error cuadrático de 6 mm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,99. En definitiva la mayoría de los puntos no sobre pasan los 7 mm de diferencias.
