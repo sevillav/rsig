@@ -110,9 +110,9 @@ abline(1, 1, col="red", lty=2)
 #abline(0,1, lty=2, col='red')
 
 abline(lm(puntos_sp$AlturaZ ~ puntos_sp$Arg_Prof_dsm), col = 'blue', lty=2)
-legend(x = 221, y = 255,  legend = c("Relacion ideal 1:1", "Fotogrametria"), col = c("Red", "Blue"), 
+legend(x = 221, y = 255,  legend = c("Relacion ideal", "Fotogrametria"), col = c("Red", "Blue"), 
        title = "Leyenda", lty = 2, cex = 0.75)
-text(235,230,"AVE: 0.99", cex = 1.2)
+text(235,230,"AVE: -13.28", cex = 1.2)
 ```
 
 * Gráfico de magnitud de residuos espaciales:
