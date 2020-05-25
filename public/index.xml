@@ -17,9 +17,9 @@
       <pubDate>Sun, 24 May 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/05/24/argentina/</guid>
-      <description>Por: Diego A. Machado P.Nuestro objetivo es mostrar el análisis estadístico realizado para conocer la precisión que tuvo el modelado fotogrametrico para generar el modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.
+      <description>Por: Diego A. Machado P.Nuestro objetivo es mostrar un análisis estadístico sobre la precisión que tuvo el modelado fotogrametrico en la generacion del modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2 de la comparacion de las alturas modeladas y reales.
 Procedimientos:
-Librerías requerida para el análisis estadístico:</description>
+Librerías requerida para el análisis estadístico:library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);Cargar capas necesarias:dsm &amp;lt;- raster(&amp;quot;C:/Proyectos/Diego/PAE/DEM_AG_VS.</description>
     </item>
     
     <item>

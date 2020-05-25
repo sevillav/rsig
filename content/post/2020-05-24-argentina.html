@@ -11,43 +11,55 @@ tags: []
 
 <div id="por-diego-a.-machado-p." class="section level3">
 <h3><strong>Por: Diego A. Machado P.</strong></h3>
-<p>Nuestro objetivo es mostrar el análisis estadístico realizado para conocer la precisión que tuvo el modelado fotogrametrico para generar el modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R<sup>2</sup>.</p>
+<p>Nuestro objetivo es mostrar un análisis estadístico sobre la precisión que tuvo el modelado fotogrametrico en la generacion del modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R<sup>2</sup> de la comparacion de las alturas modeladas y reales.</p>
 <p><strong>Procedimientos:</strong></p>
-<p>Librerías requerida para el análisis estadístico:</p>
+<ul>
+<li>Librerías requerida para el análisis estadístico:</li>
+</ul>
 <pre class="r"><code>library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);</code></pre>
-<p>Cargar capas necesarias:</p>
+<ul>
+<li>Cargar capas necesarias:</li>
+</ul>
 <pre class="r"><code>dsm &lt;- raster(&quot;C:/Proyectos/Diego/PAE/DEM_AG_VS.tif&quot;)
 puntos &lt;- read.csv(&quot;C:/Proyectos/Diego/PAE/Pcontrol.csv&quot;)
 puntos_sp &lt;- puntos
 coordinates(puntos_sp) &lt;- ~ Este + Norte</code></pre>
-<p>Graficar modelo digital de elevación con sus puntos de control:</p>
-<pre class="r"><code>plot(dsm, main= &quot;Modelo digital de elevacion msnm (MDE)&quot;)
-points(puntos_sp, pch = 16, col = &quot;black&quot;, cex= 0.8)</code></pre>
-<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Adecuación de proyección cartográficas:</p>
-<pre class="r"><code>crs(puntos_sp);</code></pre>
-<pre><code>## CRS arguments: NA</code></pre>
+<ul>
+<li><p>Graficar modelo digital de elevación con sus puntos de control: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p></li>
+<li><p>Adecuación de proyección cartográficas:</p></li>
+</ul>
+<pre class="r"><code>puntos_sp@proj4string &lt;- CRS(&quot;+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
++towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;)
+crs(puntos_sp);</code></pre>
+<pre><code>## CRS arguments:
+##  +proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
+## +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</code></pre>
 <pre class="r"><code>crs(dsm);</code></pre>
 <pre><code>## CRS arguments:
 ##  +proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
 ## +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</code></pre>
-<pre class="r"><code>puntos_sp@proj4string &lt;- CRS(&quot;+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
-+towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;)</code></pre>
-<p>Extracción de datos de alturas del MDE:</p>
+<ul>
+<li>Extracción de datos de alturas del MDE:</li>
+</ul>
 <pre class="r"><code>puntos_sp &lt;- extract(x = dsm, y = puntos_sp, sp = TRUE)</code></pre>
-<p>Estadísticos de las alturas en los puntos de control, obtenidas de Estación:</p>
-<pre class="r"><code>summary(puntos_sp$AlturaZ);</code></pre>
+<ul>
+<li>Estadísticos de las alturas en los puntos de control, obtenidas de Estación:</li>
+</ul>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   240.6   243.6   248.2   247.7   251.7   253.8</code></pre>
-<p>Estadísticos de las alturas en los puntos de control, obtenidas del MDE:</p>
-<pre class="r"><code>summary(puntos_sp$Arg_Prof_dsm)</code></pre>
+<ul>
+<li>Estadísticos de las alturas en los puntos de control, obtenidas del MDE:</li>
+</ul>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   240.7   243.7   248.4   247.9   251.8   254.1</code></pre>
-<p>Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):</p>
-<p><strong>Tabla de alturas:</strong></p>
-<pre><code>## [1] &quot;ID&quot;           &quot;AlturaZ&quot;      &quot;Arg_Prof_dsm&quot; &quot;diferencia&quot;</code></pre>
+<ul>
+<li>Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):</li>
+</ul>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.03614  0.09034  0.11081  0.15481  0.23086  0.40397</code></pre>
+<p><em>Tabla de alturas:</em></p>
 <table>
-<caption><span id="tab:unnamed-chunk-10">Table 1: </span>Diferencias de alturas.</caption>
+<caption><span id="tab:unnamed-chunk-12">Table 1: </span>Diferencias de alturas.</caption>
 <thead>
 <tr class="header">
 <th align="right">ID</th>
@@ -119,15 +131,16 @@ points(puntos_sp, pch = 16, col = &quot;black&quot;, cex= 0.8)</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>summary(res_pae &lt;- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.03614 0.09034 0.11081 0.16203 0.23086 0.40397</code></pre>
-<p>Resultados de los cálculos de residuos o errores en las alturas:</p>
-<pre class="r"><code>print(resultados)</code></pre>
+<ul>
+<li>Resultados de los cálculos de residuos o errores en las alturas:</li>
+</ul>
 <pre><code>##           Metodos        ME       MAE        MSE      RMSE   Err Q75      R2
 ## 75% Fotogrametria 0.1548069 0.1620344 0.03901365 0.1975187 0.2308635 0.99939</code></pre>
-<p>Gráficos: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<p>Gráficos de magnitud de residuos espaciales: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-15-1.png" width="672" /> Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.</p>
+<ul>
+<li><p>Gráfico de comparacion: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p></li>
+<li><p>Gráfico de magnitud de residuos espaciales: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p></li>
+</ul>
+<p>Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.</p>
 <p><strong>Conclusiones</strong></p>
 <p>Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 4 mm, un error cuadrático de 20 cm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,99. En definitiva la mayoría de los puntos no sobre pasan los 23 cm de diferencias.</p>
 </div>

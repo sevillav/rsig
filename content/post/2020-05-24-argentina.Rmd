@@ -8,15 +8,15 @@ tags: []
 ---
 ###**Por: Diego A. Machado P.**
 
-Nuestro objetivo es mostrar el análisis estadístico realizado para conocer la precisión que tuvo el modelado fotogrametrico para generar el modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R^2^.
+Nuestro objetivo es mostrar un análisis estadístico sobre la precisión que tuvo el modelado fotogrametrico en la generacion del modelo digital de elevación (MDE) de PAE. Los indicadores empleados serán los errores: medios (ME), medio absoluto (MAE), medio cuadrático (MSE), raíz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R^2^ de la comparacion de las alturas modeladas y reales.
 
 **Procedimientos:**
 
-Librerías requerida para el análisis estadístico:
+* Librerías requerida para el análisis estadístico:
 ```{r message=FALSE, warning=FALSE}
 library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);
 ```
-Cargar capas necesarias:
+* Cargar capas necesarias:
 ```{r}
 dsm <- raster("C:/Proyectos/Diego/PAE/DEM_AG_VS.tif")
 puntos <- read.csv("C:/Proyectos/Diego/PAE/Pcontrol.csv")
@@ -31,52 +31,55 @@ names(dsm) <- "Arg_Prof_dsm"
 summary(dsm, maxsamp = ncell(dsm))
 summary(dsm_res, maxsamp = ncell(dsm_res))
 ```
-Graficar modelo digital de elevación con sus puntos de control:
-```{r}
+* Graficar modelo digital de elevación con sus puntos de control:
+```{r echo=FALSE}
 plot(dsm, main= "Modelo digital de elevacion msnm (MDE)")
 points(puntos_sp, pch = 16, col = "black", cex= 0.8)
 ```
 
 
-Adecuación de proyección cartográficas:
+* Adecuación de proyección cartográficas:
 ```{r message=TRUE, warning=FALSE}
-crs(puntos_sp);
-crs(dsm);
 puntos_sp@proj4string <- CRS("+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
+crs(puntos_sp);
+crs(dsm);
 ```
-Extracción de datos de alturas del MDE:
+* Extracción de datos de alturas del MDE:
 ```{r}
 puntos_sp <- extract(x = dsm, y = puntos_sp, sp = TRUE)
 ```
-Estadísticos de las alturas en los puntos de control, obtenidas de Estación:
-```{r}
+* Estadísticos de las alturas en los puntos de control, obtenidas de Estación:
+```{r echo=FALSE}
 summary(puntos_sp$AlturaZ);
 ```
-Estadísticos de las alturas en los puntos de control, obtenidas del MDE:
-```{r}
+* Estadísticos de las alturas en los puntos de control, obtenidas del MDE:
+```{r echo=FALSE}
 summary(puntos_sp$Arg_Prof_dsm)
 ```
 
-Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):
-```{r, include=FALSE}
+* Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):
+```{r, echo=FALSE}
 puntos_sp$diferencia <- puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ
+summary(puntos_sp$diferencia)
 ```
-**Tabla de alturas:**
-```{r echo=FALSE}
+
+```{r include=FALSE}
+summary(res_pae <- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))
+```
+
+*Tabla de alturas:*
+```{r include=FALSE}
 names(puntos_sp)
 puntos_sp$Pts_control <- puntos_sp@data$AlturaZ
 puntos_sp@data$MDE <- puntos_sp@data$Arg_Prof_dsm
+```
 
+```{r echo=FALSE}
 knitr::kable(
   puntos_sp@data[,c(1, 5, 6, 4)],
   caption = "Diferencias de alturas."
 )
-```
-
-
-```{r}
-summary(res_pae <- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))
 ```
 
 ```{r, include=FALSE}
@@ -96,11 +99,11 @@ resultados <- cbind(metodo, ME_RK, MAE_RK, MSE_RK, RMSE_RK, s, g)
 etiquetas <- c("Metodos", "ME", "MAE", "MSE", "RMSE", "Err Q75", "R2")
 names(resultados) <- etiquetas
 ```
-Resultados de los cálculos de residuos o errores en las alturas:
-```{r}
+* Resultados de los cálculos de residuos o errores en las alturas:
+```{r echo=FALSE}
 print(resultados)
 ```
-Gráficos:
+* Gráfico de comparacion:
 ```{r echo=FALSE}
 par(mfrow=c(1,1))
 plot(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ, main="Relacion entre alturas modeladas por fotogrametria y alturas reales ", xlab="Altura modelada (MDE)", 
@@ -112,7 +115,7 @@ legend(x = 241, y = 253,  legend = c("Relacion ideal 1:1", "Fotogrametria"), col
 text(252,242,"R2 : 0.99", cex = 1.2)
 ```
 
-Gráficos de magnitud de residuos espaciales:
+* Gráfico de magnitud de residuos espaciales:
 ```{r echo=FALSE}
 area <- shapefile("C:/Proyectos/Diego/PAE/area.shp")
 area@proj4string <- CRS(projargs = "+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
@@ -121,6 +124,8 @@ area.sp <- as(area, "SpatialPolygonsDataFrame", filled.contour())
 bubble(puntos_sp[!is.na(puntos_sp$diferencia),], "diferencia", pch = 16, 
        col=c('red', 'green'), main = "Errores espaciales de prediccion", sp.layout=list("sp.polygons", area.sp, fill="0") )
 ```
+
+
 Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.
 
 **Conclusiones**
