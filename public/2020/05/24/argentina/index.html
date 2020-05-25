@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.69.0" />
 
 
-<title>PAE Argentina - R-SIG Sevilla</title>
-<meta property="og:title" content="PAE Argentina - R-SIG Sevilla">
+<title>Argentina - R-SIG Sevilla</title>
+<meta property="og:title" content="Argentina - R-SIG Sevilla">
 
 
   <link href='/ca.ico' rel='icon' type='image/x-icon'/>
@@ -67,22 +67,16 @@
     <span class="article-duration">2 min read</span>
     
 
-    <h1 class="article-title">PAE Argentina</h1>
+    <h1 class="article-title">Argentina</h1>
 
     
     <span class="article-date">2020-05-24</span>
     
 
     <div class="article-content">
-       
+      
 
 
-
-<div id="validacion-de-levantamiento-fotogrametrico" class="section level3">
-<h3>VALIDACION DE LEVANTAMIENTO FOTOGRAMETRICO</h3>
-<p>Espacio de trabajo:</p>
-<pre class="r"><code>setwd(&quot;C:/proyectos/diego/pae&quot;)
-getwd()</code></pre>
 <p>Liberia requerida:</p>
 <pre class="r"><code>library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);</code></pre>
 <p>Cargar capas necesarias:</p>
@@ -93,7 +87,7 @@ coordinates(puntos_sp) &lt;- ~ Este + Norte</code></pre>
 <p>Graficar modelo digital de elevación con sus puntos de control:</p>
 <pre class="r"><code>plot(dsm, main= &quot;Modelo digital de elevacion msnm (MDE)&quot;)
 points(puntos_sp, pch = 16, col = &quot;black&quot;, cex= 0.8)</code></pre>
-<p><img src="//post/2020-05-24-pae-argentina_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Resumen estadístico de las alturas de los puntos de control:</p>
 <p>Adecuación de proyección cartográficas:</p>
 <pre class="r"><code>crs(puntos_sp); crs(dsm)</code></pre>
@@ -130,7 +124,7 @@ abline(lm(puntos_sp$AlturaZ ~ puntos_sp$Arg_Prof_dsm), col = &#39;blue&#39;, lty
 legend(x = 240, y = 253,  legend = c(&quot;Relacion ideal 1:1&quot;, &quot;Fotogrametria&quot;), col = c(&quot;Red&quot;, &quot;Blue&quot;), 
        title = &quot;Leyenda&quot;, lty = 2, cex = 0.75)
 text(20,4,&quot;R2 : 0.41&quot;, cex = 1.5)</code></pre>
-<p><img src="//post/2020-05-24-pae-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Gráficos de magnitud de residuos espaciales:</p>
 <pre class="r"><code>area &lt;- shapefile(&quot;C:/Proyectos/Diego/PAE/area.shp&quot;)
 area@proj4string &lt;- CRS(projargs = &quot;+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
@@ -138,9 +132,8 @@ area@proj4string &lt;- CRS(projargs = &quot;+proj=tmerc +lat_0=-90 +lon_0=-69 +k
 area.sp &lt;- as(area, &quot;SpatialPolygonsDataFrame&quot;, filled.contour())
 bubble(puntos_sp[!is.na(puntos_sp$diferencia),], &quot;diferencia&quot;, pch = 16, 
        col=c(&#39;red&#39;, &#39;green&#39;), main = &quot;Errores espaciales de prediccion&quot;, sp.layout=list(&quot;sp.polygons&quot;, area.sp, fill=&quot;0&quot;) )</code></pre>
-<p><img src="//post/2020-05-24-pae-argentina_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Esta ultimo gráfico muestra las diferencias de alturas espacialmente de los puntos de control. exponiendo si es sobrestimacion (Verde)o subestimacion (Rojo)por parte del modelo digital de elevación. El tamaño del circulo muestra una magnitud relativa. Final.</p>
-</div>
 
     </div>
   </article>

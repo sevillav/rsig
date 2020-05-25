@@ -1,23 +1,13 @@
 ---
-title: PAE Argentina
-author: Diego Machado
+title: Argentina
+author: Victor Sevilla
 date: '2020-05-24'
-output:
-  html_document:
-    df_print: paged
-slug: pae-argentina
+slug: argentina
 categories: []
 tags: []
---- 
-###VALIDACION DE LEVANTAMIENTO FOTOGRAMETRICO
-
-Espacio de trabajo:
-```{r eval=FALSE}
-setwd("C:/proyectos/diego/pae")
-getwd()
-```
-Libreria requerida:
-```{r }
+---
+Liberia requerida:
+```{r message=FALSE, warning=FALSE}
 library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);
 ```
 Cargar capas necesarias:
@@ -27,40 +17,43 @@ puntos <- read.csv("C:/Proyectos/Diego/PAE/Pcontrol.csv")
 puntos_sp <- puntos
 coordinates(puntos_sp) <- ~ Este + Norte
 ```
-Graficar modelo digital de elevacion con sus puntos de control:
+Graficar modelo digital de elevación con sus puntos de control:
 ```{r}
-plot(dsm)
+plot(dsm, main= "Modelo digital de elevacion msnm (MDE)")
 points(puntos_sp, pch = 16, col = "black", cex= 0.8)
 ```
 
 
-Resumen estadistico de las alturas de los puntos de control:
-```{r message=FALSE}
+Resumen estadístico de las alturas de los puntos de control:
+```{r message=FALSE, warning=FALSE, include=FALSE}
 summary(puntos_sp$AlturaZ)
 ```
-Adecuacion de proyeccion cartograficas:
-```{r}
+Adecuación de proyección cartográficas:
+```{r message=TRUE, warning=FALSE}
 crs(puntos_sp); crs(dsm)
 puntos_sp@proj4string <- CRS("+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
 ```
-Extraccion de datos de alturas del MDE:
+Extracción de datos de alturas del MDE:
 ```{r}
 puntos_sp <- extract(x = dsm, y = puntos_sp, sp = TRUE)
-#Estadicticos de alturas puntos de control obtenidas de Estacion:
+```
+Estadísticos de alturas puntos de control obtenidas de Estación:
+```{r}
 summary(puntos_sp$AlturaZ);
-#Estadisticos de alturas de puntos de control obtenidas del MDE:
+```
+Estadísticos de alturas de puntos de control obtenidas del MDE:
+```{r}
 summary(puntos_sp$Arg_Prof_dsm)
 ```
-Calculos estadisticos de errores:
-```{r}
+```{r, include=FALSE}
 puntos_sp$diferencia <- puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ
 ```
-Estadisticos de los errores o diferencias:
+Estadísticos de los errores, diferencias o residuos:
 ```{r}
 summary(res_pae <- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))
 ```
-```{r}
+```{r, include=FALSE}
 s <- quantile(res_pae,.75, na.rm=TRUE)
 a <-(rmse(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ))
 g <- (cor(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ)^2)
@@ -73,25 +66,27 @@ AVE_RK <- 1 - sum(puntos_sp$diferencia^2, na.rm=TRUE) /
        na.rm = TRUE)
 metodo <- factor("Fotogrametria")
 metodo <- data.frame(metodo)
-resultados <- cbind(metodo, ME_RK, MAE_RK, MSE_RK, RMSE_RK, AVE_RK, s, g)
-etiquetas <- c("Metodos", "ME", "MAE", "MSE", "RMSE", "AVE", "Err Q75", "R2")
+resultados <- cbind(metodo, ME_RK, MAE_RK, MSE_RK, RMSE_RK, s, g)
+etiquetas <- c("Metodos", "ME", "MAE", "MSE", "RMSE", "Err Q75", "R2")
 names(resultados) <- etiquetas
-print(resultados)
-
 ```
-Graficos:
+Resultados de los cálculos de residuos o errores en las alturas:
 ```{r}
+print(resultados)
+```
+Gráficos:
+```{r message=FALSE, warning=FALSE}
 par(mfrow=c(1,1))
-plot(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ, main="Comparacion entre valores modelados por fotogrametria y valores reales de puntos de control", xlab=" Valor altura modelados", 
-     ylab='Valor altura reales', pch= 16, col = "blue", text(15,0.5, "TEXT"))
+plot(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ, main="Relacion entre alturas modeladas por fotogrametria y alturas reales", xlab="Altura modelada (MDE)", 
+     ylab='Altura reales', pch= 16, col = "blue", text(15,0.5, "TEXT"))
 abline(0,1, lty=2, col='red')
 abline(lm(puntos_sp$AlturaZ ~ puntos_sp$Arg_Prof_dsm), col = 'blue', lty=2)
-legend(x = 240, y = 252,  legend = c("Relacion 1:1", "Regresion"), col = c("Red", "Blue"), 
+legend(x = 240, y = 253,  legend = c("Relacion ideal 1:1", "Fotogrametria"), col = c("Red", "Blue"), 
        title = "Leyenda", lty = 2, cex = 0.75)
 text(20,4,"R2 : 0.41", cex = 1.5)
 ```
 
-Graficos de magnitud de resisuos espaciales:
+Gráficos de magnitud de residuos espaciales:
 ```{r}
 area <- shapefile("C:/Proyectos/Diego/PAE/area.shp")
 area@proj4string <- CRS(projargs = "+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=WGS84
@@ -100,4 +95,6 @@ area.sp <- as(area, "SpatialPolygonsDataFrame", filled.contour())
 bubble(puntos_sp[!is.na(puntos_sp$diferencia),], "diferencia", pch = 16, 
        col=c('red', 'green'), main = "Errores espaciales de prediccion", sp.layout=list("sp.polygons", area.sp, fill="0") )
 ```
+
+Esta ultimo gráfico muestra las diferencias de alturas espacialmente de los puntos de control. exponiendo si es sobrestimacion (Verde)o subestimacion (Rojo)por parte del modelo digital de elevación. El tamaño del circulo muestra una magnitud relativa.
 Final.

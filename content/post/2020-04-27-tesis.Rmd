@@ -1,9 +1,0 @@
----
-title: Tesis
-author: Victor Sevilla
-date: '2020-04-27'
-slug: tesis
-categories: []
-tags: []
----
-xxx
