@@ -91,13 +91,11 @@ ME_RK <- mean(puntos_sp$diferencia, na.rm=TRUE)
 MAE_RK <- mean(abs(puntos_sp$diferencia), na.rm=TRUE)
 MSE_RK <- mean(puntos_sp$diferencia^2, na.rm=TRUE)
 RMSE_RK <- sqrt(sum(puntos_sp$diferencia^2, na.rm=TRUE) / length(puntos_sp$diferencia))
-AVE_RK <- 1 - sum(puntos_sp$diferencia^2, na.rm=TRUE) / 
-  sum( (puntos_sp$AlturaZ - mean(puntos_sp$AlturaZ, na.rm = TRUE))^2, 
-       na.rm = TRUE)
+AVE_RK <- 1 - sum(puntos_sp$diferencia^2, na.rm=TRUE) / sum( (puntos_sp$AlturaZ - mean(puntos_sp$AlturaZ, na.rm = TRUE))^2, na.rm = TRUE)
 metodo <- factor("Fotogrametria")
 metodo <- data.frame(metodo)
-resultados <- cbind(metodo, ME_RK, MAE_RK, MSE_RK, RMSE_RK, s, g)
-etiquetas <- c("Metodos", "ME", "MAE", "MSE", "RMSE", "Err Q75", "R2")
+resultados <- cbind(metodo, ME_RK, MAE_RK, MSE_RK, RMSE_RK, s, g, AVE_RK)
+etiquetas <- c("Metodos", "ME", "MAE", "MSE", "RMSE", "Err Q75", "R2", "AVE")
 names(resultados) <- etiquetas
 ```
 * Resultados de los cálculos de residuos o errores en las alturas:
@@ -107,13 +105,14 @@ print(resultados)
 * Gráfico de comparacion:
 ```{r echo=FALSE}
 par(mfrow=c(1,1))
-plot(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ, main="Relacion entre alturas modeladas por fotogrametria y alturas reales ", xlab="Altura modelada (MDE)", 
-     ylab='Altura reales de pts de control', pch= 16, col = "blue", text(15,0.5, "TEXT"))
-abline(0,1, lty=2, col='red')
+plot(puntos_sp$Arg_Prof_dsm, puntos_sp$AlturaZ, main="Relacion entre alturas modeladas por fotogrametria y alturas reales ", xlab="Altura modelada (MDE)", ylab='Altura reales de pts de control', pch= 16, col = "blue", text(15,0.5, "TEXT"), xlim=c(220, 240), ylim=c(220, 260))
+abline(1, 1, col="red", lty=2)
+#abline(0,1, lty=2, col='red')
+
 abline(lm(puntos_sp$AlturaZ ~ puntos_sp$Arg_Prof_dsm), col = 'blue', lty=2)
-legend(x = 241, y = 253,  legend = c("Relacion ideal 1:1", "Fotogrametria"), col = c("Red", "Blue"), 
+legend(x = 221, y = 255,  legend = c("Relacion ideal 1:1", "Fotogrametria"), col = c("Red", "Blue"), 
        title = "Leyenda", lty = 2, cex = 0.75)
-text(252,242,"R2 : 0.99", cex = 1.2)
+text(235,230,"AVE: 0.99", cex = 1.2)
 ```
 
 * Gráfico de magnitud de residuos espaciales:
