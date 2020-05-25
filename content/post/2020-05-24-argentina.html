@@ -44,6 +44,81 @@ points(puntos_sp, pch = 16, col = &quot;black&quot;, cex= 0.8)</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   240.7   243.7   248.4   247.9   251.8   254.1</code></pre>
 <p>Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):</p>
+<p><strong>Tabla de alturas:</strong></p>
+<pre><code>## [1] &quot;ID&quot;           &quot;AlturaZ&quot;      &quot;Arg_Prof_dsm&quot; &quot;diferencia&quot;</code></pre>
+<table>
+<caption><span id="tab:unnamed-chunk-10">Table 1: </span>Diferencias de alturas.</caption>
+<thead>
+<tr class="header">
+<th align="right">ID</th>
+<th align="right">Pts_control</th>
+<th align="right">MDE</th>
+<th align="right">diferencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">246.014</td>
+<td align="right">246.1321</td>
+<td align="right">0.1180953</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">247.855</td>
+<td align="right">248.2590</td>
+<td align="right">0.4039722</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">253.812</td>
+<td align="right">254.1125</td>
+<td align="right">0.3005183</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">242.849</td>
+<td align="right">242.9353</td>
+<td align="right">0.0862570</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">251.717</td>
+<td align="right">251.8383</td>
+<td align="right">0.1213484</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">240.606</td>
+<td align="right">240.7095</td>
+<td align="right">0.1035337</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">253.842</td>
+<td align="right">253.8059</td>
+<td align="right">-0.0361376</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">251.451</td>
+<td align="right">251.7184</td>
+<td align="right">0.2673685</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">248.530</td>
+<td align="right">248.6326</td>
+<td align="right">0.1025836</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="right">240.650</td>
+<td align="right">240.7305</td>
+<td align="right">0.0805298</td>
+</tr>
+</tbody>
+</table>
 <pre class="r"><code>summary(res_pae &lt;- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## 0.03614 0.09034 0.11081 0.16203 0.23086 0.40397</code></pre>
@@ -51,8 +126,8 @@ points(puntos_sp, pch = 16, col = &quot;black&quot;, cex= 0.8)</code></pre>
 <pre class="r"><code>print(resultados)</code></pre>
 <pre><code>##           Metodos        ME       MAE        MSE      RMSE   Err Q75      R2
 ## 75% Fotogrametria 0.1548069 0.1620344 0.03901365 0.1975187 0.2308635 0.99939</code></pre>
-<p>Gráficos: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p>Gráficos de magnitud de residuos espaciales: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /> Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.</p>
+<p>Gráficos: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Gráficos de magnitud de residuos espaciales: <img src="/post/2020-05-24-argentina_files/figure-html/unnamed-chunk-15-1.png" width="672" /> Esta ultimo gráfico muestra las diferencias en alturas en cada sitio de control. Exponiendo la magnitud de sobre (Verde) o sub (Rojo) estimación del modelo digital de elevación (MDE). El tamaño del circulo muestra la magnitud de la diferencia.</p>
 <p><strong>Conclusiones</strong></p>
 <p>Las diferencias del modelo en general son muy bajas, con un error absoluto promedio de 4 mm, un error cuadrático de 20 cm y una coincidencia entre valores de alturas reales y modelados muy alta de 0,99. En definitiva la mayoría de los puntos no sobre pasan los 23 cm de diferencias.</p>
 </div>

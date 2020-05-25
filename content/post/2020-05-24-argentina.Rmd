@@ -58,11 +58,23 @@ Estadísticos de las alturas en los puntos de control, obtenidas del MDE:
 summary(puntos_sp$Arg_Prof_dsm)
 ```
 
+Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):
 ```{r, include=FALSE}
 puntos_sp$diferencia <- puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ
 ```
+**Tabla de alturas:**
+```{r echo=FALSE}
+names(puntos_sp)
+puntos_sp$Pts_control <- puntos_sp@data$AlturaZ
+puntos_sp@data$MDE <- puntos_sp@data$Arg_Prof_dsm
 
-Estadísticos de los errores, diferencias o residuos entre las alturas obtenidas por ambos metodos (puntos de control y MDE):
+knitr::kable(
+  puntos_sp@data[,c(1, 5, 6, 4)],
+  caption = "Diferencias de alturas."
+)
+```
+
+
 ```{r}
 summary(res_pae <- abs(puntos_sp$Arg_Prof_dsm - puntos_sp$AlturaZ))
 ```
