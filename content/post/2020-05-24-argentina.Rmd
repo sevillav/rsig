@@ -1,12 +1,18 @@
 ---
 title: Argentina
-author: Victor Sevilla
+author: Diego Machado
 date: '2020-05-24'
 slug: argentina
 categories: []
 tags: []
 ---
-Liberia requerida:
+###**Por: Diego A. Machado P.**
+
+Nuestro objetivo es mostrar el analisis estadistico realizado para conocer la precision que tuvo el modelado fotogrametrico para generar el modelo digital de elevacion (MDE) de PAE. Los indicadores empleados seran los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadratico (MSE), raiz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.
+
+**Procedimientos:**
+
+Librerías requerida para el análisis estadístico:
 ```{r message=FALSE, warning=FALSE}
 library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);
 ```

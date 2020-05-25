@@ -17,11 +17,9 @@
       <pubDate>Sun, 24 May 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/05/24/argentina/</guid>
-      <description>Liberia requerida:
-library(raster); library(car); library(rgdal); library(gstat); library(caret); library(reshape); library(sp); library(lattice); library(ggplot2); library(automap); library(Metrics);Cargar capas necesarias:
-dsm &amp;lt;- raster(&amp;quot;C:/Proyectos/Diego/PAE/Arg_Prof_dsm.tif&amp;quot;)puntos &amp;lt;- read.csv(&amp;quot;C:/Proyectos/Diego/PAE/Pcontrol.csv&amp;quot;)puntos_sp &amp;lt;- puntoscoordinates(puntos_sp) &amp;lt;- ~ Este + NorteGraficar modelo digital de elevación con sus puntos de control:
-plot(dsm, main= &amp;quot;Modelo digital de elevacion msnm (MDE)&amp;quot;)points(puntos_sp, pch = 16, col = &amp;quot;black&amp;quot;, cex= 0.8)Resumen estadístico de las alturas de los puntos de control:
-Adecuación de proyección cartográficas:</description>
+      <description>Por: Diego A. Machado P.Nuestro objetivo es mostrar el analisis estadistico realizado para conocer la precision que tuvo el modelado fotogrametrico para generar el modelo digital de elevacion (MDE) de PAE. Los indicadores empleados seran los errores, diferencias o residuos: medios (ME), medio absoluto (MAE), medio cuadratico (MSE), raiz cuadrada del error medio (RMSE), el tercer cuartil (ErrQ75) y el R2.
+Procedimientos:
+Librerías requerida para el análisis estadístico:</description>
     </item>
     
     <item>
